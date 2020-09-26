@@ -29,6 +29,10 @@ namespace MyServerRenderedPortal
             services.AddOptions();
             services.AddMicrosoftIdentityWebAppAuthentication(Configuration);
 
+            services.AddMicrosoftIdentityWebApiAuthentication(Configuration, "CallApi")
+               .EnableTokenAcquisitionToCallDownstreamApi()
+               .AddInMemoryTokenCaches();
+
             services.AddRazorPages().AddMvcOptions(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
