@@ -31,6 +31,8 @@ namespace MyServerRenderedPortal
                 var scope = _configuration["CallApi:ScopeForAccessToken"];
                 var authority = $"{_configuration["CallApi:Instance"]}{_configuration["CallApi:TenantId"]}";
                 var cert = new X509Certificate2("damienbod-ServiceApiCert-20200926.pfx");
+
+                // client credentials flows
                 IConfidentialClientApplication app = ConfidentialClientApplicationBuilder.Create(_configuration["CallApi:ClientId"])
                         .WithAuthority(new Uri(authority))
                         .WithCertificate(cert)

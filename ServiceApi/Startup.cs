@@ -31,8 +31,8 @@ namespace ServiceApi
             services.AddControllers(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                   // .RequireClaim("email") // disabled this to test with users that have no email (no license added)
+                   // .RequireAuthenticatedUser()
+                    .RequireRole("service-api")
                     .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             });
