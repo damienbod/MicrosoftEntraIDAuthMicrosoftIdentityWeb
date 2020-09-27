@@ -1,6 +1,7 @@
 ﻿using Microsoft.Azure.KeyVault;
 using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using Microsoft.Identity.Web;
 using Newtonsoft.Json.Linq;
@@ -16,12 +17,15 @@ namespace MyServerRenderedPortal
     {
         private readonly IHttpClientFactory _clientFactory;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<ApiService> _logger;
 
         public ApiService(IHttpClientFactory clientFactory, 
-            IConfiguration configuration)
+            IConfiguration configuration,
+            ILoggerFactory loggerFactory)
         {
             _clientFactory = clientFactory;
             _configuration = configuration;
+            _logger = loggerFactory.CreateLogger<ApiService>();
         }
 
         public async Task<JArray> GetApiDataAsync()
@@ -46,6 +50,8 @@ namespace MyServerRenderedPortal
                 IConfidentialClientApplication app = ConfidentialClientApplicationBuilder.Create(_configuration["CallApi:ClientId"])
                         .WithAuthority(new Uri(authority))
                         .WithCertificate(cert)
+                        .WithLogging(MyLoggingMethod, Microsoft.Identity.Client.LogLevel.Verbose,
+                            enablePiiLogging: true, enableDefaultPlatformLogging: true)
                         .Build();
 
                 var accessToken = await app.AcquireTokenForClient(new[] { scope }).ExecuteAsync();
@@ -80,6 +86,11 @@ namespace MyServerRenderedPortal
             var privateKeyBytes = Convert.FromBase64String(certificatePrivateKeySecretBundle.Value);
             var certificateWithPrivateKey = new X509Certificate2(privateKeyBytes, (string)null, X509KeyStorageFlags.MachineKeySet);
             return certificateWithPrivateKey;
+        }
+
+        void MyLoggingMethod(Microsoft.Identity.Client.LogLevel level, string message, bool containsPii)
+        {
+            _logger.LogInformation($"MSAL {level} {containsPii} {message}");
         }
     }
 }
