@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ServiceApi.Controllers
 {
-    [Authorize(Policy = "HasServiceApiRolePolicy", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Policy = "ValidateAccessTokenPolicy", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase

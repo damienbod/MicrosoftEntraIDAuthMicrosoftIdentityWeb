@@ -6,11 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.IdentityModel.Logging;
-using Microsoft.Extensions.Azure;
 using Serilog;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ServiceApi
 {
@@ -32,20 +29,27 @@ namespace ServiceApi
 
             services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
 
-            // TODO add policy to require azpacr = 2 , azp = clientId
-            // https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("HasServiceApiRolePolicy", hasServiceApiRolePolicy =>
+                options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
                 {
-                    hasServiceApiRolePolicy.Requirements.Add(new HasServiceApiRoleRequirement());
+                    validateAccessTokenPolicy.Requirements.Add(new HasServiceApiRoleRequirement());
+                    
+                    // Validate ClientId from token
+                    validateAccessTokenPolicy.RequireClaim("azp", Configuration["AzureAd:ClientId"]);
+
+                    // only allow tokens which used "Private key JWT Client authentication"
+                    // // https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
+                    // Indicates how the client was authenticated. For a public client, the value is "0". 
+                    // If client ID and client secret are used, the value is "1". 
+                    // If a client certificate was used for authentication, the value is "2".
+                    validateAccessTokenPolicy.RequireClaim("azpacr", "2");
                 });
             });
 
             services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
