@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using Serilog;
 
 namespace MyServerRenderedPortal
 {
@@ -51,6 +52,10 @@ namespace MyServerRenderedPortal
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            // https://nblumhardt.com/2019/10/serilog-in-aspnetcore-3/
+            // https://nblumhardt.com/2019/10/serilog-mvc-logging/
+            app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

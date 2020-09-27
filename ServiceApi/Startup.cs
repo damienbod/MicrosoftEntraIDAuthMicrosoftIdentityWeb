@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.Extensions.Azure;
+using Serilog;
 
 namespace ServiceApi
 {
@@ -31,7 +32,6 @@ namespace ServiceApi
             services.AddControllers(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
-                   // .RequireAuthenticatedUser()
                     .RequireRole("service-api")
                     .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
@@ -46,7 +46,9 @@ namespace ServiceApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors("AllowAllOrigins");
+            // https://nblumhardt.com/2019/10/serilog-in-aspnetcore-3/
+            // https://nblumhardt.com/2019/10/serilog-mvc-logging/
+            app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
 
