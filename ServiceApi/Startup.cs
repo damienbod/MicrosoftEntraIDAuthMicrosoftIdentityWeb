@@ -32,6 +32,8 @@ namespace ServiceApi
 
             services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
 
+            // TODO add policy to require azpacr = 2 , azp = clientId
+            // https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("HasServiceApiRolePolicy", hasServiceApiRolePolicy =>
