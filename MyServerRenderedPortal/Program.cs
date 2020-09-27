@@ -45,7 +45,7 @@ namespace MyServerRenderedPortal
                     .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                     .ReadFrom.Configuration(hostingContext.Configuration)
                     .Enrich.FromLogContext()
-                    .WriteTo.File("../MyServerRenderedPortal.txt")
+                    .WriteTo.File("../LogsMyServerRenderedPortal.txt")
                     .WriteTo.Console(theme: AnsiConsoleTheme.Code)
                 );
                 });

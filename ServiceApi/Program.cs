@@ -46,7 +46,7 @@ namespace ServiceApi
                     .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                     .ReadFrom.Configuration(hostingContext.Configuration)
                     .Enrich.FromLogContext()
-                    .WriteTo.File("../ServiceApi.txt")
+                    .WriteTo.File("../LogsServiceApi.txt")
                     .WriteTo.Console(theme: AnsiConsoleTheme.Code)
                 );
                 });

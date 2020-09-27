@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.Extensions.Azure;
 using Serilog;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ServiceApi
 {
@@ -27,15 +28,19 @@ namespace ServiceApi
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             IdentityModelEventSource.ShowPII = true;
 
+            services.AddSingleton<IAuthorizationHandler, HasServiceApiRoleHandler>();
+
             services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
 
-            services.AddControllers(options =>
+            services.AddAuthorization(options =>
             {
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireRole("service-api")
-                    .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
+                options.AddPolicy("HasServiceApiRolePolicy", hasServiceApiRolePolicy =>
+                {
+                    hasServiceApiRolePolicy.Requirements.Add(new HasServiceApiRoleRequirement());
+                });
             });
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
