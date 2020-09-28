@@ -3,7 +3,7 @@
 
 https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow#second-case-access-token-request-with-a-certificate
 
-# Azure Client credential flow
+# Azure Client credentials flow
 
 https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Client-credential-flows
 

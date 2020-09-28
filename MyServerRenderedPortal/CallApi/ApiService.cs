@@ -3,7 +3,6 @@ using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
-using Microsoft.Identity.Web;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
@@ -32,11 +31,7 @@ namespace MyServerRenderedPortal
         {
             try
             {
-                var client = _clientFactory.CreateClient();
-
-                var scope = _configuration["CallApi:ScopeForAccessToken"];
-                var authority = $"{_configuration["CallApi:Instance"]}{_configuration["CallApi:TenantId"]}";
-
+                // Use Key Vault to get certificate
                 var azureServiceTokenProvider = new AzureServiceTokenProvider();
                 // using managed identities
                 var kv = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
@@ -44,9 +39,13 @@ namespace MyServerRenderedPortal
                 // Get the certificate from Key Vault
                 var identifier = _configuration["CallApi:ClientCertificates:0:KeyVaultCertificateName"];
                 var cert = await GetCertificateAsync(identifier, kv);
-                
 
-                // client credentials flows
+                var client = _clientFactory.CreateClient();
+
+                var scope = _configuration["CallApi:ScopeForAccessToken"];
+                var authority = $"{_configuration["CallApi:Instance"]}{_configuration["CallApi:TenantId"]}";
+
+                // client credentials flows, get access token
                 IConfidentialClientApplication app = ConfidentialClientApplicationBuilder.Create(_configuration["CallApi:ClientId"])
                         .WithAuthority(new Uri(authority))
                         .WithCertificate(cert)
@@ -60,6 +59,7 @@ namespace MyServerRenderedPortal
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken.AccessToken);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
        
+                // use access token and get payload
                 var response = await client.GetAsync("weatherforecast");
                 if (response.IsSuccessStatusCode)
                 {
