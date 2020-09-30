@@ -3,11 +3,11 @@
 Implement Azure AD Client credentials flow using Client Certificates for service APIs
 
 
-# Private key JWT Client authentication
+## Links Private key JWT Client authentication
 
 https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow#second-case-access-token-request-with-a-certificate
 
-# Azure Client credentials flow
+## Links Azure Client credentials flow
 
 https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Client-credential-flows
 
@@ -15,7 +15,7 @@ https://tools.ietf.org/html/rfc7523
 
 https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication
 
-# Links
+## Links
 
 https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
 
