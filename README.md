@@ -2,6 +2,7 @@
 
 Implement Azure AD Client credentials flow using Client Certificates for service APIs
 
+https://damienbod.com/2020/10/01/implement-azure-ad-client-credentials-flow-using-client-certificates-for-service-apis/
 
 ## Links Private key JWT Client authentication
 
