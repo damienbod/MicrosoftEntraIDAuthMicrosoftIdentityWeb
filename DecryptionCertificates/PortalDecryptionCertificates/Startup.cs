@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.TokenCacheProviders.InMemory;
 using Microsoft.Identity.Web.UI;
+using Microsoft.IdentityModel.Logging;
 
 namespace PortalDecryptionCertificates
 {
@@ -30,9 +31,11 @@ namespace PortalDecryptionCertificates
 
             string[] initialScopes = Configuration.GetValue<string>("CallApi:ScopeForAccessToken")?.Split(' ');
 
-            services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
-                .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-                .AddInMemoryTokenCaches();
+            services.AddMicrosoftIdentityWebAppAuthentication(Configuration);
+
+            //services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
+            //   .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+            //   .AddInMemoryTokenCaches();
 
             services.AddRazorPages().AddMvcOptions(options =>
             {
@@ -46,6 +49,8 @@ namespace PortalDecryptionCertificates
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            IdentityModelEventSource.ShowPII = true;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
