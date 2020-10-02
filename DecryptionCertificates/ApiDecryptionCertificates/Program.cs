@@ -7,7 +7,7 @@ using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
 
-namespace MyApi
+namespace ApiDecryptionCertificates
 {
     public class Program
     {

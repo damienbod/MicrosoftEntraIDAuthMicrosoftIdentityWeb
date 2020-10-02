@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>aspnet-MyApi-2ba0bbf9-49f5-452e-8333-1e33a467b74e</UserSecretsId>
+    <UserSecretsId>aspnet-ApiDecryptionCertificates-2ba0bbf9-49f5-452e-8333-1e33a467b74e</UserSecretsId>
     <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
   </PropertyGroup>
 

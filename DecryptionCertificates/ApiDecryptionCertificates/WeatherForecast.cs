@@ -1,6 +1,6 @@
 using System;
 
-namespace MyApi
+namespace ApiDecryptionCertificates
 {
     public class WeatherForecast
     {

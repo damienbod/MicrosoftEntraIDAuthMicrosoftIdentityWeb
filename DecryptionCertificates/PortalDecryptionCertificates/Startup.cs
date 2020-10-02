@@ -9,7 +9,7 @@ using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.TokenCacheProviders.InMemory;
 using Microsoft.Identity.Web.UI;
 
-namespace MyServerRenderedPortal
+namespace PortalDecryptionCertificates
 {
     public class Startup
     {

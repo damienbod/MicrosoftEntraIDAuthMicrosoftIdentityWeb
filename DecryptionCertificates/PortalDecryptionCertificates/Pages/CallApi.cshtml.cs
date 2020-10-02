@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 
-namespace MyServerRenderedPortal.Pages
+namespace PortalDecryptionCertificates.Pages
 {
     public class CallApiModel : PageModel
     {

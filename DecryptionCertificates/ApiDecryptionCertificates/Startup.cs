@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.IdentityModel.Logging;
 using Serilog;
 
-namespace MyApi
+namespace ApiDecryptionCertificates
 {
     public class Startup
     {

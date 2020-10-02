@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "MyApi": {
+    "ApiDecryptionCertificates": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
