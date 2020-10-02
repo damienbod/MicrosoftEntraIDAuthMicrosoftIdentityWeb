@@ -7,6 +7,8 @@ using Microsoft.Identity.Web;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.IdentityModel.Logging;
+using Serilog;
 
 namespace MyApi
 {
@@ -23,31 +25,8 @@ namespace MyApi
         public void ConfigureServices(IServiceCollection services)
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-            // IdentityModelEventSource.ShowPII = true;
+            IdentityModelEventSource.ShowPII = true;
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAllOrigins",
-                    builder =>
-                    {
-                        builder
-                            .AllowCredentials()
-                            .WithOrigins(
-                                "https://localhost:4200")
-                            .SetIsOriginAllowedToAllowWildcardSubdomains()
-                            .AllowAnyHeader()
-                            .AllowAnyMethod();
-                    });
-            });
-
-
-            // This is required to be instantiated before the OpenIdConnectOptions starts getting configured.
-            // By default, the claims mapping will map claim names in the old format to accommodate older SAML applications.
-            // 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role' instead of 'roles'
-            // This flag ensures that the ClaimsIdentity claims collection will be built from the claims in the token
-            // JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
-
-            // Adds Microsoft Identity platform (AAD v2.0) support to protect this Api
             services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
 
             services.AddControllers(options =>
@@ -68,7 +47,9 @@ namespace MyApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors("AllowAllOrigins");
+            // https://nblumhardt.com/2019/10/serilog-in-aspnetcore-3/
+            // https://nblumhardt.com/2019/10/serilog-mvc-logging/
+            app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
 
