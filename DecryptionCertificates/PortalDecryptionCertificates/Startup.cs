@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,11 +33,12 @@ namespace PortalDecryptionCertificates
 
             string[] initialScopes = Configuration.GetValue<string>("CallApi:ScopeForAccessToken")?.Split(' ');
 
-            services.AddMicrosoftIdentityWebAppAuthentication(Configuration);
-
-            //services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
-            //   .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-            //   .AddInMemoryTokenCaches();
+            services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
+                .EnableTokenAcquisitionToCallDownstreamApi()
+                //.EnableTokenAcquisitionToCallDownstreamApi(options => 
+                //     Configuration.Bind("CallApi", options), initialScopes)
+                // .AddDownstreamWebApi("dcApi", Configuration.GetSection("CallApi"))
+                .AddInMemoryTokenCaches();
 
             services.AddRazorPages().AddMvcOptions(options =>
             {
