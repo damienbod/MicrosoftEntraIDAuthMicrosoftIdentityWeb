@@ -34,11 +34,15 @@ namespace PortalDecryptionCertificates
             string[] initialScopes = Configuration.GetValue<string>("CallApi:ScopeForAccessToken")?.Split(' ');
 
             services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
-                .EnableTokenAcquisitionToCallDownstreamApi()
-                //.EnableTokenAcquisitionToCallDownstreamApi(options => 
-                //     Configuration.Bind("CallApi", options), initialScopes)
-                // .AddDownstreamWebApi("dcApi", Configuration.GetSection("CallApi"))
+                .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
                 .AddInMemoryTokenCaches();
+
+            //services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
+            //    //.EnableTokenAcquisitionToCallDownstreamApi()
+            //    .EnableTokenAcquisitionToCallDownstreamApi(options => 
+            //         Configuration.Bind("CallApi", options), initialScopes)
+            //    // .AddDownstreamWebApi("dcApi", Configuration.GetSection("CallApi"))
+            //    .AddInMemoryTokenCaches();
 
             services.AddRazorPages().AddMvcOptions(options =>
             {

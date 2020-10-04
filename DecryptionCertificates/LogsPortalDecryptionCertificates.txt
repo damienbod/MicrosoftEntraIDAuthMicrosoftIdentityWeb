@@ -1,0 +1,277 @@
+2020-10-03 11:12:37.379 +02:00 [INF] User profile is available. Using 'C:\Users\stduser\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-10-03 11:12:38.404 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-10-03 11:12:38.406 +02:00 [INF] Hosting environment: Development
+2020-10-03 11:12:38.418 +02:00 [INF] Content root path: C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates
+2020-10-03 11:12:38.559 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/  
+2020-10-03 11:12:40.804 +02:00 [INF] Executing endpoint '/Index'
+2020-10-03 11:12:40.937 +02:00 [INF] Route matched with {page = "/Index", area = "", action = "", controller = ""}. Executing page /Index
+2020-10-03 11:12:40.960 +02:00 [INF] Authorization was successful.
+2020-10-03 11:12:40.991 +02:00 [INF] Executing handler method PortalDecryptionCertificates.Pages.IndexModel.OnGet - ModelState is "Valid"
+2020-10-03 11:12:40.999 +02:00 [INF] Executed handler method OnGet, returned result .
+2020-10-03 11:12:41.011 +02:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2020-10-03 11:12:41.011 +02:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2020-10-03 11:12:41.314 +02:00 [INF] Executed page /Index in 362.0164ms
+2020-10-03 11:12:41.317 +02:00 [INF] Executed endpoint '/Index'
+2020-10-03 11:12:41.325 +02:00 [INF] Request finished in 2773.9759ms 200 text/html; charset=utf-8
+2020-10-03 11:12:43.555 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/CallApi  
+2020-10-03 11:12:43.622 +02:00 [INF] Executing endpoint '/CallApi'
+2020-10-03 11:12:43.640 +02:00 [INF] Route matched with {page = "/CallApi", area = "", action = "", controller = ""}. Executing page /CallApi
+2020-10-03 11:12:43.643 +02:00 [INF] Authorization was successful.
+2020-10-03 11:12:43.674 +02:00 [INF] Executing handler method PortalDecryptionCertificates.Pages.CallApiModel.OnGetAsync - ModelState is "Valid"
+2020-10-04 10:09:57.622 +02:00 [INF] User profile is available. Using 'C:\Users\stduser\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-10-04 10:09:59.321 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-10-04 10:09:59.323 +02:00 [INF] Hosting environment: Development
+2020-10-04 10:09:59.324 +02:00 [INF] Content root path: C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates
+2020-10-04 10:09:59.593 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/  
+2020-10-04 10:10:01.793 +02:00 [INF] Executing endpoint '/Index'
+2020-10-04 10:10:01.965 +02:00 [INF] Route matched with {page = "/Index", area = "", action = "", controller = ""}. Executing page /Index
+2020-10-04 10:10:01.985 +02:00 [INF] Authorization was successful.
+2020-10-04 10:10:02.020 +02:00 [INF] Executing handler method PortalDecryptionCertificates.Pages.IndexModel.OnGet - ModelState is "Valid"
+2020-10-04 10:10:02.031 +02:00 [INF] Executed handler method OnGet, returned result .
+2020-10-04 10:10:02.044 +02:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2020-10-04 10:10:02.045 +02:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2020-10-04 10:10:02.424 +02:00 [INF] Executed page /Index in 435.8389ms
+2020-10-04 10:10:02.430 +02:00 [INF] Executed endpoint '/Index'
+2020-10-04 10:10:02.444 +02:00 [INF] Request finished in 2868.5319ms 200 text/html; charset=utf-8
+2020-10-04 10:10:09.250 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/CallApi  
+2020-10-04 10:10:09.329 +02:00 [INF] Executing endpoint '/CallApi'
+2020-10-04 10:10:09.347 +02:00 [INF] Route matched with {page = "/CallApi", area = "", action = "", controller = ""}. Executing page /CallApi
+2020-10-04 10:10:09.350 +02:00 [INF] Authorization was successful.
+2020-10-04 10:10:09.379 +02:00 [INF] Executing handler method PortalDecryptionCertificates.Pages.CallApiModel.OnGetAsync - ModelState is "Valid"
+2020-10-04 10:12:50.374 +02:00 [INF] Executed page /CallApi in 161025.7596ms
+2020-10-04 10:12:50.377 +02:00 [INF] Executed endpoint '/CallApi'
+2020-10-04 10:12:50.380 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ApplicationException: Exception System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.Identity.Web.TokenAcquisition.BuildConfidentialClientApplicationAsync()
+   at Microsoft.Identity.Web.TokenAcquisition.GetOrBuildConfidentialClientApplicationAsync()
+   at Microsoft.Identity.Web.TokenAcquisition.GetAuthenticationResultForUserAsync(IEnumerable`1 scopes, String tenant, String userFlow, ClaimsPrincipal user, TokenAcquisitionOptions tokenAcquisitionOptions)
+   at Microsoft.Identity.Web.TokenAcquisition.GetAccessTokenForUserAsync(IEnumerable`1 scopes, String tenant, String userFlow, ClaimsPrincipal user, TokenAcquisitionOptions tokenAcquisitionOptions)
+   at PortalDecryptionCertificates.ApiService.GetApiDataAsync() in C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\CallApi\ApiService.cs:line 33
+   at PortalDecryptionCertificates.ApiService.GetApiDataAsync() in C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\CallApi\ApiService.cs:line 52
+   at PortalDecryptionCertificates.Pages.CallApiModel.OnGetAsync() in C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\Pages\CallApi.cshtml.cs:line 19
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.ExecutorFactory.NonGenericTaskHandlerMethod.Execute(Object receiver, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.InvokeHandlerMethodAsync()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.InvokeNextPageFilterAsync()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.Rethrow(PageHandlerExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-10-04 10:12:50.608 +02:00 [INF] Request finished in 161361.9924ms 500 text/html; charset=utf-8
+2020-10-04 10:13:24.363 +02:00 [INF] User profile is available. Using 'C:\Users\stduser\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-10-04 10:13:25.720 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-10-04 10:13:25.722 +02:00 [INF] Hosting environment: Development
+2020-10-04 10:13:25.745 +02:00 [INF] Content root path: C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates
+2020-10-04 10:13:25.953 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/  
+2020-10-04 10:13:28.381 +02:00 [INF] Executing endpoint '/Index'
+2020-10-04 10:13:28.629 +02:00 [INF] Route matched with {page = "/Index", area = "", action = "", controller = ""}. Executing page /Index
+2020-10-04 10:13:28.661 +02:00 [INF] Authorization was successful.
+2020-10-04 10:13:28.703 +02:00 [INF] Executing handler method PortalDecryptionCertificates.Pages.IndexModel.OnGet - ModelState is "Valid"
+2020-10-04 10:13:28.717 +02:00 [INF] Executed handler method OnGet, returned result .
+2020-10-04 10:13:28.731 +02:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2020-10-04 10:13:28.731 +02:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2020-10-04 10:13:29.134 +02:00 [INF] Executed page /Index in 493.9554ms
+2020-10-04 10:13:29.138 +02:00 [INF] Executed endpoint '/Index'
+2020-10-04 10:13:29.147 +02:00 [INF] Request finished in 3202.3338ms 200 text/html; charset=utf-8
+2020-10-04 10:13:29.194 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/bootstrap/dist/css/bootstrap.min.css  
+2020-10-04 10:13:29.195 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/js/site.js?v=dLGP40S79Xnx6GqUthRF6NWvjvhQ1nOvdVSwaNcgG18  
+2020-10-04 10:13:29.195 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+2020-10-04 10:13:29.199 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/css/site.css  
+2020-10-04 10:13:29.201 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/jquery/dist/jquery.min.js  
+2020-10-04 10:13:29.299 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\js\site.js'
+2020-10-04 10:13:29.299 +02:00 [INF] Request finished in 104.6992ms 200 application/javascript
+2020-10-04 10:13:29.349 +02:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\css\site.css'
+2020-10-04 10:13:29.349 +02:00 [INF] Request finished in 153.6176ms 200 text/css
+2020-10-04 10:13:29.386 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+2020-10-04 10:13:29.387 +02:00 [INF] Request finished in 193.7111ms 200 text/css
+2020-10-04 10:13:29.413 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+2020-10-04 10:13:29.413 +02:00 [INF] Request finished in 219.0195ms 200 application/javascript
+2020-10-04 10:13:29.431 +02:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\jquery\dist\jquery.min.js'
+2020-10-04 10:13:29.431 +02:00 [INF] Request finished in 230.6323ms 200 application/javascript
+2020-10-04 10:13:29.483 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/bootstrap/dist/css/bootstrap.min.css.map  
+2020-10-04 10:13:29.511 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css.map'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map'
+2020-10-04 10:13:29.511 +02:00 [INF] Request finished in 28.113ms 200 text/plain
+2020-10-04 10:13:29.537 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map  
+2020-10-04 10:13:29.563 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2020-10-04 10:13:29.563 +02:00 [INF] Request finished in 26.1985ms 200 text/plain
+2020-10-04 10:13:33.298 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/  
+2020-10-04 10:13:33.308 +02:00 [INF] Executing endpoint '/Index'
+2020-10-04 10:13:33.311 +02:00 [INF] Route matched with {page = "/Index", area = "", action = "", controller = ""}. Executing page /Index
+2020-10-04 10:13:33.313 +02:00 [INF] Authorization was successful.
+2020-10-04 10:13:33.314 +02:00 [INF] Executing handler method PortalDecryptionCertificates.Pages.IndexModel.OnGet - ModelState is "Valid"
+2020-10-04 10:13:33.314 +02:00 [INF] Executed handler method OnGet, returned result .
+2020-10-04 10:13:33.314 +02:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2020-10-04 10:13:33.314 +02:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2020-10-04 10:13:33.324 +02:00 [INF] Executed page /Index in 12.8175ms
+2020-10-04 10:13:33.324 +02:00 [INF] Executed endpoint '/Index'
+2020-10-04 10:13:33.325 +02:00 [INF] Request finished in 28.4014ms 200 text/html; charset=utf-8
+2020-10-04 10:13:33.391 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/bootstrap/dist/css/bootstrap.min.css  
+2020-10-04 10:13:33.392 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/js/site.js?v=dLGP40S79Xnx6GqUthRF6NWvjvhQ1nOvdVSwaNcgG18  
+2020-10-04 10:13:33.392 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/jquery/dist/jquery.min.js  
+2020-10-04 10:13:33.392 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+2020-10-04 10:13:33.392 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/css/site.css  
+2020-10-04 10:13:33.396 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\js\site.js'
+2020-10-04 10:13:33.397 +02:00 [INF] Request finished in 3.9953ms 200 application/javascript
+2020-10-04 10:13:33.407 +02:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\css\site.css'
+2020-10-04 10:13:33.408 +02:00 [INF] Request finished in 15.5379ms 200 text/css
+2020-10-04 10:13:33.411 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+2020-10-04 10:13:33.413 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+2020-10-04 10:13:33.414 +02:00 [INF] Request finished in 22.9639ms 200 text/css
+2020-10-04 10:13:33.414 +02:00 [INF] Request finished in 21.5755ms 200 application/javascript
+2020-10-04 10:13:33.427 +02:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\jquery\dist\jquery.min.js'
+2020-10-04 10:13:33.428 +02:00 [INF] Request finished in 35.4854ms 200 application/javascript
+2020-10-04 10:13:33.488 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/bootstrap/dist/css/bootstrap.min.css.map  
+2020-10-04 10:13:33.500 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css.map'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map'
+2020-10-04 10:13:33.501 +02:00 [INF] Request finished in 12.9467ms 200 text/plain
+2020-10-04 10:13:33.567 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map  
+2020-10-04 10:13:33.580 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2020-10-04 10:13:33.582 +02:00 [INF] Request finished in 13.8452ms 200 text/plain
+2020-10-04 10:13:39.937 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/  
+2020-10-04 10:13:39.948 +02:00 [INF] OpenIdConnect was not authenticated. Failure message: Not authenticated
+2020-10-04 10:13:39.950 +02:00 [INF] Executing endpoint '/Index'
+2020-10-04 10:13:39.952 +02:00 [INF] Route matched with {page = "/Index", area = "", action = "", controller = ""}. Executing page /Index
+2020-10-04 10:13:39.957 +02:00 [INF] Authorization failed.
+2020-10-04 10:13:39.965 +02:00 [INF] Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2020-10-04 10:13:39.975 +02:00 [INF] Executing ChallengeResult with authentication schemes ([]).
+2020-10-04 10:13:41.731 +02:00 [INF] AuthenticationScheme: OpenIdConnect was challenged.
+2020-10-04 10:13:41.743 +02:00 [INF] Executed page /Index in 1791.0489ms
+2020-10-04 10:13:41.746 +02:00 [INF] Executed endpoint '/Index'
+2020-10-04 10:13:41.754 +02:00 [INF] Request finished in 1818.1018ms 302 
+2020-10-04 10:13:46.260 +02:00 [INF] Request starting HTTP/2.0 POST https://localhost:44377/signin-oidc application/x-www-form-urlencoded 2021
+2020-10-04 10:13:46.431 +02:00 [ERR] Exception occurred while processing message.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.Identity.Web.TokenAcquisition.BuildConfidentialClientApplicationAsync()
+   at Microsoft.Identity.Web.TokenAcquisition.GetOrBuildConfidentialClientApplicationAsync()
+   at Microsoft.Identity.Web.TokenAcquisition.AddAccountToCacheFromAuthorizationCodeAsync(AuthorizationCodeReceivedContext context, IEnumerable`1 scopes)
+   at Microsoft.Identity.Web.MicrosoftIdentityWebAppAuthenticationBuilder.<>c__DisplayClass10_1.<<WebAppCallsWebApiImplementation>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.RunAuthorizationCodeReceivedEventAsync(OpenIdConnectMessage authorizationResponse, ClaimsPrincipal user, AuthenticationProperties properties, JwtSecurityToken jwt)
+   at Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.HandleRemoteAuthenticateAsync()
+2020-10-04 10:13:46.553 +02:00 [INF] Error from RemoteAuthentication: Object reference not set to an instance of an object..
+2020-10-04 10:13:46.558 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Exception: An error was encountered while handling the remote login.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.Identity.Web.TokenAcquisition.BuildConfidentialClientApplicationAsync()
+   at Microsoft.Identity.Web.TokenAcquisition.GetOrBuildConfidentialClientApplicationAsync()
+   at Microsoft.Identity.Web.TokenAcquisition.AddAccountToCacheFromAuthorizationCodeAsync(AuthorizationCodeReceivedContext context, IEnumerable`1 scopes)
+   at Microsoft.Identity.Web.MicrosoftIdentityWebAppAuthenticationBuilder.<>c__DisplayClass10_1.<<WebAppCallsWebApiImplementation>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.RunAuthorizationCodeReceivedEventAsync(OpenIdConnectMessage authorizationResponse, ClaimsPrincipal user, AuthenticationProperties properties, JwtSecurityToken jwt)
+   at Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.HandleRemoteAuthenticateAsync()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler`1.HandleRequestAsync()
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-10-04 10:13:46.726 +02:00 [INF] Request finished in 466.8501ms 500 text/html; charset=utf-8
+2020-10-04 10:13:47.118 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/favicon.ico  
+2020-10-04 10:13:47.150 +02:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\favicon.ico'
+2020-10-04 10:13:47.152 +02:00 [INF] Request finished in 33.9227ms 200 image/x-icon
+2020-10-04 10:24:30.932 +02:00 [INF] User profile is available. Using 'C:\Users\stduser\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-10-04 10:24:32.060 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-10-04 10:24:32.062 +02:00 [INF] Hosting environment: Development
+2020-10-04 10:24:32.085 +02:00 [INF] Content root path: C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates
+2020-10-04 10:24:32.297 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/  
+2020-10-04 10:24:34.341 +02:00 [INF] OpenIdConnect was not authenticated. Failure message: Not authenticated
+2020-10-04 10:24:34.348 +02:00 [INF] Executing endpoint '/Index'
+2020-10-04 10:24:34.492 +02:00 [INF] Route matched with {page = "/Index", area = "", action = "", controller = ""}. Executing page /Index
+2020-10-04 10:24:34.515 +02:00 [INF] Authorization failed.
+2020-10-04 10:24:34.521 +02:00 [INF] Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2020-10-04 10:24:34.528 +02:00 [INF] Executing ChallengeResult with authentication schemes ([]).
+2020-10-04 10:24:35.915 +02:00 [INF] AuthenticationScheme: OpenIdConnect was challenged.
+2020-10-04 10:24:35.937 +02:00 [INF] Executed page /Index in 1432.4848ms
+2020-10-04 10:24:35.944 +02:00 [INF] Executed endpoint '/Index'
+2020-10-04 10:24:36.000 +02:00 [INF] Request finished in 3716.0956ms 302 
+2020-10-04 10:24:55.716 +02:00 [INF] Request starting HTTP/2.0 POST https://localhost:44377/signin-oidc application/x-www-form-urlencoded 2043
+2020-10-04 10:24:56.106 +02:00 [INF] Start processing HTTP request GET "https://login.microsoftonline.com/common/discovery/instance?api-version=1.1&authorization_endpoint=https%3A%2F%2Flogin.microsoftonline.com%2F7ff95b15-dc21-4ba6-bc92-824856578fc1%2Foauth2%2Fv2.0%2Fauthorize"
+2020-10-04 10:24:56.110 +02:00 [INF] Sending HTTP request GET "https://login.microsoftonline.com/common/discovery/instance?api-version=1.1&authorization_endpoint=https%3A%2F%2Flogin.microsoftonline.com%2F7ff95b15-dc21-4ba6-bc92-824856578fc1%2Foauth2%2Fv2.0%2Fauthorize"
+2020-10-04 10:24:56.591 +02:00 [INF] Received HTTP response after 463.7818ms - "OK"
+2020-10-04 10:24:56.596 +02:00 [INF] End processing HTTP request after 491.7628ms - "OK"
+2020-10-04 10:24:56.928 +02:00 [INF] Start processing HTTP request POST "https://login.microsoftonline.com/7ff95b15-dc21-4ba6-bc92-824856578fc1/oauth2/v2.0/token"
+2020-10-04 10:24:56.928 +02:00 [INF] Sending HTTP request POST "https://login.microsoftonline.com/7ff95b15-dc21-4ba6-bc92-824856578fc1/oauth2/v2.0/token"
+2020-10-04 10:24:57.909 +02:00 [INF] Received HTTP response after 980.3357ms - "OK"
+2020-10-04 10:24:57.913 +02:00 [INF] End processing HTTP request after 984.3768ms - "OK"
+2020-10-04 10:24:58.844 +02:00 [INF] AuthenticationScheme: Cookies signed in.
+2020-10-04 10:24:58.850 +02:00 [INF] Request finished in 3135.1046ms 302 
+2020-10-04 10:24:58.859 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/  
+2020-10-04 10:24:58.866 +02:00 [INF] Executing endpoint '/Index'
+2020-10-04 10:24:58.867 +02:00 [INF] Route matched with {page = "/Index", area = "", action = "", controller = ""}. Executing page /Index
+2020-10-04 10:24:58.870 +02:00 [INF] Authorization was successful.
+2020-10-04 10:24:58.904 +02:00 [INF] Executing handler method PortalDecryptionCertificates.Pages.IndexModel.OnGet - ModelState is "Valid"
+2020-10-04 10:24:58.905 +02:00 [INF] Executed handler method OnGet, returned result .
+2020-10-04 10:24:58.917 +02:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2020-10-04 10:24:58.917 +02:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2020-10-04 10:24:59.221 +02:00 [INF] Executed page /Index in 352.7539ms
+2020-10-04 10:24:59.221 +02:00 [INF] Executed endpoint '/Index'
+2020-10-04 10:24:59.228 +02:00 [INF] Request finished in 368.3279ms 200 text/html; charset=utf-8
+2020-10-04 10:24:59.350 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/bootstrap/dist/css/bootstrap.min.css  
+2020-10-04 10:24:59.354 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/css/site.css  
+2020-10-04 10:24:59.367 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+2020-10-04 10:24:59.367 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/jquery/dist/jquery.min.js  
+2020-10-04 10:24:59.367 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/js/site.js?v=dLGP40S79Xnx6GqUthRF6NWvjvhQ1nOvdVSwaNcgG18  
+2020-10-04 10:24:59.411 +02:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\css\site.css'
+2020-10-04 10:24:59.428 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\js\site.js'
+2020-10-04 10:24:59.428 +02:00 [INF] Request finished in 57.3205ms 200 text/css
+2020-10-04 10:24:59.428 +02:00 [INF] Request finished in 61.0941ms 200 application/javascript
+2020-10-04 10:24:59.473 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+2020-10-04 10:24:59.473 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+2020-10-04 10:24:59.473 +02:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\jquery\dist\jquery.min.js'
+2020-10-04 10:24:59.474 +02:00 [INF] Request finished in 124.1854ms 200 text/css
+2020-10-04 10:24:59.474 +02:00 [INF] Request finished in 107.1446ms 200 application/javascript
+2020-10-04 10:24:59.474 +02:00 [INF] Request finished in 106.9307ms 200 application/javascript
+2020-10-04 10:24:59.577 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/bootstrap/dist/css/bootstrap.min.css.map  
+2020-10-04 10:24:59.598 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css.map'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map'
+2020-10-04 10:24:59.598 +02:00 [INF] Request finished in 20.9013ms 200 text/plain
+2020-10-04 10:24:59.635 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map  
+2020-10-04 10:24:59.642 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2020-10-04 10:24:59.642 +02:00 [INF] Request finished in 7.0669ms 200 text/plain
+2020-10-04 10:25:03.358 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44377/CallApi  
+2020-10-04 10:25:03.380 +02:00 [INF] Executing endpoint '/CallApi'
+2020-10-04 10:25:03.397 +02:00 [INF] Route matched with {page = "/CallApi", area = "", action = "", controller = ""}. Executing page /CallApi
+2020-10-04 10:25:03.402 +02:00 [INF] Authorization was successful.
+2020-10-04 10:25:03.407 +02:00 [INF] Executing handler method PortalDecryptionCertificates.Pages.CallApiModel.OnGetAsync - ModelState is "Valid"
+2020-10-04 10:25:11.940 +02:00 [INF] Start processing HTTP request GET "https://localhost:44390/weatherforecast"
+2020-10-04 10:25:11.941 +02:00 [INF] Sending HTTP request GET "https://localhost:44390/weatherforecast"
+2020-10-04 10:25:17.130 +02:00 [INF] Executed page /CallApi in 13732.2964ms
+2020-10-04 10:25:17.132 +02:00 [INF] Executed endpoint '/CallApi'
+2020-10-04 10:25:17.134 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ApplicationException: Exception System.Net.Http.HttpRequestException: No connection could be made because the target machine actively refused it.
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean allowHttp2, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttpConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PortalDecryptionCertificates.ApiService.GetApiDataAsync() in C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\CallApi\ApiService.cs:line 39
+   at PortalDecryptionCertificates.ApiService.GetApiDataAsync() in C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\CallApi\ApiService.cs:line 52
+   at PortalDecryptionCertificates.Pages.CallApiModel.OnGetAsync() in C:\git\AzureADAuthRazorUiServiceApiCertificate\DecryptionCertificates\PortalDecryptionCertificates\Pages\CallApi.cshtml.cs:line 19
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.ExecutorFactory.NonGenericTaskHandlerMethod.Execute(Object receiver, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.InvokeHandlerMethodAsync()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.InvokeNextPageFilterAsync()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.Rethrow(PageHandlerExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-10-04 10:25:17.226 +02:00 [INF] Request finished in 13869.3189ms 500 text/html; charset=utf-8
