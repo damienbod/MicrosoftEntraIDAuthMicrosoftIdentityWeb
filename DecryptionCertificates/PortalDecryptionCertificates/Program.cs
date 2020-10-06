@@ -43,29 +43,6 @@ namespace PortalDecryptionCertificates
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
            Host.CreateDefaultBuilder(args)
-               //.ConfigureAppConfiguration((context, config) =>
-               //{
-               //    var builder = config.Build();
-               //    var keyVaultEndpoint = builder["AzureKeyVaultEndpoint"];
-               //    if (!string.IsNullOrEmpty(keyVaultEndpoint))
-               //    {
-               //        var azureServiceTokenProvider = new AzureServiceTokenProvider();
-
-               //        var keyVaultClient = new KeyVaultClient(
-               //            new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
-
-               //        config.AddAzureKeyVault(keyVaultEndpoint);
-               //    }
-               //    else
-               //    {
-               //        IHostEnvironment env = context.HostingEnvironment;
-
-               //        config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-               //            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
-               //            .AddEnvironmentVariables();
-               //         //.AddUserSecrets("your user secret....");
-               //     }
-               //})
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>()
