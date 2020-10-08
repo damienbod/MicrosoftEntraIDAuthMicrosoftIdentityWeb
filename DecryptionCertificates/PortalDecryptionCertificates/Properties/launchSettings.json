@@ -12,8 +12,8 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "AZURE_CLIENT_ID": "8e2b45c2-cad0-43c3-8af2-b32b73de30e4",
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "AZURE_CLIENT_ID": "8e2b45c2-cad0-43c3-8af2-b32b73de30e4",
         "AZURE_TENANT_ID": "7ff95b15-dc21-4ba6-bc92-824856578fc1"
       }
     },

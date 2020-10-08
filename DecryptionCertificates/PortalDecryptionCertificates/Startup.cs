@@ -1,16 +1,11 @@
-using Azure.Core;
-using Azure.Identity;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
-using Microsoft.Identity.Web.TokenCacheProviders.InMemory;
 using Microsoft.Identity.Web.UI;
 using Microsoft.IdentityModel.Logging;
 
@@ -25,7 +20,6 @@ namespace PortalDecryptionCertificates
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ApiService>();
@@ -39,13 +33,6 @@ namespace PortalDecryptionCertificates
                 .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
                 .AddInMemoryTokenCaches();
 
-            //services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
-            //    //.EnableTokenAcquisitionToCallDownstreamApi()
-            //    .EnableTokenAcquisitionToCallDownstreamApi(options => 
-            //         Configuration.Bind("CallApi", options), initialScopes)
-            //    // .AddDownstreamWebApi("dcApi", Configuration.GetSection("CallApi"))
-            //    .AddInMemoryTokenCaches();
-
             services.AddRazorPages().AddMvcOptions(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -55,7 +42,6 @@ namespace PortalDecryptionCertificates
             }).AddMicrosoftIdentityUI();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             IdentityModelEventSource.ShowPII = true;
@@ -67,7 +53,6 @@ namespace PortalDecryptionCertificates
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
