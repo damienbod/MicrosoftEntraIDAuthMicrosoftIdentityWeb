@@ -12,3 +12,5 @@
 /ConfidentialClientCredentialsCertificate/MyServerRenderedPortal/Properties/serviceDependencies.local.json.user
 /DecryptionCertificates/LogsApiDecryptionCertificates.txt
 /DecryptionCertificates/LogsPortalDecryptionCertificates.txt
+/ConfidentialClientCredentialsCertificate/LogsMyServerRenderedPortal.txt
+/ConfidentialClientCredentialsCertificate/LogsServiceApi.txt
