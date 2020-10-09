@@ -36,10 +36,14 @@ https://github.com/KevinDockx/ApiSecurityInDepth
 
 https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
 
-## Certs
+## Links Certs
 
 https://docs.microsoft.com/en-us/azure/azure-app-configuration/quickstart-aspnet-core-app?tabs=core3x
 
 https://github.com/a-patel/azure-app-configuration-labs/blob/ce6c57c0d9837dcdff246bab005b321d4897ee71/src/AzureAppConfigurationLabs.Demo/Program.cs
 
 https://devblogs.microsoft.com/azure-sdk/authentication-and-the-azure-sdk/
+
+## Links Azure SDK
+
+<a href="https://devblogs.microsoft.com/azure-sdk/authentication-and-the-azure-sdk/">Authentication and the Azure SDK</a>
