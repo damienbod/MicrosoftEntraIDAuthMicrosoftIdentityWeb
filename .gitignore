@@ -6,3 +6,11 @@
 /MyServerRenderedPortal/Properties/serviceDependencies.local.json.user
 /LogsMyServerRenderedPortal.txt
 /LogsServiceApi.txt
+**/.vs/
+/ConfidentialClientCredentialsCertificate/MyServerRenderedPortal/Properties/serviceDependencies.json
+/ConfidentialClientCredentialsCertificate/MyServerRenderedPortal/Properties/serviceDependencies.local.json
+/ConfidentialClientCredentialsCertificate/MyServerRenderedPortal/Properties/serviceDependencies.local.json.user
+/DecryptionCertificates/LogsApiDecryptionCertificates.txt
+/DecryptionCertificates/LogsPortalDecryptionCertificates.txt
+/ConfidentialClientCredentialsCertificate/LogsMyServerRenderedPortal.txt
+/ConfidentialClientCredentialsCertificate/LogsServiceApi.txt

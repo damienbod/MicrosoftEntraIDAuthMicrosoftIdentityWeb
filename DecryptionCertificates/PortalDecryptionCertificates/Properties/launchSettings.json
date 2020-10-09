@@ -1,0 +1,31 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "https://localhost:44377",
+      "sslPort": 44377
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "AZURE_CLIENT_ID": "8e2b45c2-cad0-43c3-8af2-b32b73de30e4",
+        "AZURE_TENANT_ID": "7ff95b15-dc21-4ba6-bc92-824856578fc1"
+      }
+    },
+    "PortalDecryptionCertificates": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "AZURE_CLIENT_ID": "8e2b45c2-cad0-43c3-8af2-b32b73de30e4",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "AZURE_TENANT_ID": "7ff95b15-dc21-4ba6-bc92-824856578fc1"
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+    }
+  }
+}
