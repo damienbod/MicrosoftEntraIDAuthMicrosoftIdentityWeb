@@ -1,8 +1,10 @@
 # Blogs
 
-Implement Azure AD Client credentials flow using Client Certificates for service APIs
+<ul>
+	<li><a href="https://damienbod.com/2020/10/01/implement-azure-ad-client-credentials-flow-using-client-certificates-for-service-apis/">Implement Azure AD Client credentials flow using Client Certificates for service APIs</a></li>
+	<li><a href="https://damienbod.com/2020/10/09/using-key-vault-certificates-with-microsoft-identity-web-and-asp-net-core-applications/">Using Key Vault certificates with Microsoft.Identity.Web and ASP.NET Core applications</a></li>
 
-https://damienbod.com/2020/10/01/implement-azure-ad-client-credentials-flow-using-client-certificates-for-service-apis/
+</ul>
 
 ## Links Private key JWT Client authentication
 
