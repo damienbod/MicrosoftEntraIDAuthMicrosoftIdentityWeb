@@ -7,6 +7,11 @@
 
 </ul>
 
+## History
+
+2020-10-25 Updated Microsoft.Identity.Web to 1.2.0
+
+
 ## Links Private key JWT Client authentication
 
 https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow#second-case-access-token-request-with-a-certificate
