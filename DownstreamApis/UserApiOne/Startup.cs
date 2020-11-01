@@ -7,6 +7,8 @@ using Microsoft.Identity.Web;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.OpenApi.Models;
+using System;
 
 namespace UserApiOne
 {
@@ -35,7 +37,22 @@ namespace UserApiOne
                 .EnableTokenAcquisitionToCallDownstreamApi()
                 .AddInMemoryTokenCaches();
 
-      
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "User API One",
+                    Version = "v1",
+                    Description = "User API One",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "damienbod",
+                        Email = string.Empty,
+                        Url = new Uri("https://damienbod.com/"),
+                    },
+                });
+            });
+
             services.AddControllers(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -52,6 +69,12 @@ namespace UserApiOne
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "User API One");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 
