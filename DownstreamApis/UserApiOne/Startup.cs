@@ -52,10 +52,10 @@ namespace UserApiOne
             // This flag ensures that the ClaimsIdentity claims collection will be built from the claims in the token
             // JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
-            string[] initialScopes = Configuration.GetValue<string>("UserApiTwo:ScopeForAccessToken")?.Split(' ');
+            //string[] initialScopes = Configuration.GetValue<string>("UserApiTwo:ScopeForAccessToken")?.Split(' ');
 
             services.AddMicrosoftIdentityWebApiAuthentication(Configuration)
-                .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+                .EnableTokenAcquisitionToCallDownstreamApi()
                 .AddInMemoryTokenCaches();
 
       
