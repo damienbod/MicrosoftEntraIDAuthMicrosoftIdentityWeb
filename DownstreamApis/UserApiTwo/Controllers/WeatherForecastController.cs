@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web.Resource;
 
 namespace UserApiTwo.Controllers
 {
@@ -28,7 +29,10 @@ namespace UserApiTwo.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var rng = new Random();
+            string[] scopeRequiredByApi = new string[] { "access_as_user" };
+            HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
+
+                var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
