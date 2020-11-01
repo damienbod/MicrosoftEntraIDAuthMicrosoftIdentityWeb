@@ -8,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 
-namespace MyApi
+namespace UserApiTwo
 {
     public class Startup
     {

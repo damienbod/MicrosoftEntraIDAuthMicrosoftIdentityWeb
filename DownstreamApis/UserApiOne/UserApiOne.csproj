@@ -2,14 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>aspnet-MyServerRenderedPortal-C5CB1E61-55D5-4D0D-A192-68F28533B4EA</UserSecretsId>
+    <UserSecretsId>aspnet-UserApiOne-2ba0bbf9-49f5-452e-8333-1e33a467b74e</UserSecretsId>
     <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Identity.Web" Version="1.2.0" />
-    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.2.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
 </Project>

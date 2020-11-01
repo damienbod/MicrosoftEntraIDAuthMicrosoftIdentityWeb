@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace MyApi.Controllers
+namespace UserApiTwo.Controllers
 {
     [Authorize]
     [ApiController]
