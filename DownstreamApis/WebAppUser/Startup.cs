@@ -23,12 +23,12 @@ namespace WebAppUserApis
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<ApiService>();
+            services.AddTransient<UserApiOneService>();
             services.AddHttpClient();
 
             services.AddOptions();
 
-            string[] initialScopes = Configuration.GetValue<string>("CallApi:ScopeForAccessToken")?.Split(' ');
+            string[] initialScopes = Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
 
             services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
                 .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)

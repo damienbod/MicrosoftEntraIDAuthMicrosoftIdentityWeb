@@ -6,15 +6,15 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace WebAppUserApis
+namespace UserApiOne
 {
-    public class ApiService
+    public class UserApiTwoService
     {
         private readonly IHttpClientFactory _clientFactory;
         private readonly ITokenAcquisition _tokenAcquisition;
         private readonly IConfiguration _configuration;
 
-        public ApiService(IHttpClientFactory clientFactory, 
+        public UserApiTwoService(IHttpClientFactory clientFactory, 
             ITokenAcquisition tokenAcquisition, 
             IConfiguration configuration)
         {
@@ -29,10 +29,10 @@ namespace WebAppUserApis
             {
                 var client = _clientFactory.CreateClient();
 
-                var scope = _configuration["CallApi:ScopeForAccessToken"];
+                var scope = _configuration["UserApiTwo:ScopeForAccessToken"];
                 var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
 
-                client.BaseAddress = new Uri(_configuration["CallApi:ApiBaseAddress"]);
+                client.BaseAddress = new Uri(_configuration["UserApiTwo:ApiBaseAddress"]);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
        

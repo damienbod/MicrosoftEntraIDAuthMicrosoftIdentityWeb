@@ -22,6 +22,11 @@ namespace UserApiOne
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<UserApiTwoService>();
+            services.AddHttpClient();
+
+            services.AddOptions();
+
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             // IdentityModelEventSource.ShowPII = true;
 
@@ -47,9 +52,13 @@ namespace UserApiOne
             // This flag ensures that the ClaimsIdentity claims collection will be built from the claims in the token
             // JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
-            // Adds Microsoft Identity platform (AAD v2.0) support to protect this Api
-            services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
+            string[] initialScopes = Configuration.GetValue<string>("UserApiTwo:ScopeForAccessToken")?.Split(' ');
 
+            services.AddMicrosoftIdentityWebApiAuthentication(Configuration)
+                .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+                .AddInMemoryTokenCaches();
+
+      
             services.AddControllers(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()

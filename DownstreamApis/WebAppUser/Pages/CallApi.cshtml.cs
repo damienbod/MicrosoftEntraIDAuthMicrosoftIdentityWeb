@@ -6,10 +6,10 @@ namespace WebAppUserApis.Pages
 {
     public class CallApiModel : PageModel
     {
-        private readonly ApiService _apiService;
+        private readonly UserApiOneService _apiService;
 
         public JArray DataFromApi { get; set; }
-        public CallApiModel(ApiService apiService)
+        public CallApiModel(UserApiOneService apiService)
         {
             _apiService = apiService;
         }
