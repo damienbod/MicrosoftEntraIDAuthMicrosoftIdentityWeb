@@ -53,3 +53,5 @@ https://devblogs.microsoft.com/azure-sdk/authentication-and-the-azure-sdk/
 ## Links Azure SDK
 
 <a href="https://devblogs.microsoft.com/azure-sdk/authentication-and-the-azure-sdk/">Authentication and the Azure SDK</a>
+
+https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-protected-web-api-verification-scope-app-roles
