@@ -4,6 +4,7 @@
 	<li><a href="https://damienbod.com/2020/10/01/implement-azure-ad-client-credentials-flow-using-client-certificates-for-service-apis/">Implement Azure AD Client credentials flow using Client Certificates for service APIs</a></li>
 	<li><a href="https://damienbod.com/2020/10/09/using-key-vault-certificates-with-microsoft-identity-web-and-asp-net-core-applications/">Using Key Vault certificates with Microsoft.Identity.Web and ASP.NET Core applications</a></li>
 	<li><a href="https://damienbod.com/2020/10/22/using-encrypted-access-tokens-in-azure-with-microsoft-identity-web-and-azure-app-registrations/">Using encrypted access tokens in Azure with Microsoft.Identity.Web and Azure App registrations</a></li>
+    <li><a href="https://damienbod.com/2020/11/09/implement-a-web-app-and-an-asp-net-core-secure-api-using-azure-ad-which-delegates-to-second-api/"></a>Implement a Web APP and an ASP.NET Core Secure API using Azure AD which delegates to second API</li>
 
 </ul>
 
