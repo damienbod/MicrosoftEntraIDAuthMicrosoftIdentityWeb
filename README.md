@@ -50,6 +50,9 @@ https://github.com/a-patel/azure-app-configuration-labs/blob/ce6c57c0d9837dcdff2
 
 https://devblogs.microsoft.com/azure-sdk/authentication-and-the-azure-sdk/
 
+https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-protected-web-api-verification-scope-app-roles
+
 ## Links Azure SDK
 
 <a href="https://devblogs.microsoft.com/azure-sdk/authentication-and-the-azure-sdk/">Authentication and the Azure SDK</a>
+

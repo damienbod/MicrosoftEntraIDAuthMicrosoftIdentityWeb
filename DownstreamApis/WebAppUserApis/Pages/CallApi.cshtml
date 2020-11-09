@@ -1,0 +1,12 @@
+﻿@page
+@model WebAppUserApis.Pages.CallApiModel
+@{
+    ViewData["Title"] = "CallApi";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Call API</h1>
+<h6>gets the data from the Azure AD protected Web API</h6>
+
+<pre>@Model.DataFromApi</pre>
+
