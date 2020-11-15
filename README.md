@@ -10,6 +10,8 @@
 
 ## History
 
+2020-11-15 Updated Microsoft.Identity.Web to 1.3.0
+
 2020-10-25 Updated Microsoft.Identity.Web to 1.2.0
 
 
