@@ -29,7 +29,7 @@ namespace UserApiOne
             {
                 var client = _clientFactory.CreateClient();
 
-                // user_impersonation access_as_user access_as_application
+                // user_impersonation access_as_user access_as_application .default
                 var scope = _configuration["UserApiTwo:ScopeForAccessToken"];
                 var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
 
