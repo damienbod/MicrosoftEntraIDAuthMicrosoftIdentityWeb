@@ -29,7 +29,9 @@ namespace UserApiTwo.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            string[] scopeRequiredByApi = new string[] { "access_as_user" };
+            //string[] scopeRequiredByApi = new string[] { "access_as_user" };
+            string[] scopeRequiredByApi = new string[] { "user_impersonation" };
+            
             HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
                 var rng = new Random();
