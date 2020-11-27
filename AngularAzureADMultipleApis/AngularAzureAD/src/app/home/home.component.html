@@ -1,0 +1,29 @@
+<div>Welcome to home Route</div>
+
+<div *ngIf="isAuthenticated$ | async as isAuthenticated; else noAuth">
+  <button (click)="logout()">Logout</button>
+  <button (click)="callApi()">Call API</button>
+  <hr />
+
+  <br />
+
+  Is Authenticated: {{ isAuthenticated }}
+
+  <br />
+  userData
+  <pre>{{ userData$ | async | json }}</pre>
+
+  <br />
+
+
+</div>
+
+<ng-template #noAuth>
+  <button (click)="login()">Login</button>
+  <hr />
+</ng-template>
+
+<h2>API data:</h2>
+<pre>
+  {{ dataFromAzureProtectedApi$ | async | json }}
+</pre>
