@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>aspnet-ApiWithMutlipleApis-2ba0bbf9-49f5-452e-8333-1e33a467b74e</UserSecretsId>
-    <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
+    <UserSecretsId>3e9ac996-8e75-4dd9-9a5b-27a6e01a3f3d</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -2,10 +2,8 @@
 using Microsoft.Identity.Web;
 using System;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ApiWithMutlipleApis.Services
@@ -54,54 +52,7 @@ namespace ApiWithMutlipleApis.Services
             }   
         }
 
-        public async Task<string> GetSharepointFile()
-        {
-            var graphclient = await GetGraphClient(
-                new string[] { "user.read", "AllSites.Read" }
-            ).ConfigureAwait(false);
-
-            var user = await graphclient.Me.Request().GetAsync().ConfigureAwait(false);
-
-            if (user == null)
-                throw new ArgumentException($"User not found in AD.");
-
-            var sharepointDomain = "damienbodtestsharing.sharepoint.com";
-            var relativePath = "/sites/TestDoc";
-            var fileName = "aad_ms_login_02.png";
-
-            var site = await graphclient
-                .Sites[sharepointDomain]
-                .SiteWithPath(relativePath)
-                .Request()
-                .GetAsync().ConfigureAwait(false);
-
-            var drive = await graphclient
-                .Sites[site.Id]
-                .Drive
-                .Request()
-                .GetAsync().ConfigureAwait(false);
-
-            var items = await graphclient
-                .Sites[site.Id]
-                .Drives[drive.Id]
-                .Root
-                .Children
-                .Request().GetAsync().ConfigureAwait(false);
-
-            var file = items
-                .FirstOrDefault(f => f.File != null && f.WebUrl.Contains(fileName));
-
-            var stream = await graphclient
-                .Sites[site.Id]
-                .Drives[drive.Id]
-                .Items[file.Id].Content
-                .Request()
-                .GetAsync().ConfigureAwait(false);
-
-            var fileAsString = StreamToString(stream);
-            return fileAsString;
-        }
-
+       
         private async Task<GraphServiceClient> GetGraphClient(string[] scopes)
         {
             var token = await _tokenAcquisition.GetAccessTokenForUserAsync(
@@ -121,15 +72,6 @@ namespace ApiWithMutlipleApis.Services
 
             graphClient.BaseUrl = "https://graph.microsoft.com/beta";
             return graphClient;
-        }
-
-        private static string StreamToString(Stream stream)
-        {
-            stream.Position = 0;
-            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
-            {
-                return reader.ReadToEnd();
-            }
         }
     }
 }
