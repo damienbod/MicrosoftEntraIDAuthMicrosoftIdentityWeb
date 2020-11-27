@@ -8,6 +8,9 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Logging;
 using Serilog;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System;
 
 namespace ServiceApi
 {
@@ -30,6 +33,8 @@ namespace ServiceApi
 
             services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
 
+            services.AddControllers();
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
@@ -48,7 +53,43 @@ namespace ServiceApi
                 });
             });
 
-            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                // add JWT Authentication
+                var securityScheme = new OpenApiSecurityScheme
+                {
+                    Name = "JWT Authentication",
+                    Description = "Enter JWT Bearer token **_only_**",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer", // must be lower case
+                    BearerFormat = "JWT",
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+                c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {securityScheme, new string[] { }}
+                });
+
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Service API One",
+                    Version = "v1",
+                    Description = "User API One",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "damienbod",
+                        Email = string.Empty,
+                        Url = new Uri("https://damienbod.com/"),
+                    },
+                });
+            });
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -57,6 +98,13 @@ namespace ServiceApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Service API One");
+                c.RoutePrefix = string.Empty;
+            });
 
             // https://nblumhardt.com/2019/10/serilog-in-aspnetcore-3/
             // https://nblumhardt.com/2019/10/serilog-mvc-logging/

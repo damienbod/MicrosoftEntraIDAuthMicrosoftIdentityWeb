@@ -34,6 +34,30 @@ namespace UserApiOne
                 .EnableTokenAcquisitionToCallDownstreamApi()
                 .AddInMemoryTokenCaches();
 
+            services.AddControllers(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
+                {
+                    // Validate ClientId from token
+                    validateAccessTokenPolicy.RequireClaim("azp", Configuration["AzureAd:ClientId"]);
+
+                    // only allow tokens which used "Private key JWT Client authentication"
+                    // // https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
+                    // Indicates how the client was authenticated. For a public client, the value is "0". 
+                    // If client ID and client secret are used, the value is "1". 
+                    // If a client certificate was used for authentication, the value is "2".
+                    validateAccessTokenPolicy.RequireClaim("azpacr", "1");
+                });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 // add JWT Authentication
@@ -71,30 +95,6 @@ namespace UserApiOne
                 });
             });
 
-            services.AddControllers(options =>
-            {
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
-            });
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
-                {
-                    // Validate ClientId from token
-                    validateAccessTokenPolicy.RequireClaim("azp", Configuration["AzureAd:ClientId"]);
-
-                    // only allow tokens which used "Private key JWT Client authentication"
-                    // // https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
-                    // Indicates how the client was authenticated. For a public client, the value is "0". 
-                    // If client ID and client secret are used, the value is "1". 
-                    // If a client certificate was used for authentication, the value is "2".
-                    validateAccessTokenPolicy.RequireClaim("azpacr", "1");
-                });
-            });
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -103,6 +103,7 @@ namespace UserApiOne
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

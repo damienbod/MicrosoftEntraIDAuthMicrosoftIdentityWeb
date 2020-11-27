@@ -63,6 +63,15 @@ namespace ApiWithMutlipleApis
                 options.Filters.Add(new AuthorizeFilter(policy));
             });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
+                {
+                    // Validate ClientId from token
+                    validateAccessTokenPolicy.RequireClaim("azp", Configuration["AzureAd:ClientId"]);
+                });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 // add JWT Authentication
@@ -89,14 +98,6 @@ namespace ApiWithMutlipleApis
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiWithMutlipleApis", Version = "v1" });
             });
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
-                {
-                    // Validate ClientId from token
-                    validateAccessTokenPolicy.RequireClaim("azp", Configuration["AzureAd:ClientId"]);
-                });
-            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
