@@ -33,20 +33,27 @@
 
 </nav>
 
-<div *ngIf="isAuthenticated$ | async as isAuthenticated">
+<div class="container" *ngIf="isAuthenticated$ | async as isAuthenticated">
 
-  Is Authenticated: {{ isAuthenticated }}
+    Is Authenticated: {{ isAuthenticated }}
 
-  <br />
-  userData
-  <pre>{{ userData$ | async | json }}</pre>
+    <br/><br/>
 
-  <br />
+    <div class="card">
+      <div class="card-header">User Profile Data</div>
+      <div class="card-body">
+        <pre>{{ userData$ | async | json }}</pre>
+      </div>
+    </div>
 
-  <h2>Data from direct API</h2>
-  <pre>
-    {{ dataFromAzureProtectedApi$ | async | json }}
-  </pre>
+    <br/><br/>
+
+    <div class="card">
+      <div class="card-header">Data from direct API</div>
+      <div class="card-body">
+        <pre>{{ dataFromAzureProtectedApi$ | async | json }}</pre>
+      </div>
+    </div>
 
 </div>
 
