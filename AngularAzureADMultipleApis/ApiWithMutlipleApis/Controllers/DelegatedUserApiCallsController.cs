@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using ApiWithMutlipleApis.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +11,17 @@ namespace ApiWithMutlipleApis.Controllers
     [Route("[controller]")]
     public class DelegatedUserApiCallsController : ControllerBase
     {
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private UserApiClientService _userApiClientService;
+
+        public DelegatedUserApiCallsController(UserApiClientService userApiClientService)
         {
-            return new List<string> { "some data", "more data", "loads of data" };
+            _userApiClientService = userApiClientService;
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<string>> Get()
+        {
+            return await _userApiClientService.GetApiDataAsync();
         }
     }
 }

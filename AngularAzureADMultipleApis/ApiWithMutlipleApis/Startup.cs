@@ -25,8 +25,12 @@ namespace ApiWithMutlipleApis
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient();
+            services.AddOptions();
+
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             IdentityModelEventSource.ShowPII = true;
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
             services.AddCors(options =>
             {
@@ -43,9 +47,9 @@ namespace ApiWithMutlipleApis
                     });
             });
 
-            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
-
             services.AddScoped<GraphApiClientService>();
+            services.AddScoped<ServiceApiClientService>();
+            services.AddScoped<UserApiClientService>();
 
             services.AddMicrosoftIdentityWebApiAuthentication(Configuration)
                  .EnableTokenAcquisitionToCallDownstreamApi()
@@ -83,6 +87,15 @@ namespace ApiWithMutlipleApis
                 });
 
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiWithMutlipleApis", Version = "v1" });
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
+                {
+                    // Validate ClientId from token
+                    validateAccessTokenPolicy.RequireClaim("azp", Configuration["AzureAd:ClientId"]);
+                });
             });
         }
 

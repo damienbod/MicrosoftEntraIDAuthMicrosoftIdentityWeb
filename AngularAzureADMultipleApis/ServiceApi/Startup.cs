@@ -24,6 +24,7 @@ namespace ServiceApi
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             IdentityModelEventSource.ShowPII = true;
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
             services.AddSingleton<IAuthorizationHandler, HasServiceApiRoleHandler>();
 
@@ -43,7 +44,7 @@ namespace ServiceApi
                     // Indicates how the client was authenticated. For a public client, the value is "0". 
                     // If client ID and client secret are used, the value is "1". 
                     // If a client certificate was used for authentication, the value is "2".
-                    validateAccessTokenPolicy.RequireClaim("azpacr", "2");
+                    validateAccessTokenPolicy.RequireClaim("azpacr", "1");
                 });
             });
 
