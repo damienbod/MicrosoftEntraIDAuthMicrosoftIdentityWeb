@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   callApi() {
     this.dataFromAzureProtectedApi$ = this.httpClient
-      .get('https://localhost:44390/weatherforecast')
+      .get('https://localhost:44390/DirectApi')
       .pipe(catchError((error) => of(error)));
   }
   login() {
