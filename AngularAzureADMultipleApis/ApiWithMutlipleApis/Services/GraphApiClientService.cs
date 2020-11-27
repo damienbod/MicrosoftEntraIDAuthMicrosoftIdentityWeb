@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace ApiWithMutlipleApis.Services
 {
-    public class GraphApiClientDirect
+    public class GraphApiClientService
     {
         private readonly ITokenAcquisition _tokenAcquisition;
         private readonly IHttpClientFactory _clientFactory;
 
-        public GraphApiClientDirect(ITokenAcquisition tokenAcquisition,
+        public GraphApiClientService(ITokenAcquisition tokenAcquisition,
             IHttpClientFactory clientFactory)
         {
             _clientFactory = clientFactory;

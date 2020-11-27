@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using ApiWithMutlipleApis.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +11,18 @@ namespace ApiWithMutlipleApis.Controllers
     [Route("[controller]")]
     public class GraphApiCallsController : ControllerBase
     {
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private GraphApiClientService _graphApiClientService;
+
+        public GraphApiCallsController(GraphApiClientService graphApiClientService)
         {
-            return new List<string> { "some data", "more data", "loads of data" };
+            _graphApiClientService = graphApiClientService;
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<string>> Get()
+        {
+            var userData = await _graphApiClientService.GetGraphApiUser();
+            return new List<string> { userData.AboutMe, userData.DisplayName, userData.City };
         }
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using ApiWithMutlipleApis.Services;
 
 namespace ApiWithMutlipleApis
 {
@@ -44,7 +45,11 @@ namespace ApiWithMutlipleApis
 
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
-            services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
+            services.AddScoped<GraphApiClientService>();
+
+            services.AddMicrosoftIdentityWebApiAuthentication(Configuration)
+                 .EnableTokenAcquisitionToCallDownstreamApi()
+                 .AddInMemoryTokenCaches();
 
             services.AddControllers(options =>
             {
