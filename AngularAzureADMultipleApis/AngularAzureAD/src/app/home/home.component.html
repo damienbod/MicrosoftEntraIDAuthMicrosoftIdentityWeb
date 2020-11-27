@@ -1,11 +1,39 @@
-<div>Welcome to home Route</div>
+<nav class="bg-dark mb-4 navbar navbar-dark navbar-expand-md">
+  <a [routerLink]="['/home']" class="navbar-brand">
+      <em>Azure AD OIDC with API</em>
+  </a>
+  <button
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      class="navbar-toggler"
+      data-target="#topNavbarCollapse"
+      data-toggle="collapse"
+      type="button"
+  >
+      <span class="navbar-toggler-icon"></span>
+  </button>
 
-<div *ngIf="isAuthenticated$ | async as isAuthenticated; else noAuth">
-  <button (click)="logout()">Logout</button>
-  <button (click)="callApi()">Call API</button>
-  <hr />
+  <div class="collapse navbar-collapse" id="topNavbarCollapse" *ngIf="isAuthenticated$ | async as isAuthenticated">
+      <ul class="mr-auto navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isAuthenticated" (click)="callApi()">callApi</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" *ngIf="isAuthenticated" (click)="logout()">Logout</a></li>
+      </ul>
+      <ul class="navbar-nav"></ul>
+  </div>
 
-  <br />
+  <div class="collapse navbar-collapse" id="topNavbarCollapse" *ngIf="!(isAuthenticated$ | async)">
+    <ul class="mr-auto navbar-nav">
+      <li class="nav-item"><a class="nav-link" (click)="login()">Login</a></li>
+    </ul>
+    <ul class="navbar-nav"></ul>
+  </div>
+
+</nav>
+
+<div *ngIf="isAuthenticated$ | async as isAuthenticated">
 
   Is Authenticated: {{ isAuthenticated }}
 
@@ -15,15 +43,10 @@
 
   <br />
 
+  <h2>Data from direct API</h2>
+  <pre>
+    {{ dataFromAzureProtectedApi$ | async | json }}
+  </pre>
 
 </div>
 
-<ng-template #noAuth>
-  <button (click)="login()">Login</button>
-  <hr />
-</ng-template>
-
-<h2>API data:</h2>
-<pre>
-  {{ dataFromAzureProtectedApi$ | async | json }}
-</pre>
