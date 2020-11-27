@@ -1,9 +1,5 @@
 
-<li class="nav-item">
-  <a class="nav-link" (click)="callApi()">callApi</a>
-</li>
-
-<div class="container" *ngIf="isAuthenticated$ | async as isAuthenticated">
+<div *ngIf="isAuthenticated$ | async as isAuthenticated">
 
     Is Authenticated: {{ isAuthenticated }}
 
@@ -13,15 +9,6 @@
       <div class="card-header">User Profile Data</div>
       <div class="card-body">
         <pre>{{ userData$ | async | json }}</pre>
-      </div>
-    </div>
-
-    <br/><br/>
-
-    <div class="card">
-      <div class="card-header">Data from direct API</div>
-      <div class="card-body">
-        <pre>{{ dataFromAzureProtectedApi$ | async | json }}</pre>
       </div>
     </div>
 
