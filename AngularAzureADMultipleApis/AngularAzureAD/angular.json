@@ -21,7 +21,10 @@
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets", "src/silent-renew.html"],
             "styles": ["src/styles.css"],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+          ]
           },
           "configurations": {
             "production": {
