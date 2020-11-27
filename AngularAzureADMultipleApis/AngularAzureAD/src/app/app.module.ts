@@ -1,3 +1,4 @@
+import { DirectApiCallComponent } from './directApiCall/directApiCall.component';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -7,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -27,12 +29,18 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, UnauthorizedComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NavMenuComponent,
+    UnauthorizedComponent,
+    DirectApiCallComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
+    { path: 'directApiCall', component: DirectApiCallComponent },
     { path: 'unauthorized', component: UnauthorizedComponent },
 ], { relativeLinkResolution: 'legacy' }),
     AuthModule.forRoot(),

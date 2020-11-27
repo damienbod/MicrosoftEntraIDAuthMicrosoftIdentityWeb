@@ -5,10 +5,10 @@ import { AuthService } from '../auth.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.component.html',
+  selector: 'app-direct-api-call',
+  templateUrl: 'directApiCall.component.html',
 })
-export class HomeComponent implements OnInit {
+export class DirectApiCallComponent implements OnInit {
   userData$: Observable<any>;
   dataFromAzureProtectedApi$: Observable<any>;
   isAuthenticated$: Observable<boolean>;
@@ -27,4 +27,5 @@ export class HomeComponent implements OnInit {
       .get('https://localhost:44390/DirectApi')
       .pipe(catchError((error) => of(error)));
   }
+
 }
