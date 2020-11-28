@@ -30,9 +30,7 @@ namespace UserApiOne
             IdentityModelEventSource.ShowPII = true;
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
-            services.AddMicrosoftIdentityWebApiAuthentication(Configuration)
-                .EnableTokenAcquisitionToCallDownstreamApi()
-                .AddInMemoryTokenCaches();
+            services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
 
             services.AddControllers(options =>
             {
@@ -46,8 +44,9 @@ namespace UserApiOne
             {
                 options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
                 {
-                    // Validate ClientId from token
-                    validateAccessTokenPolicy.RequireClaim("azp", Configuration["AzureAd:ClientId"]);
+                    // Validate id of application for which the token was created
+                    // In this case the UI application 
+                    validateAccessTokenPolicy.RequireClaim("azp", "2b50a014-f353-4c10-aace-024f19a55569");
 
                     // only allow tokens which used "Private key JWT Client authentication"
                     // // https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
