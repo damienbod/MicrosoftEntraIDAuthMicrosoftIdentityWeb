@@ -3,7 +3,10 @@
 
 <div *ngIf="isAuthenticated$ | async as isAuthenticated">
 
-  <button class="btn btn-primary" (click)="callApi()">Request Data</button>
+  <button class="btn btn-primary" type="button" (click)="callApi()" [disabled]="httpRequestRunning">
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" [hidden]="!httpRequestRunning" ></span>
+    Request Data
+  </button>
 
   <br/><br/>
 
