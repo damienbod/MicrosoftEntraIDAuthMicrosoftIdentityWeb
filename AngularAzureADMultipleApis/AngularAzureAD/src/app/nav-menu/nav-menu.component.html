@@ -23,7 +23,9 @@
         <li class="nav-item" *ngIf="isAuthenticated">
           <a [routerLink]="['/graphApiCall']" class="nav-link">Graph API call</a>
         </li>
-
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a [routerLink]="['/applicationApiCall']" class="nav-link">Application API call</a>
+        </li>
         <li class="nav-item"><a class="nav-link" *ngIf="isAuthenticated" (click)="logout()">Logout</a></li>
       </ul>
       <ul class="navbar-nav"></ul>

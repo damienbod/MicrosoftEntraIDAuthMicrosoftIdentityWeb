@@ -10,6 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { GraphApiCallComponent } from './graphApiCall/graphApiCall.component';
+import { ApplicationApiCallComponent } from './applicationApiCall/applicationApiCall.component';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -36,7 +37,9 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     NavMenuComponent,
     UnauthorizedComponent,
     DirectApiCallComponent,
-    GraphApiCallComponent],
+    GraphApiCallComponent,
+    ApplicationApiCallComponent
+  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
@@ -44,6 +47,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     { path: 'home', component: HomeComponent },
     { path: 'directApiCall', component: DirectApiCallComponent },
     { path: 'graphApiCall', component: GraphApiCallComponent },
+    { path: 'applicationApiCall', component: ApplicationApiCallComponent },
     { path: 'unauthorized', component: UnauthorizedComponent },
   ], { relativeLinkResolution: 'legacy' }),
     AuthModule.forRoot(),
