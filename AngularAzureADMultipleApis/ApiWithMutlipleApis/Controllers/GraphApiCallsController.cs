@@ -22,7 +22,8 @@ namespace ApiWithMutlipleApis.Controllers
         public async Task<IEnumerable<string>> Get()
         {
             var userData = await _graphApiClientService.GetGraphApiUser();
-            return new List<string> { userData.AboutMe, userData.DisplayName, userData.City };
+            return new List<string> { $"DisplayName: {userData.DisplayName}",
+                $"GivenName: {userData.GivenName}", $"AboutMe: {userData.AboutMe}" };
         }
     }
 }
