@@ -11,6 +11,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { GraphApiCallComponent } from './graphApiCall/graphApiCall.component';
 import { ApplicationApiCallComponent } from './applicationApiCall/applicationApiCall.component';
+import { DelegatedApiCallComponent } from './delegatedApiCall/delegatedApiCall.component';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -38,7 +39,8 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     UnauthorizedComponent,
     DirectApiCallComponent,
     GraphApiCallComponent,
-    ApplicationApiCallComponent
+    ApplicationApiCallComponent,
+    DelegatedApiCallComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     { path: 'directApiCall', component: DirectApiCallComponent },
     { path: 'graphApiCall', component: GraphApiCallComponent },
     { path: 'applicationApiCall', component: ApplicationApiCallComponent },
+    { path: 'delegatedApiCall', component: DelegatedApiCallComponent },
     { path: 'unauthorized', component: UnauthorizedComponent },
   ], { relativeLinkResolution: 'legacy' }),
     AuthModule.forRoot(),
