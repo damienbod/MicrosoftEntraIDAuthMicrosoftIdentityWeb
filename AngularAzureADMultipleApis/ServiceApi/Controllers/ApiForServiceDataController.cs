@@ -13,7 +13,7 @@ namespace ServiceApi.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new List<string> { "service API data 1", "service API data 1" };
+            return new List<string> { "service API data 1", "service API data 2" };
         }
     }
 }

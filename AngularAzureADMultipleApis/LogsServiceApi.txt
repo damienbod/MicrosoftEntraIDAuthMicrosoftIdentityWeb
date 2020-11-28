@@ -1,0 +1,105 @@
+2020-11-28 14:00:08.466 +01:00 [INF] User profile is available. Using 'C:\Users\stduser\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-28 14:00:10.239 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-11-28 14:00:10.240 +01:00 [INF] Hosting environment: Development
+2020-11-28 14:00:10.240 +01:00 [INF] Content root path: C:\git\damienbod\AzureADAuthRazorUiServiceApiCertificate\AngularAzureADMultipleApis\ServiceApi
+2020-11-28 14:00:10.435 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/index.html - -
+2020-11-28 14:00:10.879 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/index.html - - - 200 - text/html;charset=utf-8 456.1922ms
+2020-11-28 14:00:11.012 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/swagger-ui.css - -
+2020-11-28 14:00:11.022 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/swagger-ui-standalone-preset.js - -
+2020-11-28 14:00:11.023 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/swagger-ui-bundle.js - -
+2020-11-28 14:00:11.232 +01:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2020-11-28 14:00:11.232 +01:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2020-11-28 14:00:11.232 +01:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2020-11-28 14:00:11.241 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/swagger-ui.css - - - 200 142933 text/css 228.6621ms
+2020-11-28 14:00:11.251 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/swagger-ui-standalone-preset.js - - - 200 311804 application/javascript 228.9121ms
+2020-11-28 14:00:11.284 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/swagger-ui-bundle.js - - - 200 986342 application/javascript 260.9290ms
+2020-11-28 14:00:11.682 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/swagger/v1/swagger.json - -
+2020-11-28 14:00:11.896 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 213.7228ms
+2020-11-28 14:00:25.741 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:44324/ApiForServiceData - -
+2020-11-28 14:00:28.619 +01:00 [INF] Successfully validated the token.
+2020-11-28 14:00:28.644 +01:00 [INF] Authorization failed. These requirements were not met:
+ServiceApi.HasServiceApiRoleRequirement
+ClaimsAuthorizationRequirement:Claim.Type=azp and Claim.Value is one of the following values: (b178f3a5-7588-492a-924f-72d7887b7e48)
+2020-11-28 14:00:28.649 +01:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2020-11-28 14:00:28.654 +01:00 [INF] HTTP GET /ApiForServiceData responded 403 in 2906.8750 ms
+2020-11-28 14:00:28.661 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:44324/ApiForServiceData - - - 403 - - 2920.2108ms
+2020-11-28 14:02:15.647 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:44324/ApiForServiceData - -
+2020-11-28 14:02:15.656 +01:00 [INF] Successfully validated the token.
+2020-11-28 14:02:15.660 +01:00 [INF] Authorization failed. These requirements were not met:
+ServiceApi.HasServiceApiRoleRequirement
+ClaimsAuthorizationRequirement:Claim.Type=azp and Claim.Value is one of the following values: (b178f3a5-7588-492a-924f-72d7887b7e48)
+2020-11-28 14:02:15.661 +01:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2020-11-28 14:02:15.661 +01:00 [INF] HTTP GET /ApiForServiceData responded 403 in 13.4195 ms
+2020-11-28 14:02:15.666 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:44324/ApiForServiceData - - - 403 - - 18.5592ms
+2020-11-28 14:03:35.643 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/ApiForServiceData - -
+2020-11-28 14:03:35.726 +01:00 [INF] Bearer was not authenticated. Failure message: No SecurityTokenValidator available for token: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6ImtnMkxZczJUMENUaklmajRydDZKSXluZW4zOCJ9.eyJhdWQiOiJiMTc4ZjNhNS03NTg4LTQ5MmEtOTI0Zi03MmQ3ODg3YjdlNDgiLCJpc3MiOiJodHRwczovL2xvZ2luLm1pY3Jvc29mdG9ubGluZS5jb20vN2ZmOTViMTUtZGMyMS00YmE2LWJjOTItODI0ODU2NTc4ZmMxL3YyLjAiLCJpYXQiOjE2MDY1NjgwNjcsIm5iZiI6MTYwNjU2ODA2NywiZXhwIjoxNjA2NTcxOTY3LCJhaW8iOiJFMlJnWUhqNGYrYUd5cnJpWlEyTW0wMnZyUW81QUFBPSIsImF6cCI6IjJiNTBhMDE0LWYzNTMtNGMxMC1hYWNlLTAyNGYxOWE1NTU2OSIsImF6cGFjciI6IjEiLCJvaWQiOiJkNTYzZGVkMS0xYjdlLTQxOWYtYTIwZS00YTUzZjA1NjIxYzgiLCJyaCI6IjAuQVI4QUZWdjVmeUhjcGt1OGtvSklWbGVQd1JTZ1VDdFQ4eEJNcXM0Q1R4bWxWV2tmQUFBLiIsInJvbGVzIjpbImFjY2Vzc19hc19hcHBsaWNhdGlvbiJdLCJzdWIiOiJkNTYzZGVkMS0xYjdlLTQxOWYtYTIwZS00YTUzZjA1NjIxYzgiLCJ0aWQiOiI3ZmY5NWIxNS1kYzIxLTRiYTYtYmM5Mi04MjQ4NTY1NzhmYzEiLCJ1dGkiOiJhYkJfMGdQM3VrV3QwbVZuZF8yR0FRIiwidmVyIjoiMi4wIn0.u0PQTixa3w1wur9mv5dhH8r_6jFF8Kidqp3lECTEBz_8ShkgkNiGn8yf9EjSEgnmElOefnHutc6D_O8PNgQIqQaQ5PmC3wrZCRd5fP8BNmPfsmdlw7NuuVnGC1tViB4WZ33gVQOIHAI0fRn3S-aLNYlYZMgLn5OZbH6hcsQD4Gu7QCoBz-YRsrEJ-6X3i3D3nBYrFwvm5RzHJdcg4K5dsiTZnvI5H1BBiFx9-doYk4Jui0X7T7M44GbCP_zu-Vp1b1wrx1vA3y99NmD0pIrsLYHlRMUDrj045vP4W_sX3xLS0iLSWm6TadRM9Lnx3XuGZX0VgR0oQyp-nmjcPLYOEg
+2020-11-28 14:03:35.860 +01:00 [INF] Bearer was not authenticated. Failure message: No SecurityTokenValidator available for token: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6ImtnMkxZczJUMENUaklmajRydDZKSXluZW4zOCJ9.eyJhdWQiOiJiMTc4ZjNhNS03NTg4LTQ5MmEtOTI0Zi03MmQ3ODg3YjdlNDgiLCJpc3MiOiJodHRwczovL2xvZ2luLm1pY3Jvc29mdG9ubGluZS5jb20vN2ZmOTViMTUtZGMyMS00YmE2LWJjOTItODI0ODU2NTc4ZmMxL3YyLjAiLCJpYXQiOjE2MDY1NjgwNjcsIm5iZiI6MTYwNjU2ODA2NywiZXhwIjoxNjA2NTcxOTY3LCJhaW8iOiJFMlJnWUhqNGYrYUd5cnJpWlEyTW0wMnZyUW81QUFBPSIsImF6cCI6IjJiNTBhMDE0LWYzNTMtNGMxMC1hYWNlLTAyNGYxOWE1NTU2OSIsImF6cGFjciI6IjEiLCJvaWQiOiJkNTYzZGVkMS0xYjdlLTQxOWYtYTIwZS00YTUzZjA1NjIxYzgiLCJyaCI6IjAuQVI4QUZWdjVmeUhjcGt1OGtvSklWbGVQd1JTZ1VDdFQ4eEJNcXM0Q1R4bWxWV2tmQUFBLiIsInJvbGVzIjpbImFjY2Vzc19hc19hcHBsaWNhdGlvbiJdLCJzdWIiOiJkNTYzZGVkMS0xYjdlLTQxOWYtYTIwZS00YTUzZjA1NjIxYzgiLCJ0aWQiOiI3ZmY5NWIxNS1kYzIxLTRiYTYtYmM5Mi04MjQ4NTY1NzhmYzEiLCJ1dGkiOiJhYkJfMGdQM3VrV3QwbVZuZF8yR0FRIiwidmVyIjoiMi4wIn0.u0PQTixa3w1wur9mv5dhH8r_6jFF8Kidqp3lECTEBz_8ShkgkNiGn8yf9EjSEgnmElOefnHutc6D_O8PNgQIqQaQ5PmC3wrZCRd5fP8BNmPfsmdlw7NuuVnGC1tViB4WZ33gVQOIHAI0fRn3S-aLNYlYZMgLn5OZbH6hcsQD4Gu7QCoBz-YRsrEJ-6X3i3D3nBYrFwvm5RzHJdcg4K5dsiTZnvI5H1BBiFx9-doYk4Jui0X7T7M44GbCP_zu-Vp1b1wrx1vA3y99NmD0pIrsLYHlRMUDrj045vP4W_sX3xLS0iLSWm6TadRM9Lnx3XuGZX0VgR0oQyp-nmjcPLYOEg
+2020-11-28 14:03:35.862 +01:00 [INF] Authorization failed. These requirements were not met:
+ServiceApi.HasServiceApiRoleRequirement
+ClaimsAuthorizationRequirement:Claim.Type=azp and Claim.Value is one of the following values: (b178f3a5-7588-492a-924f-72d7887b7e48)
+ClaimsAuthorizationRequirement:Claim.Type=azpacr and Claim.Value is one of the following values: (1)
+2020-11-28 14:03:35.882 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2020-11-28 14:03:35.882 +01:00 [INF] HTTP GET /ApiForServiceData responded 401 in 236.7806 ms
+2020-11-28 14:03:35.885 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/ApiForServiceData - - - 401 - - 244.9001ms
+2020-11-28 14:20:30.268 +01:00 [INF] User profile is available. Using 'C:\Users\stduser\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-28 14:20:31.519 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-11-28 14:20:31.521 +01:00 [INF] Hosting environment: Development
+2020-11-28 14:20:31.521 +01:00 [INF] Content root path: C:\git\damienbod\AzureADAuthRazorUiServiceApiCertificate\AngularAzureADMultipleApis\ServiceApi
+2020-11-28 14:20:31.703 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/index.html - -
+2020-11-28 14:20:32.234 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/index.html - - - 200 - text/html;charset=utf-8 539.5531ms
+2020-11-28 14:20:33.057 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/swagger/v1/swagger.json - -
+2020-11-28 14:20:33.301 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 244.0687ms
+2020-11-28 14:21:29.297 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:44324/ApiForServiceData - -
+2020-11-28 14:21:31.780 +01:00 [INF] Successfully validated the token.
+2020-11-28 14:21:31.799 +01:00 [INF] Authorization failed. These requirements were not met:
+ServiceApi.HasServiceApiRoleRequirement
+2020-11-28 14:21:31.805 +01:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2020-11-28 14:21:31.810 +01:00 [INF] HTTP GET /ApiForServiceData responded 403 in 2504.2876 ms
+2020-11-28 14:21:31.819 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:44324/ApiForServiceData - - - 403 - - 2521.5201ms
+2020-11-28 14:26:44.710 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:44324/ApiForServiceData - -
+2020-11-28 14:26:44.743 +01:00 [INF] Successfully validated the token.
+2020-11-28 14:26:44.747 +01:00 [INF] Authorization failed. These requirements were not met:
+ServiceApi.HasServiceApiRoleRequirement
+2020-11-28 14:26:44.767 +01:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2020-11-28 14:26:44.769 +01:00 [INF] HTTP GET /ApiForServiceData responded 403 in 56.6600 ms
+2020-11-28 14:26:44.794 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:44324/ApiForServiceData - - - 403 - - 84.0859ms
+2020-11-28 14:27:56.157 +01:00 [INF] User profile is available. Using 'C:\Users\stduser\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-28 14:27:57.290 +01:00 [INF] Application is shutting down...
+2020-11-28 14:27:57.290 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-11-28 14:27:57.291 +01:00 [INF] Hosting environment: Development
+2020-11-28 14:27:57.291 +01:00 [INF] Content root path: C:\git\damienbod\AzureADAuthRazorUiServiceApiCertificate\AngularAzureADMultipleApis\ServiceApi
+2020-11-28 14:27:57.468 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/index.html - -
+2020-11-28 14:27:57.958 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/index.html - - - 200 - text/html;charset=utf-8 492.3272ms
+2020-11-28 14:28:15.547 +01:00 [INF] User profile is available. Using 'C:\Users\stduser\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-28 14:28:17.237 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-11-28 14:28:17.237 +01:00 [INF] Hosting environment: Development
+2020-11-28 14:28:17.237 +01:00 [INF] Content root path: C:\git\damienbod\AzureADAuthRazorUiServiceApiCertificate\AngularAzureADMultipleApis\ServiceApi
+2020-11-28 14:28:17.496 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/index.html - -
+2020-11-28 14:28:18.041 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/index.html - - - 200 - text/html;charset=utf-8 560.4503ms
+2020-11-28 14:28:18.647 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/swagger/v1/swagger.json - -
+2020-11-28 14:28:19.011 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 364.2815ms
+2020-11-28 14:28:44.870 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:44324/ApiForServiceData - -
+2020-11-28 14:28:47.951 +01:00 [INF] Successfully validated the token.
+2020-11-28 14:28:47.965 +01:00 [INF] Authorization failed. These requirements were not met:
+ServiceApi.HasServiceApiRoleRequirement
+2020-11-28 14:28:47.968 +01:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2020-11-28 14:28:47.971 +01:00 [INF] HTTP GET /ApiForServiceData responded 403 in 3089.5104 ms
+2020-11-28 14:28:47.977 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:44324/ApiForServiceData - - - 403 - - 3107.8150ms
+2020-11-28 14:32:38.872 +01:00 [INF] User profile is available. Using 'C:\Users\stduser\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-28 14:32:40.421 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-11-28 14:32:40.422 +01:00 [INF] Hosting environment: Development
+2020-11-28 14:32:40.423 +01:00 [INF] Content root path: C:\git\damienbod\AzureADAuthRazorUiServiceApiCertificate\AngularAzureADMultipleApis\ServiceApi
+2020-11-28 14:32:40.577 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/index.html - -
+2020-11-28 14:32:41.201 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/index.html - - - 200 - text/html;charset=utf-8 628.4086ms
+2020-11-28 14:32:41.991 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44324/swagger/v1/swagger.json - -
+2020-11-28 14:32:42.262 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44324/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 270.5181ms
+2020-11-28 14:33:10.317 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:44324/ApiForServiceData - -
+2020-11-28 14:33:13.543 +01:00 [INF] Successfully validated the token.
+2020-11-28 14:33:13.573 +01:00 [INF] Authorization was successful.
+2020-11-28 14:33:13.575 +01:00 [INF] Executing endpoint 'ServiceApi.Controllers.ApiForServiceDataController.Get (ServiceApi)'
+2020-11-28 14:33:13.630 +01:00 [INF] Route matched with {action = "Get", controller = "ApiForServiceData"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[System.String] Get() on controller ServiceApi.Controllers.ApiForServiceDataController (ServiceApi).
+2020-11-28 14:33:13.654 +01:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2020-11-28 14:33:13.691 +01:00 [INF] Executed action ServiceApi.Controllers.ApiForServiceDataController.Get (ServiceApi) in 44.527ms
+2020-11-28 14:33:13.696 +01:00 [INF] Executed endpoint 'ServiceApi.Controllers.ApiForServiceDataController.Get (ServiceApi)'
+2020-11-28 14:33:13.703 +01:00 [INF] HTTP GET /ApiForServiceData responded 200 in 3369.0081 ms
+2020-11-28 14:33:13.709 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:44324/ApiForServiceData - - - 200 - application/json;+charset=utf-8 3392.6046ms

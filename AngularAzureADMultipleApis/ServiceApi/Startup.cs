@@ -41,8 +41,9 @@ namespace ServiceApi
                 {
                     validateAccessTokenPolicy.Requirements.Add(new HasServiceApiRoleRequirement());
                     
-                    // Validate ClientId from token
-                    validateAccessTokenPolicy.RequireClaim("azp", Configuration["AzureAd:ClientId"]);
+                    // Validate id of application for which the token was created
+                    // In this case the UI application and this token was created OBO
+                    validateAccessTokenPolicy.RequireClaim("azp", "2b50a014-f353-4c10-aace-024f19a55569");
 
                     // only allow tokens which used "Private key JWT Client authentication"
                     // // https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
