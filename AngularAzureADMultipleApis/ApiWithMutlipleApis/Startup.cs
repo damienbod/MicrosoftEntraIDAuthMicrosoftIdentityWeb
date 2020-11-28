@@ -68,7 +68,8 @@ namespace ApiWithMutlipleApis
                 options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
                 {
                     // Validate ClientId from token
-                    validateAccessTokenPolicy.RequireClaim("azp", Configuration["AzureAd:ClientId"]);
+                    // only accept tokens issued ....
+                    validateAccessTokenPolicy.RequireClaim("azp", "ad6b0351-92b4-4ee9-ac8d-3e76e5fd1c67");
                 });
             });
 
