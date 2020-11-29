@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -14,7 +14,7 @@ export class AuthService {
     return this.oidcSecurityService.getToken();
   }
 
-  get userData() {
+  get userData$() {
     return this.oidcSecurityService.userData$;
   }
 
