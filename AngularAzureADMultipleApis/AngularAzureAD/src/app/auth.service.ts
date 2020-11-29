@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(private oidcSecurityService: OidcSecurityService) {}
 
-  get signedIn() {
+  get signedIn$() {
     return this.oidcSecurityService.isAuthenticated$;
   }
 
@@ -14,7 +14,7 @@ export class AuthService {
     return this.oidcSecurityService.getToken();
   }
 
-  get userData() {
+  get userData$() {
     return this.oidcSecurityService.userData$;
   }
 

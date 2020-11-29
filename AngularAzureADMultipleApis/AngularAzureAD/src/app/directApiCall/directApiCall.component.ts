@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
-import { AuthService } from '../auth.service';
 import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-direct-api-call',
@@ -15,29 +15,19 @@ export class DirectApiCallComponent implements OnInit {
   httpRequestRunning = false;
 
   constructor(
-    private authservice: AuthService,
+    private authService: AuthService,
     private httpClient: HttpClient
   ) {}
 
   ngOnInit() {
-    this.userData$ = this.authservice.userData;
-    this.isAuthenticated$ = this.authservice.signedIn;
+    this.userData$ = this.authService.userData$;
+    this.isAuthenticated$ = this.authService.signedIn$;
   }
 
   callApi() {
     this.httpRequestRunning = true;
     this.dataFromAzureProtectedApi$ = this.httpClient
       .get('https://localhost:44390/DirectApi')
-      .pipe(
-        catchError((error) => {
-          this.httpRequestRunning = false;
-          return of(error);
-        }),
-        switchMap((response: any) => {
-          this.httpRequestRunning = false;
-          return of(response);
-        })
-      );
+      .pipe(finalize(() => (this.httpRequestRunning = false)));
   }
-
 }
