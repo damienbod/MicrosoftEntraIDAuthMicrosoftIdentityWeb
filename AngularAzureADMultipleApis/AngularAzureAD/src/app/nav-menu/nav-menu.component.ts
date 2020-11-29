@@ -15,7 +15,7 @@ export class NavMenuComponent implements OnInit {
 
   ngOnInit() {
     this.userData$ = this.authService.userData$;
-    this.isAuthenticated$ = this.authService.signedIn;
+    this.isAuthenticated$ = this.authService.signedIn$;
   }
 
   login() {

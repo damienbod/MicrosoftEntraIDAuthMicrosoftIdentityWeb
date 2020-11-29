@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 export class AuthService {
   constructor(private oidcSecurityService: OidcSecurityService) {}
 
-  get signedIn() {
+  get signedIn$() {
     return this.oidcSecurityService.isAuthenticated$;
   }
 
