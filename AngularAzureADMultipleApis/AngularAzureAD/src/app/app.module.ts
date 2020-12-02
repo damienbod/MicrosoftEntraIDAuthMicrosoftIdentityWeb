@@ -12,6 +12,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { GraphApiCallComponent } from './graphApiCall/graphApiCall.component';
 import { ApplicationApiCallComponent } from './applicationApiCall/applicationApiCall.component';
 import { DelegatedApiCallComponent } from './delegatedApiCall/delegatedApiCall.component';
+import { AuthorizationGuard } from './authorization.guard';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -47,10 +48,10 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     RouterModule.forRoot([
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'directApiCall', component: DirectApiCallComponent },
-    { path: 'graphApiCall', component: GraphApiCallComponent },
-    { path: 'applicationApiCall', component: ApplicationApiCallComponent },
-    { path: 'delegatedApiCall', component: DelegatedApiCallComponent },
+    { path: 'directApiCall', component: DirectApiCallComponent, canActivate: [AuthorizationGuard] },
+    { path: 'graphApiCall', component: GraphApiCallComponent, canActivate: [AuthorizationGuard] },
+    { path: 'applicationApiCall', component: ApplicationApiCallComponent, canActivate: [AuthorizationGuard] },
+    { path: 'delegatedApiCall', component: DelegatedApiCallComponent, canActivate: [AuthorizationGuard] },
     { path: 'unauthorized', component: UnauthorizedComponent },
   ], { relativeLinkResolution: 'legacy' }),
     AuthModule.forRoot(),
@@ -69,6 +70,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
       useClass: AuthInterceptor,
       multi: true,
     },
+    AuthorizationGuard
   ],
   bootstrap: [AppComponent],
 })
