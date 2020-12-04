@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiWithMutlipleApis.Controllers
 {
-    [Authorize(Policy = "ValidateAccessTokenPolicy", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Policy = "ValidateAccessTokenPolicy", 
+        AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("[controller]")]
     public class DirectApiController : ControllerBase
