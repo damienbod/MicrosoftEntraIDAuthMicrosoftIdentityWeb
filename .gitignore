@@ -14,3 +14,6 @@
 /DecryptionCertificates/LogsPortalDecryptionCertificates.txt
 /ConfidentialClientCredentialsCertificate/LogsMyServerRenderedPortal.txt
 /ConfidentialClientCredentialsCertificate/LogsServiceApi.txt
+**/node_modules/
+**/dist/
+/AngularAzureADMultipleApis/LogsServiceApi.txt

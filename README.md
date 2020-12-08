@@ -5,10 +5,15 @@
 	<li><a href="https://damienbod.com/2020/10/09/using-key-vault-certificates-with-microsoft-identity-web-and-asp-net-core-applications/">Using Key Vault certificates with Microsoft.Identity.Web and ASP.NET Core applications</a></li>
 	<li><a href="https://damienbod.com/2020/10/22/using-encrypted-access-tokens-in-azure-with-microsoft-identity-web-and-azure-app-registrations/">Using encrypted access tokens in Azure with Microsoft.Identity.Web and Azure App registrations</a></li>
     <li><a href="https://damienbod.com/2020/11/09/implement-a-web-app-and-an-asp-net-core-secure-api-using-azure-ad-which-delegates-to-second-api/">Implement a Web APP and an ASP.NET Core Secure API using Azure AD which delegates to a second API</a></li>
+	<li><a href="">Using multiple APIs in Angular and ASP.NET Core with Azure AD authentication</a></li>
 
 </ul>
 
 ## History
+
+2020-12-08 Added Using multiple APIs in Angular and ASP.NET Core with Azure AD authentication
+
+2020-12-04 Updated to .NET 5
 
 2020-11-15 Updated Microsoft.Identity.Web to 1.3.0
 
