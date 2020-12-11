@@ -23,7 +23,7 @@ namespace BlazorAzureADWithApis.Server.Controllers
         private readonly ILogger<WeatherForecastController> _logger;
 
         // The Web API will only accept tokens 1) for users, and 2) having the "user_impersonation" scope for this API
-        static readonly string[] scopeRequiredByApi = new string[] { "user_impersonation" };
+        static readonly string[] scopeRequiredByApi = new string[] { "access_as_user" };
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
