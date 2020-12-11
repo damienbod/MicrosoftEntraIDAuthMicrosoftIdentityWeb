@@ -1,8 +1,11 @@
+using BlazorAzureADWithApis.Server.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,8 +28,31 @@ namespace BlazorAzureADWithApis.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
+            services.AddScoped<GraphApiClientService>();
+            services.AddScoped<ServiceApiClientService>();
+            services.AddScoped<UserApiClientService>();
+
+            services.AddMicrosoftIdentityWebApiAuthentication(Configuration)
+                 .EnableTokenAcquisitionToCallDownstreamApi()
+                 .AddInMemoryTokenCaches();
+
+            services.AddControllers(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
+                {
+                    // Validate ClientId from token
+                    // only accept tokens issued ....
+                    validateAccessTokenPolicy.RequireClaim("azp", "ad6b0351-92b4-4ee9-ac8d-3e76e5fd1c67");
+                });
+            });
 
             services.AddControllersWithViews();
             services.AddRazorPages();
