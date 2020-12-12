@@ -11,6 +11,8 @@
 
 ## History
 
+2020-12-12 Updated Microsoft.Identity.Web to 1.4.0
+
 2020-12-08 Added Using multiple APIs in Angular and ASP.NET Core with Azure AD authentication
 
 2020-12-04 Updated to .NET 5
