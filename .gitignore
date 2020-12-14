@@ -17,3 +17,4 @@
 **/node_modules/
 **/dist/
 /AngularAzureADMultipleApis/LogsServiceApi.txt
+/BlazorWithApis/LogsServiceApi.txt
