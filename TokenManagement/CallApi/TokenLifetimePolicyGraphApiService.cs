@@ -79,6 +79,22 @@ namespace TokenManagement.Services
                 .ConfigureAwait(false);
         }
 
+        public async Task<IStsPolicyAppliesToCollectionWithReferencesPage> PolicyAppliesTo(string tokenLifetimePolicyId)
+        {
+            var graphclient = await GetGraphClient(new string[] {
+                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
+               .ConfigureAwait(false);
+
+            var appliesTo = await graphclient
+                .Policies
+                .TokenLifetimePolicies[tokenLifetimePolicyId]
+                .AppliesTo
+                .Request()
+                .GetAsync();
+
+            return appliesTo;
+        }
+
         public async Task AssignPolicyToApplication(string applicationId, 
             TokenLifetimePolicy tokenLifetimePolicy)
         {
