@@ -55,21 +55,21 @@ namespace TokenManagement.Services
                 .DeleteAsync();
         }
 
-        public async Task<TokenLifetimePolicy> CreatePolicy()
+        public async Task<TokenLifetimePolicy> CreatePolicy(TokenLifetimePolicy tokenLifetimePolicy)
         {
             var graphclient = await GetGraphClient(new string[] { 
                 "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
                .ConfigureAwait(false);
 
-            var tokenLifetimePolicy = new TokenLifetimePolicy
-            {
-                Definition = new List<string>()
-                {
-                    "{\"TokenLifetimePolicy\":{\"Version\":1,\"AccessTokenLifetime\":\"05:30:00\"}}"
-                },
-                DisplayName = "AppAccessTokenLifetimePolicy",
-                IsOrganizationDefault = false
-            };
+            //var tokenLifetimePolicy = new TokenLifetimePolicy
+            //{
+            //    Definition = new List<string>()
+            //    {
+            //        "{\"TokenLifetimePolicy\":{\"Version\":1,\"AccessTokenLifetime\":\"05:30:00\"}}"
+            //    },
+            //    DisplayName = "AppAccessTokenLifetimePolicy",
+            //    IsOrganizationDefault = false
+            //};
 
             return await graphclient
                 .Policies
@@ -86,23 +86,6 @@ namespace TokenManagement.Services
                 "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })
               .ConfigureAwait(false);
 
-            //var tokenPolicyid = $"https://graph.microsoft.com/v1.0/policies/tokenLifetimePolicies/{tokenLifetimePolicyId}";
-
-            //var tokenLifetimePolicy = new TokenLifetimePolicy
-            //{
-            //    AdditionalData = new Dictionary<string, object>()
-            //    {
-            //        {"@odata.id", tokenPolicyid}
-            //    }
-            //};
-
-
-            //var app1 = await graphclient
-            //    .Applications
-            //    .Request()
-            //    .GetAsync()
-            //    .ConfigureAwait(false);
-
             var app2 = await graphclient
                 .Applications
                 .Request().Filter($"appId eq '{applicationId}'")
@@ -110,6 +93,20 @@ namespace TokenManagement.Services
                 .ConfigureAwait(false);
 
             var id = app2[0].Id;
+
+            var tokenIssuancePolicies = await graphclient
+                .Applications[id]
+                .TokenIssuancePolicies
+                .Request()
+                .GetAsync()
+                .ConfigureAwait(false);
+
+            await graphclient
+                .Applications[id]
+                .TokenLifetimePolicies[tokenLifetimePolicy.Id]
+                .Reference
+                .Request()
+                .DeleteAsync();
 
             await graphclient
                 .Applications[id]
