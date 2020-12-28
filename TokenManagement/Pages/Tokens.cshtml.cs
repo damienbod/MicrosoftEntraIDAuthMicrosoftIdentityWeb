@@ -19,6 +19,7 @@ namespace TokenManagement.Pages
         public async Task OnGetAsync()
         {
             var data = await _graphApiClientService.GetPolicies();
+            var set = await _graphApiClientService.CreatePolicy();
         }
     }
 }

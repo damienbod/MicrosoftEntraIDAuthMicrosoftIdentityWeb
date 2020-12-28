@@ -1,6 +1,7 @@
 ﻿using Microsoft.Graph;
 using Microsoft.Identity.Web;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -25,7 +26,31 @@ namespace TokenManagement.Services
             var graphclient = await GetGraphClient(new string[] { "Policy.ReadWrite.ApplicationConfiguration" })
                .ConfigureAwait(false);
 
-            return await graphclient.Policies.TokenLifetimePolicies.Request().GetAsync().ConfigureAwait(false);
+            return await graphclient
+                .Policies
+                .TokenLifetimePolicies
+                .Request()
+                .GetAsync().ConfigureAwait(false);
+        }
+
+        public async Task<TokenLifetimePolicy> CreatePolicy()
+        {
+            var graphclient = await GetGraphClient(new string[] { "Policy.ReadWrite.ApplicationConfiguration" })
+               .ConfigureAwait(false);
+
+            var tokenLifetimePolicy = new TokenLifetimePolicy
+            {
+                Definition = new List<string>()
+                {
+                    "{\"TokenLifetimePolicy\":{\"Version\":1,\"AccessTokenLifetime\":\"01:30:00\"}}"
+                },
+                DisplayName = "MyAccessTokenLifetimePolicy",
+                IsOrganizationDefault = true
+            };
+
+            return await graphclient.Policies.TokenLifetimePolicies
+                .Request()
+                .AddAsync(tokenLifetimePolicy).ConfigureAwait(false);
         }
 
         private async Task<GraphServiceClient> GetGraphClient(string[] scopes)
