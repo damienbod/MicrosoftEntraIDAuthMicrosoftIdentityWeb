@@ -23,7 +23,8 @@ namespace TokenManagement.Services
 
         public async Task<IPolicyRootTokenLifetimePoliciesCollectionPage> GetPolicies()
         {
-            var graphclient = await GetGraphClient(new string[] { "Policy.ReadWrite.ApplicationConfiguration" })
+            var graphclient = await GetGraphClient(new string[] { 
+                "Policy.ReadWrite.ApplicationConfiguration" })
                .ConfigureAwait(false);
 
             return await graphclient
@@ -35,17 +36,18 @@ namespace TokenManagement.Services
 
         public async Task<TokenLifetimePolicy> CreatePolicy()
         {
-            var graphclient = await GetGraphClient(new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
+            var graphclient = await GetGraphClient(new string[] { 
+                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
                .ConfigureAwait(false);
 
             var tokenLifetimePolicy = new TokenLifetimePolicy
             {
                 Definition = new List<string>()
                 {
-                    "{\"TokenLifetimePolicy\":{\"Version\":1,\"AccessTokenLifetime\":\"01:30:00\"}}"
+                    "{\"TokenLifetimePolicy\":{\"Version\":1,\"AccessTokenLifetime\":\"05:30:00\"}}"
                 },
-                DisplayName = "MyAccessTokenLifetimePolicy",
-                IsOrganizationDefault = true
+                DisplayName = "AppAccessTokenLifetimePolicy",
+                IsOrganizationDefault = false
             };
 
             return await graphclient
@@ -56,24 +58,42 @@ namespace TokenManagement.Services
                 .ConfigureAwait(false);
         }
 
-        public async Task AssignPolicyToServicePrincipal(string applicationId, string tokenLifetimePolicyId)
+        public async Task AssignPolicyToServicePrincipal(string applicationId, 
+            TokenLifetimePolicy tokenLifetimePolicy)
         {
             var graphclient = await GetGraphClient(new string[] {
-                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
+                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })
               .ConfigureAwait(false);
 
-            var tokenPolicyid = $"https://graph.microsoft.com/v1.0/policies/tokenLifetimePolicies/{tokenLifetimePolicyId}";
+            //var tokenPolicyid = $"https://graph.microsoft.com/v1.0/policies/tokenLifetimePolicies/{tokenLifetimePolicyId}";
 
-            var tokenLifetimePolicy = new TokenLifetimePolicy
-            {
-                AdditionalData = new Dictionary<string, object>()
-                {
-                    {"@odata.id", tokenPolicyid}
-                }
-            };
+            //var tokenLifetimePolicy = new TokenLifetimePolicy
+            //{
+            //    AdditionalData = new Dictionary<string, object>()
+            //    {
+            //        {"@odata.id", tokenPolicyid}
+            //    }
+            //};
 
-            await graphclient.Applications[applicationId]
-                .TokenLifetimePolicies.References
+
+            //var app1 = await graphclient
+            //    .Applications
+            //    .Request()
+            //    .GetAsync()
+            //    .ConfigureAwait(false);
+
+            var app2 = await graphclient
+                .Applications
+                .Request().Filter($"appId eq '{applicationId}'")
+                .GetAsync()
+                .ConfigureAwait(false);
+
+            var id = app2[0].Id;
+
+            await graphclient
+                .Applications[id]
+                .TokenLifetimePolicies
+                .References
                 .Request()
                 .AddAsync(tokenLifetimePolicy)
                 .ConfigureAwait(false);
