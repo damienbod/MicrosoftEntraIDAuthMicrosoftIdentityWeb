@@ -16,4 +16,4 @@ https://stackoverflow.com/questions/65278010/how-to-set-the-access-token-lifetim
 
 https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-post-tokenlifetimepolicies?view=graph-rest-1.0&tabs=http
 
-
+https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-claimsmappingpolicies?view=graph-rest-1.0&tabs=http

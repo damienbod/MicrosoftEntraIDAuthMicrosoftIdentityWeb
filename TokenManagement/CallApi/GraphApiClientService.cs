@@ -48,9 +48,35 @@ namespace TokenManagement.Services
                 IsOrganizationDefault = true
             };
 
-            return await graphclient.Policies.TokenLifetimePolicies
+            return await graphclient
+                .Policies
+                .TokenLifetimePolicies
                 .Request()
-                .AddAsync(tokenLifetimePolicy).ConfigureAwait(false);
+                .AddAsync(tokenLifetimePolicy)
+                .ConfigureAwait(false);
+        }
+
+        public async Task AssignPolicyToServicePrincipal(string applicationId, string tokenLifetimePolicyId)
+        {
+            var graphclient = await GetGraphClient(new string[] {
+                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
+              .ConfigureAwait(false);
+
+            var tokenPolicyid = $"https://graph.microsoft.com/v1.0/policies/tokenLifetimePolicies/{tokenLifetimePolicyId}";
+
+            var tokenLifetimePolicy = new TokenLifetimePolicy
+            {
+                AdditionalData = new Dictionary<string, object>()
+                {
+                    {"@odata.id", tokenPolicyid}
+                }
+            };
+
+            await graphclient.Applications[applicationId]
+                .TokenLifetimePolicies.References
+                .Request()
+                .AddAsync(tokenLifetimePolicy)
+                .ConfigureAwait(false);
         }
 
         private async Task<GraphServiceClient> GetGraphClient(string[] scopes)
@@ -73,5 +99,7 @@ namespace TokenManagement.Services
             graphClient.BaseUrl = "https://graph.microsoft.com/beta";
             return graphClient;
         }
+
+        
     }
 }
