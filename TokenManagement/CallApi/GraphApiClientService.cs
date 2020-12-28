@@ -35,7 +35,7 @@ namespace TokenManagement.Services
 
         public async Task<TokenLifetimePolicy> CreatePolicy()
         {
-            var graphclient = await GetGraphClient(new string[] { "Policy.ReadWrite.ApplicationConfiguration" })
+            var graphclient = await GetGraphClient(new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
                .ConfigureAwait(false);
 
             var tokenLifetimePolicy = new TokenLifetimePolicy
