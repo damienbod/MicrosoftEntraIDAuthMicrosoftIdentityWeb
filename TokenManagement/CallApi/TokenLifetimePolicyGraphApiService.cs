@@ -101,12 +101,20 @@ namespace TokenManagement.Services
                 .GetAsync()
                 .ConfigureAwait(false);
 
-            await graphclient
-                .Applications[id]
+            var appliesTo = await graphclient
+                .Policies
                 .TokenLifetimePolicies[tokenLifetimePolicy.Id]
-                .Reference
+                .AppliesTo
                 .Request()
-                .DeleteAsync();
+                .GetAsync();
+
+            //await graphclient
+            //    .Applications[id]
+            //    .TokenLifetimePolicies[tokenLifetimePolicy.Id]
+            //    .Reference
+            //    .Request()
+            //    //.PutAsync(tokenLifetimePolicy.Id);
+            //    .DeleteAsync();
 
             await graphclient
                 .Applications[id]

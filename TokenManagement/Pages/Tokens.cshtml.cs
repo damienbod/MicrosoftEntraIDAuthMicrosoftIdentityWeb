@@ -40,8 +40,9 @@ namespace TokenManagement.Pages
         {
             // You can only assign a policy to a single tenant application. ("signInAudience": "AzureADMyOrg")
 
-            var applicationId = "64ecb044-417b-4892-83d4-5c03e8c977b9"; // application id
+            //var applicationId = "64ecb044-417b-4892-83d4-5c03e8c977b9"; // application id
             //var applicationId = "252278a5-c414-43ae-9363-34eed62463d0"; // single org
+            var applicationId = "98328d53-55ec-4f14-8407-0ca5ff2f2d20"; // single org
             await _tokenLifetimePolicyService.AssignPolicyToApplication(applicationId, tokenPolicy);
         }
     }
