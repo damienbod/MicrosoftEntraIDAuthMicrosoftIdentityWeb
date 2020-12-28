@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace ApiWithMutlipleApis.Services
+namespace TokenManagement.Services
 {
     public class GraphApiClientService
     {
@@ -20,39 +20,14 @@ namespace ApiWithMutlipleApis.Services
             _tokenAcquisition = tokenAcquisition;
         }
 
-        public async Task<User> GetGraphApiUser()
+        public async Task<IPolicyRootTokenLifetimePoliciesCollectionPage> GetPolicies()
         {
-            var graphclient = await GetGraphClient(new string[] { "User.ReadBasic.All", "user.read" })
+            var graphclient = await GetGraphClient(new string[] { "Policy.ReadWrite.ApplicationConfiguration" })
                .ConfigureAwait(false);
 
-            return await graphclient.Me.Request().GetAsync().ConfigureAwait(false);
+            return await graphclient.Policies.TokenLifetimePolicies.Request().GetAsync().ConfigureAwait(false);
         }
 
-        public async Task<string> GetGraphApiProfilePhoto()
-        {
-            try
-            {
-                var graphclient = await GetGraphClient(new string[] { "User.ReadBasic.All", "user.read" })
-               .ConfigureAwait(false);
-
-                var photo = string.Empty;
-                // Get user photo
-                using (var photoStream = await graphclient.Me.Photo
-                    .Content.Request().GetAsync().ConfigureAwait(false))
-                {
-                    byte[] photoByte = ((MemoryStream)photoStream).ToArray();
-                    photo = Convert.ToBase64String(photoByte);
-                }
-
-                return photo;
-            }
-            catch
-            {
-                return string.Empty;
-            }   
-        }
-
-       
         private async Task<GraphServiceClient> GetGraphClient(string[] scopes)
         {
             var token = await _tokenAcquisition.GetAccessTokenForUserAsync(
