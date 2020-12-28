@@ -8,9 +8,9 @@ namespace TokenManagement.Pages
 {
     public class CallApiModel : PageModel
     {
-        private GraphApiClientService _graphApiClientService;
+        private TokenLifetimePolicyGraphApiService _graphApiClientService;
 
-        public CallApiModel(GraphApiClientService graphApiClientService)
+        public CallApiModel(TokenLifetimePolicyGraphApiService graphApiClientService)
         {
             _graphApiClientService = graphApiClientService;
         }
@@ -31,7 +31,7 @@ namespace TokenManagement.Pages
 
             var applicationId = "64ecb044-417b-4892-83d4-5c03e8c977b9"; // application id
             //var applicationId = "252278a5-c414-43ae-9363-34eed62463d0"; // single org
-            await _graphApiClientService.AssignPolicyToServicePrincipal(applicationId, tokenPolicy);
+            await _graphApiClientService.AssignPolicyToApplication(applicationId, tokenPolicy);
         }
     }
 }

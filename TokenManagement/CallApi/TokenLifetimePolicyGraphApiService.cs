@@ -2,19 +2,18 @@
 using Microsoft.Identity.Web;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace TokenManagement.Services
 {
-    public class GraphApiClientService
+    public class TokenLifetimePolicyGraphApiService
     {
         private readonly ITokenAcquisition _tokenAcquisition;
         private readonly IHttpClientFactory _clientFactory;
 
-        public GraphApiClientService(ITokenAcquisition tokenAcquisition,
+        public TokenLifetimePolicyGraphApiService(ITokenAcquisition tokenAcquisition,
             IHttpClientFactory clientFactory)
         {
             _clientFactory = clientFactory;
@@ -32,6 +31,28 @@ namespace TokenManagement.Services
                 .TokenLifetimePolicies
                 .Request()
                 .GetAsync().ConfigureAwait(false);
+        }
+
+        public async Task<TokenLifetimePolicy> UpdatePolicy(TokenLifetimePolicy tokenLifetimePolicy)
+        {
+            var graphclient = await GetGraphClient(new string[] {
+                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
+               .ConfigureAwait(false);
+
+            return await graphclient.Policies.TokenLifetimePolicies["{id}"]
+                .Request()
+                .UpdateAsync(tokenLifetimePolicy);
+        }
+
+        public async Task DeletePolicy(string policyId)
+        {
+            var graphclient = await GetGraphClient(new string[] {
+                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
+               .ConfigureAwait(false);
+
+            await graphclient.Policies.TokenLifetimePolicies[policyId]
+                .Request()
+                .DeleteAsync();
         }
 
         public async Task<TokenLifetimePolicy> CreatePolicy()
@@ -58,7 +79,7 @@ namespace TokenManagement.Services
                 .ConfigureAwait(false);
         }
 
-        public async Task AssignPolicyToServicePrincipal(string applicationId, 
+        public async Task AssignPolicyToApplication(string applicationId, 
             TokenLifetimePolicy tokenLifetimePolicy)
         {
             var graphclient = await GetGraphClient(new string[] {
