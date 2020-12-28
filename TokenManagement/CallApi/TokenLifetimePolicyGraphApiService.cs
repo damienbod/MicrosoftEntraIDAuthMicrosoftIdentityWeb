@@ -94,34 +94,36 @@ namespace TokenManagement.Services
 
             var id = app2[0].Id;
 
-            var tokenIssuancePolicies = await graphclient
-                .Applications[id]
-                .TokenIssuancePolicies
-                .Request()
-                .GetAsync()
-                .ConfigureAwait(false);
-
-            var appliesTo = await graphclient
-                .Policies
-                .TokenLifetimePolicies[tokenLifetimePolicy.Id]
-                .AppliesTo
-                .Request()
-                .GetAsync();
-
-            //await graphclient
-            //    .Applications[id]
-            //    .TokenLifetimePolicies[tokenLifetimePolicy.Id]
-            //    .Reference
-            //    .Request()
-            //    //.PutAsync(tokenLifetimePolicy.Id);
-            //    .DeleteAsync();
-
             await graphclient
                 .Applications[id]
                 .TokenLifetimePolicies
                 .References
                 .Request()
                 .AddAsync(tokenLifetimePolicy)
+                .ConfigureAwait(false);
+        }
+
+        public async Task RemovePolicyFromApplication(string applicationId, 
+            string tokenLifetimePolicyId)
+        {
+            var graphclient = await GetGraphClient(new string[] {
+                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })
+              .ConfigureAwait(false);
+
+            var app2 = await graphclient
+                .Applications
+                .Request().Filter($"appId eq '{applicationId}'")
+                .GetAsync()
+                .ConfigureAwait(false);
+
+            var id = app2[0].Id;
+
+            await graphclient
+                .Applications[id]
+                .TokenLifetimePolicies[tokenLifetimePolicyId]
+                .Reference
+                .Request()
+                .DeleteAsync()
                 .ConfigureAwait(false);
         }
 
