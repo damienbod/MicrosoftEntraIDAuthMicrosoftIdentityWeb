@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Graph;
 
 namespace TokenManagement.Pages.AadTokenPolicies
 {
@@ -30,7 +31,6 @@ namespace TokenManagement.Pages.AadTokenPolicies
             TokenLifetimePolicyDto = new TokenLifetimePolicyDto
             {
                 Definition = policy.Definition.FirstOrDefault(),
-                Description = policy.Description,
                 DisplayName = policy.DisplayName,
                 IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
                 Id = policy.Id
@@ -52,16 +52,21 @@ namespace TokenManagement.Pages.AadTokenPolicies
                 return Page();
             }
 
+            // get existing
             var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(TokenLifetimePolicyDto.Id);
-            policy.IsOrganizationDefault = TokenLifetimePolicyDto.IsOrganizationDefault;
-            policy.Definition = new List<string>
+            var tokenLifetimePolicy = new TokenLifetimePolicy
             {
-                TokenLifetimePolicyDto.Definition
+                Id = TokenLifetimePolicyDto.Id,
+                Definition = new List<string>()
+                {
+                    TokenLifetimePolicyDto.Definition
+                },
+                DisplayName = TokenLifetimePolicyDto.DisplayName,
+                IsOrganizationDefault = TokenLifetimePolicyDto.IsOrganizationDefault,
             };
-            policy.DisplayName = TokenLifetimePolicyDto.DisplayName;
-            policy.Description = TokenLifetimePolicyDto.Description;
 
-            await _tokenLifetimePolicyGraphApiService.UpdatePolicy(policy);
+
+            await _tokenLifetimePolicyGraphApiService.UpdatePolicy(tokenLifetimePolicy);
 
             return RedirectToPage("./Index");
         }

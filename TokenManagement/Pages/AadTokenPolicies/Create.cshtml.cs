@@ -38,8 +38,7 @@ namespace TokenManagement.Pages.AadTokenPolicies
                     TokenLifetimePolicyDto.Definition
                 },
                 DisplayName = TokenLifetimePolicyDto.DisplayName,
-                IsOrganizationDefault = TokenLifetimePolicyDto.IsOrganizationDefault,
-                Description = TokenLifetimePolicyDto.Description
+                IsOrganizationDefault = TokenLifetimePolicyDto.IsOrganizationDefault
             };
 
             await _tokenLifetimePolicyGraphApiService.CreatePolicy(tokenLifetimePolicy);

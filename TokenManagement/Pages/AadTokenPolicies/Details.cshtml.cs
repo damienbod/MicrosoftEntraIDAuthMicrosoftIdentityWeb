@@ -27,7 +27,6 @@ namespace TokenManagement.Pages.AadTokenPolicies
             TokenLifetimePolicyDto = new TokenLifetimePolicyDto
             {
                 Definition = policy.Definition.FirstOrDefault(),
-                Description = policy.Description,
                 DisplayName = policy.DisplayName,
                 IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
                 Id = policy.Id

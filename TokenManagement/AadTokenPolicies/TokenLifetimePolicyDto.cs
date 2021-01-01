@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace TokenManagement
+﻿namespace TokenManagement
 {
     public class TokenLifetimePolicyDto
     {
@@ -8,6 +6,5 @@ namespace TokenManagement
         public string Definition { get; set; }
         public string DisplayName { get; set; }
         public bool IsOrganizationDefault { get; set; }
-        public string Description{ get; set; }
-}
+    }
 }
