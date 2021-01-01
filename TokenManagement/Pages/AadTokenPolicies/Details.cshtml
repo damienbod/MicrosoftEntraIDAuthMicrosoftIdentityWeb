@@ -1,0 +1,44 @@
+﻿@page
+@model TokenManagement.Pages.AadTokenPolicies.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TokenLifetimePolicyDto</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.Definition)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.Definition)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.DisplayName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.DisplayName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.TokenLifetimePolicyDto.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
