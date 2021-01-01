@@ -20,6 +20,7 @@ namespace TokenManagement.Pages
 
         public async Task OnGetAsync()
         {
+            // https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-configurable-token-lifetimes#configurable-token-lifetime-properties
             var tokenLifetimePolicy = new TokenLifetimePolicy
             {
                 Definition = new List<string>()
