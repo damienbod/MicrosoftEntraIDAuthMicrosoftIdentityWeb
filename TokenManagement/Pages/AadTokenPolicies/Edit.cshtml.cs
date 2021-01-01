@@ -61,6 +61,8 @@ namespace TokenManagement.Pages.AadTokenPolicies
             policy.DisplayName = TokenLifetimePolicyDto.DisplayName;
             policy.Description = TokenLifetimePolicyDto.Description;
 
+            await _tokenLifetimePolicyGraphApiService.UpdatePolicy(policy);
+
             return RedirectToPage("./Index");
         }
     }
