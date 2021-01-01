@@ -33,13 +33,24 @@ namespace TokenManagement
                 .GetAsync().ConfigureAwait(false);
         }
 
+        public async Task<TokenLifetimePolicy> GetPolicy(string id)
+        {
+            var graphclient = await GetGraphClient(new string[] {
+                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
+               .ConfigureAwait(false);
+
+            return await graphclient.Policies.TokenLifetimePolicies[id]
+                .Request().GetAsync();
+        }
+
+
         public async Task<TokenLifetimePolicy> UpdatePolicy(TokenLifetimePolicy tokenLifetimePolicy)
         {
             var graphclient = await GetGraphClient(new string[] {
                 "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
                .ConfigureAwait(false);
 
-            return await graphclient.Policies.TokenLifetimePolicies["{id}"]
+            return await graphclient.Policies.TokenLifetimePolicies[tokenLifetimePolicy.Id]
                 .Request()
                 .UpdateAsync(tokenLifetimePolicy);
         }
