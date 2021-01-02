@@ -47,52 +47,10 @@
                     <br />
 
                     <div class="form-group">
-                        <input type="submit" value="Assign" class="btn btn-primary" />
+                        <input type="submit" value="Assign Policy to selected Application" class="btn btn-primary" />
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<br />
-
-<h4>All applications in tenant</h4>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AllApplications[0].DisplayName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AllApplications[0].AppId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AllApplications[0].PolicyAssigned)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AllApplications[0].SignInAudience)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.AllApplications)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DisplayName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AppId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PolicyAssigned)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SignInAudience)
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
