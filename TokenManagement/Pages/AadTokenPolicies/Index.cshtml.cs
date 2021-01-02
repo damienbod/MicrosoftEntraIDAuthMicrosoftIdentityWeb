@@ -14,7 +14,7 @@ namespace TokenManagement.Pages.AadTokenPolicies
             _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
         }
 
-        public List<TokenLifetimePolicyDto> TokenLifetimePolicyDto { get;set; }
+        public List<TokenLifetimePolicyDto> TokenLifetimePolicyDto { get; set; }
 
         public async Task OnGetAsync()
         {

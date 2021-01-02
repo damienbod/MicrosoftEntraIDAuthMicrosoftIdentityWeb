@@ -1,7 +1,6 @@
 ﻿using Microsoft.Graph;
 using Microsoft.Identity.Web;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -10,14 +9,17 @@ namespace TokenManagement
 {
     public class TokenLifetimePolicyGraphApiService
     {
-        private readonly ITokenAcquisition _tokenAcquisition;
-        private readonly IHttpClientFactory _clientFactory;
+        private readonly string graphUrl = "https://graph.microsoft.com/beta";
 
         private readonly string[] scopesPolicy = new string[] {
                 "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" };
 
         private readonly string[] scopesApplications = new string[] {
                 "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" };
+
+
+        private readonly ITokenAcquisition _tokenAcquisition;
+        private readonly IHttpClientFactory _clientFactory;
 
         public TokenLifetimePolicyGraphApiService(ITokenAcquisition tokenAcquisition,
             IHttpClientFactory clientFactory)
@@ -28,50 +30,54 @@ namespace TokenManagement
 
         public async Task<IPolicyRootTokenLifetimePoliciesCollectionPage> GetPolicies()
         {
-            var graphclient = await GetGraphClient(scopesPolicy)
-               .ConfigureAwait(false);
+            var graphclient = await GetGraphClient(scopesPolicy).ConfigureAwait(false);
 
             return await graphclient
                 .Policies
                 .TokenLifetimePolicies
                 .Request()
-                .GetAsync().ConfigureAwait(false);
+                .GetAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task<TokenLifetimePolicy> GetPolicy(string id)
         {
-            var graphclient = await GetGraphClient(scopesPolicy)
-               .ConfigureAwait(false);
+            var graphclient = await GetGraphClient(scopesPolicy).ConfigureAwait(false);
 
-            return await graphclient.Policies.TokenLifetimePolicies[id]
-                .Request().GetAsync();
+            return await graphclient.Policies
+                .TokenLifetimePolicies[id]
+                .Request()
+                .GetAsync()
+                .ConfigureAwait(false);
         }
-
 
         public async Task<TokenLifetimePolicy> UpdatePolicy(TokenLifetimePolicy tokenLifetimePolicy)
         {
-            var graphclient = await GetGraphClient(scopesPolicy)
-               .ConfigureAwait(false);
+            var graphclient = await GetGraphClient(scopesPolicy).ConfigureAwait(false);
 
-            return await graphclient.Policies.TokenLifetimePolicies[tokenLifetimePolicy.Id]
+            return await graphclient
+                .Policies
+                .TokenLifetimePolicies[tokenLifetimePolicy.Id]
                 .Request()
-                .UpdateAsync(tokenLifetimePolicy);
+                .UpdateAsync(tokenLifetimePolicy)
+                .ConfigureAwait(false);
         }
 
         public async Task DeletePolicy(string policyId)
         {
-            var graphclient = await GetGraphClient(scopesPolicy)
-               .ConfigureAwait(false);
+            var graphclient = await GetGraphClient(scopesPolicy).ConfigureAwait(false);
 
-            await graphclient.Policies.TokenLifetimePolicies[policyId]
+            await graphclient
+                .Policies
+                .TokenLifetimePolicies[policyId]
                 .Request()
-                .DeleteAsync();
+                .DeleteAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task<TokenLifetimePolicy> CreatePolicy(TokenLifetimePolicy tokenLifetimePolicy)
         {
-            var graphclient = await GetGraphClient(scopesPolicy)
-               .ConfigureAwait(false);
+            var graphclient = await GetGraphClient(scopesPolicy).ConfigureAwait(false);
 
             //var tokenLifetimePolicy = new TokenLifetimePolicy
             //{
@@ -93,27 +99,26 @@ namespace TokenManagement
 
         public async Task<IStsPolicyAppliesToCollectionWithReferencesPage> PolicyAppliesTo(string tokenLifetimePolicyId)
         {
-            var graphclient = await GetGraphClient(scopesPolicy)
-               .ConfigureAwait(false);
+            var graphclient = await GetGraphClient(scopesPolicy).ConfigureAwait(false);
 
             var appliesTo = await graphclient
                 .Policies
                 .TokenLifetimePolicies[tokenLifetimePolicyId]
                 .AppliesTo
                 .Request()
-                .GetAsync();
+                .GetAsync()
+                .ConfigureAwait(false);
 
             return appliesTo;
         }
 
-        public async Task AssignPolicyToApplication(string applicationId, 
-            TokenLifetimePolicy tokenLifetimePolicy)
+        public async Task AssignPolicyToApplication(string appId, TokenLifetimePolicy tokenLifetimePolicy)
         {
             var graphclient = await GetGraphClient(scopesApplications).ConfigureAwait(false);
 
             var app2 = await graphclient
                 .Applications
-                .Request().Filter($"appId eq '{applicationId}'")
+                .Request().Filter($"appId eq '{appId}'")
                 .GetAsync()
                 .ConfigureAwait(false);
 
@@ -128,14 +133,13 @@ namespace TokenManagement
                 .ConfigureAwait(false);
         }
 
-        public async Task RemovePolicyFromApplication(string applicationId, 
-            string tokenLifetimePolicyId)
+        public async Task RemovePolicyFromApplication(string appId, string tokenLifetimePolicyId)
         {
             var graphclient = await GetGraphClient(scopesApplications).ConfigureAwait(false);
 
             var app2 = await graphclient
                 .Applications
-                .Request().Filter($"appId eq '{applicationId}'")
+                .Request().Filter($"appId eq '{appId}'")
                 .GetAsync()
                 .ConfigureAwait(false);
 
@@ -156,7 +160,7 @@ namespace TokenManagement
              scopes).ConfigureAwait(false);
 
             var client = _clientFactory.CreateClient();
-            client.BaseAddress = new Uri("https://graph.microsoft.com/beta");
+            client.BaseAddress = new Uri(graphUrl);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             GraphServiceClient graphClient = new GraphServiceClient(client)
@@ -167,10 +171,10 @@ namespace TokenManagement
                 })
             };
 
-            graphClient.BaseUrl = "https://graph.microsoft.com/beta";
+            graphClient.BaseUrl = graphUrl;
             return graphClient;
         }
 
-        
+
     }
 }

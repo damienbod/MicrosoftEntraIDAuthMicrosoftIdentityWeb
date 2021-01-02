@@ -18,7 +18,7 @@ namespace TokenManagement.Pages
         }
 
         public void OnGet()
-        { 
+        {
         }
     }
 }
