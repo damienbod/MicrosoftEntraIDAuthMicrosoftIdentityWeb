@@ -6,10 +6,9 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Policy Details</h1>
+<h1>Access Token Policy Details</h1>
 
 <div>
-    <h4>TokenLifetimePolicyDto</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -38,7 +37,8 @@
     <a asp-page="./Index">Back to List</a>
 </div>
 
-<h1>Assigned Applications</h1>
+<br />
+<h4>Assigned Applications</h4>
 
 <p>
     <a asp-page="./AssignNewApplicationToPolicy" asp-route-id="@Model.TokenLifetimePolicyDto.Id">Assign new application</a>

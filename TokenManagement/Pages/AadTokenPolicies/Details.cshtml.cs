@@ -64,7 +64,7 @@ namespace TokenManagement.Pages.AadTokenPolicies
             await _tokenLifetimePolicyGraphApiService
                 .RemovePolicyFromApplication(appId, policyId);
 
-            return Redirect($"./Details/?id={policyId}");
+            return Redirect($"./Details?id={policyId}");
         }
     }
 }
