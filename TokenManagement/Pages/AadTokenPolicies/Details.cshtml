@@ -31,13 +31,8 @@
     </div>
 </div>
 
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.TokenLifetimePolicyDto.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
-
 <br />
-<h4>Assigned Applications</h4>
+<h4>Applications using this Policy</h4>
 
 <p>
     <a asp-page="./AssignNewApplicationToPolicy" asp-route-id="@Model.TokenLifetimePolicyDto.Id">Assign new application</a>
