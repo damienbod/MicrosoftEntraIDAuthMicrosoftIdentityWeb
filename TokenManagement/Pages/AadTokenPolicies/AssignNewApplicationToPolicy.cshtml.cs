@@ -45,7 +45,7 @@ namespace TokenManagement.Pages
                     new SelectListItem
                     {
                         Value = a.Id,
-                        Text = $"AppId: {a.AppId}, {a.DisplayName}"
+                        Text = $"{a.DisplayName}" // AppId: {a.AppId}, 
                     }).ToList();
 
             if (TokenLifetimePolicyDto == null)
