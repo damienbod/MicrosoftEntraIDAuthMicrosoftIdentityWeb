@@ -135,6 +135,7 @@ namespace TokenManagement
             return await graphclient
                 .Applications
                 .Request()
+                .Expand("TokenLifetimePolicies")
                 .Filter($"signInAudience eq 'AzureADMyOrg' or signInAudience eq 'AzureADMultipleOrgs'")
                 .GetAsync()
                 .ConfigureAwait(false);
@@ -147,6 +148,7 @@ namespace TokenManagement
             return await graphclient
                 .Applications
                 .Request()
+                .Expand("TokenLifetimePolicies")
                 .GetAsync()
                 .ConfigureAwait(false);
         }

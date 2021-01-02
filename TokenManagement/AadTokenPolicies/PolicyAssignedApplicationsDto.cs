@@ -9,6 +9,8 @@
         /// <summary>
         /// only "AzureADMyOrg" can be assigned
         /// </summary>
-        public string SignInAudience { get; set; } 
+        public string SignInAudience { get; set; }
+
+        public string PolicyAssigned { get; set; }
     }
 }
