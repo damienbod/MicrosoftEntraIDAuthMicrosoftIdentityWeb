@@ -112,6 +112,21 @@ namespace TokenManagement
             return appliesTo;
         }
 
+        public async Task AssignTokenPolicyToApplicationUsingGraphId(string applicationGraphId, string tokenLifetimePolicyId)
+        {
+            var graphclient = await GetGraphClient(scopesApplications).ConfigureAwait(false);
+
+            var policy = await GetPolicy(tokenLifetimePolicyId);
+
+            await graphclient
+                .Applications[applicationGraphId]
+                .TokenLifetimePolicies
+                .References
+                .Request()
+                .AddAsync(policy)
+                .ConfigureAwait(false);
+        }
+
         public async Task AssignPolicyToApplication(string appId, TokenLifetimePolicy tokenLifetimePolicy)
         {
             var graphclient = await GetGraphClient(scopesApplications).ConfigureAwait(false);

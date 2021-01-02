@@ -1,0 +1,45 @@
+﻿@page
+@model TokenManagement.Pages.AssignNewApplicationToPolicyModel
+@{
+}
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.Definition)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.Definition)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.DisplayName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.DisplayName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+        </dd>
+    </dl>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TokenLifetimePolicyDto.Id" />
+            <div class="form-group">
+                <label asp-for="ApplicationGraphId" class="control-label"></label>
+                <input asp-for="ApplicationGraphId" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Assign" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
