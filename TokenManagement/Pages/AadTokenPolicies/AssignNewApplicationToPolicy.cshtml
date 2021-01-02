@@ -3,54 +3,61 @@
 @{
 }
 
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.Definition)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.Definition)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.DisplayName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.DisplayName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
-        </dd>
-    </dl>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="TokenLifetimePolicyDto.Id" />
-            <div class="form-group">
-                <label class="control-label">Unassigned Single and Multiple Org Applications</label>
-                <select asp-for="ApplicationGraphId" asp-items="Model.ApplicationOptions" 
-                        class="form-control">
-                </select>
-            </div>
-
-            <br />
-
-            <div class="form-group">
-                <input type="submit" value="Assign" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="card bg-light mb-3">
+    <div class="card-header">Token Lifetime Policy</div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.Definition)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.Definition)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.DisplayName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.DisplayName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+            </dd>
+        </dl>
     </div>
 </div>
 
-<hr />
+<br />
 
-<h4>All your applications</h4>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="TokenLifetimePolicyDto.Id" />
+                    <div class="form-group">
+                        <label class="control-label">Select Application</label>
+                        <select asp-for="ApplicationGraphId" asp-items="Model.ApplicationOptions"
+                                class="form-control">
+                        </select>
+                    </div>
+
+                    <br />
+
+                    <div class="form-group">
+                        <input type="submit" value="Assign" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<h4>All applications in tenant</h4>
 
 <table class="table">
     <thead>

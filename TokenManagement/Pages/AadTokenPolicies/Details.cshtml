@@ -6,30 +6,29 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Access Token Policy Details</h1>
-
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.Definition)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.Definition)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.DisplayName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.DisplayName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
-        </dd>
-    </dl>
+<div class="card bg-light mb-3">
+    <div class="card-header">Token Lifetime Policy</div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.Definition)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.Definition)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.DisplayName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.DisplayName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+            </dd>
+        </dl>
+    </div>
 </div>
 
 <div>
