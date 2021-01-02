@@ -32,6 +32,11 @@
 
 <div class="card">
     <div class="card-body">
+        <div class="alert alert-info" role="alert">
+            Only "AzureADMyOrg" and "AzureADMultipleOrgs" applications can be assigned a policy. An application can only be assigned a single policy.
+            If your application is not in the drop down, it is already assigned, or is "AzureADandPersonalMicrosoftAccount" application.
+            Check the <a asp-area="" asp-page="/Applications">AAD Applications</a> to see all .
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <form method="post">
