@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,6 +16,8 @@ namespace TokenManagement.Pages.AadTokenPolicies
         }
 
         public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
+
+        public List<PolicyAssignedApplicationsDto> PolicyAssignedApplications { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -36,6 +39,16 @@ namespace TokenManagement.Pages.AadTokenPolicies
             {
                 return NotFound();
             }
+
+            var applications = await _tokenLifetimePolicyGraphApiService.PolicyAppliesTo(id);
+            PolicyAssignedApplications = applications.CurrentPage.Select(app => new PolicyAssignedApplicationsDto
+            {
+                Id = app.Id,
+                DisplayName = (app as Microsoft.Graph.Application).DisplayName,
+                AppId = (app as Microsoft.Graph.Application).AppId,
+                SignInAudience = (app as Microsoft.Graph.Application).SignInAudience
+
+            }).ToList();
             return Page();
         }
     }
