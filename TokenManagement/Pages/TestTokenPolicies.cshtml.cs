@@ -31,9 +31,10 @@ namespace TokenManagement.Pages
             };
 
             var data = await _tokenLifetimePolicyService.GetPolicies();
+            var dataw = await _tokenLifetimePolicyService.PolicyAppliesTo(data[0].Id);
             //var created = await _tokenLifetimePolicyService.CreatePolicy(tokenLifetimePolicy);
             //await _tokenLifetimePolicyService.DeletePolicy(data[0].Id);
-            await AssignTokenPolicyToApplication(data[0]);
+            //await AssignTokenPolicyToApplication(data[0]);
         }
 
         private async Task AssignTokenPolicyToApplication(TokenLifetimePolicy tokenPolicy)
