@@ -32,6 +32,42 @@
         </dd>
     </dl>
 </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PolicyAssignedApplications[0].DisplayName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PolicyAssignedApplications[0].AppId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PolicyAssignedApplications[0].Id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PolicyAssignedApplications)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Remove</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.TokenLifetimePolicyDto.Id">Edit</a> |
     <a asp-page="./Index">Back to List</a>
