@@ -139,6 +139,17 @@ namespace TokenManagement
                 .ConfigureAwait(false);
         }
 
+        public async Task<IGraphServiceApplicationsCollectionPage> GetApplications()
+        {
+            var graphclient = await GetGraphClient(scopesApplications).ConfigureAwait(false);
+
+            return await graphclient
+                .Applications
+                .Request()
+                .GetAsync()
+                .ConfigureAwait(false);
+        }
+
         public async Task AssignPolicyToApplication(string appId, TokenLifetimePolicy tokenLifetimePolicy)
         {
             var graphclient = await GetGraphClient(scopesApplications).ConfigureAwait(false);

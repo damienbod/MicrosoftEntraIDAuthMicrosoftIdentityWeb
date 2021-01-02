@@ -20,6 +20,7 @@ namespace TokenManagement.Pages
 
         public string ApplicationGraphId { get; set; }
         public List<SelectListItem> ApplicationOptions { get; set; }
+        public List<PolicyAssignedApplicationsDto> AllApplications { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -37,15 +38,24 @@ namespace TokenManagement.Pages
                 Id = policy.Id
             };
 
-            var applications = await _tokenLifetimePolicyGraphApiService.GetApplicationsSingleOrg();
-
-            ApplicationOptions = applications.CurrentPage.Select(a =>
+            var singleOrgApplications = await _tokenLifetimePolicyGraphApiService.GetApplicationsSingleOrg();
+            
+            ApplicationOptions = singleOrgApplications.CurrentPage.Select(a =>
                                   new SelectListItem
                                   {
                                       Value = a.Id,
                                       Text = $"AppId: {a.AppId}, {a.DisplayName}"
                                   }).ToList();
 
+            var allApplications = await _tokenLifetimePolicyGraphApiService.GetApplications();
+            AllApplications = allApplications.CurrentPage.Select(app => new PolicyAssignedApplicationsDto
+            {
+                Id = app.Id,
+                DisplayName = (app as Microsoft.Graph.Application).DisplayName,
+                AppId = (app as Microsoft.Graph.Application).AppId,
+                SignInAudience = (app as Microsoft.Graph.Application).SignInAudience
+
+            }).ToList();
             if (TokenLifetimePolicyDto == null)
             {
                 return NotFound();

@@ -33,8 +33,9 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TokenLifetimePolicyDto.Id" />
             <div class="form-group">
-                <label asp-for="ApplicationGraphId" class="control-label"></label>
-                <select asp-for="ApplicationGraphId" asp-items="Model.ApplicationOptions" class="form-control">
+                <label class="control-label">Unassigned Single Org Applications</label>
+                <select asp-for="ApplicationGraphId" asp-items="Model.ApplicationOptions" 
+                        class="form-control" style="width:100%">
                 </select>
             </div>
 
@@ -46,3 +47,45 @@
         </form>
     </div>
 </div>
+
+<hr />
+
+<h4>All your applications</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AllApplications[0].DisplayName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllApplications[0].AppId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllApplications[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllApplications[0].SignInAudience)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.AllApplications)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisplayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SignInAudience)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
