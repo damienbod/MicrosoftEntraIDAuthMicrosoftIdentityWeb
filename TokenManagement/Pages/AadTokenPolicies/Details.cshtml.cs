@@ -51,5 +51,20 @@ namespace TokenManagement.Pages.AadTokenPolicies
             }).ToList();
             return Page();
         }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            var appId = Request.Form["item.AppId"];
+            var policyId = Request.Form["TokenLifetimePolicyDto.Id"];
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            await _tokenLifetimePolicyGraphApiService
+                .RemovePolicyFromApplication(appId, policyId);
+
+            return Redirect($"./Details/?id={policyId}");
+        }
     }
 }

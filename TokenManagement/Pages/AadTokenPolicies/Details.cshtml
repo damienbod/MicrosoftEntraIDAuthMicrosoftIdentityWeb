@@ -6,7 +6,7 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Policy Details</h1>
 
 <div>
     <h4>TokenLifetimePolicyDto</h4>
@@ -32,6 +32,17 @@
         </dd>
     </dl>
 </div>
+
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.TokenLifetimePolicyDto.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+<h1>Assigned Applications</h1>
+
+<p>
+    <a asp-page="./AssignNewApplicationToPolicy" asp-route-id="@Model.TokenLifetimePolicyDto.Id">Assign new application</a>
+</p>
 
 <table class="table">
     <thead>
@@ -62,13 +73,16 @@
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Remove</a>
+                    <form method="post">
+                        <input type="hidden" asp-for="@item.AppId" />
+                        <input type="hidden" asp-for="@Model.TokenLifetimePolicyDto.Id" />
+                        <div class="form-group">
+                            <input type="submit" value="Remove" class="btn btn-primary" />
+                        </div>
+                    </form>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.TokenLifetimePolicyDto.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+
