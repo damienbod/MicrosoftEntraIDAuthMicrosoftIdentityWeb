@@ -127,14 +127,15 @@ namespace TokenManagement
                 .ConfigureAwait(false);
         }
 
-        public async Task<IGraphServiceApplicationsCollectionPage> GetApplicationsSingleOrg()
+        public async Task<IGraphServiceApplicationsCollectionPage> GetApplicationsSingleOrMultipleOrg()
         {
             var graphclient = await GetGraphClient(scopesApplications).ConfigureAwait(false);
 
+            // AzureADMyOrg and AzureADMultipleOrgs
             return await graphclient
                 .Applications
                 .Request()
-                .Filter($"signInAudience eq 'AzureADMyOrg'")
+                .Filter($"signInAudience eq 'AzureADMyOrg' or signInAudience eq 'AzureADMultipleOrgs'")
                 .GetAsync()
                 .ConfigureAwait(false);
         }

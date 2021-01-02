@@ -38,7 +38,7 @@ namespace TokenManagement.Pages
                 Id = policy.Id
             };
 
-            var singleOrgApplications = await _tokenLifetimePolicyGraphApiService.GetApplicationsSingleOrg();
+            var singleOrgApplications = await _tokenLifetimePolicyGraphApiService.GetApplicationsSingleOrMultipleOrg();
             
             ApplicationOptions = singleOrgApplications.CurrentPage.Select(a =>
                                   new SelectListItem
