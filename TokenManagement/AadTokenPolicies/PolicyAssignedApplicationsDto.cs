@@ -7,7 +7,7 @@
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// only "AzureADMyOrg" can be assigned
+        /// only "AzureADMyOrg" and "AzureADMultipleOrgs" can be assigned a policy
         /// </summary>
         public string SignInAudience { get; set; }
 

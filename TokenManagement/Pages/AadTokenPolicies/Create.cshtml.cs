@@ -17,6 +17,11 @@ namespace TokenManagement.Pages.AadTokenPolicies
 
         public IActionResult OnGet()
         {
+            TokenLifetimePolicyDto = new TokenLifetimePolicyDto
+            {
+                Definition = "{\"TokenLifetimePolicy\":{\"Version\":1,\"AccessTokenLifetime\":\"00:30:00\"}}"
+            };
+            
             return Page();
         }
 
