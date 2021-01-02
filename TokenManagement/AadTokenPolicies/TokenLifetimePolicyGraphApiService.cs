@@ -13,6 +13,12 @@ namespace TokenManagement
         private readonly ITokenAcquisition _tokenAcquisition;
         private readonly IHttpClientFactory _clientFactory;
 
+        private readonly string[] scopesPolicy = new string[] {
+                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" };
+
+        private readonly string[] scopesApplications = new string[] {
+                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" };
+
         public TokenLifetimePolicyGraphApiService(ITokenAcquisition tokenAcquisition,
             IHttpClientFactory clientFactory)
         {
@@ -22,8 +28,7 @@ namespace TokenManagement
 
         public async Task<IPolicyRootTokenLifetimePoliciesCollectionPage> GetPolicies()
         {
-            var graphclient = await GetGraphClient(new string[] { 
-                "Policy.ReadWrite.ApplicationConfiguration" })
+            var graphclient = await GetGraphClient(scopesPolicy)
                .ConfigureAwait(false);
 
             return await graphclient
@@ -35,8 +40,7 @@ namespace TokenManagement
 
         public async Task<TokenLifetimePolicy> GetPolicy(string id)
         {
-            var graphclient = await GetGraphClient(new string[] {
-                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
+            var graphclient = await GetGraphClient(scopesPolicy)
                .ConfigureAwait(false);
 
             return await graphclient.Policies.TokenLifetimePolicies[id]
@@ -46,8 +50,7 @@ namespace TokenManagement
 
         public async Task<TokenLifetimePolicy> UpdatePolicy(TokenLifetimePolicy tokenLifetimePolicy)
         {
-            var graphclient = await GetGraphClient(new string[] {
-                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
+            var graphclient = await GetGraphClient(scopesPolicy)
                .ConfigureAwait(false);
 
             return await graphclient.Policies.TokenLifetimePolicies[tokenLifetimePolicy.Id]
@@ -57,8 +60,7 @@ namespace TokenManagement
 
         public async Task DeletePolicy(string policyId)
         {
-            var graphclient = await GetGraphClient(new string[] {
-                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
+            var graphclient = await GetGraphClient(scopesPolicy)
                .ConfigureAwait(false);
 
             await graphclient.Policies.TokenLifetimePolicies[policyId]
@@ -68,8 +70,7 @@ namespace TokenManagement
 
         public async Task<TokenLifetimePolicy> CreatePolicy(TokenLifetimePolicy tokenLifetimePolicy)
         {
-            var graphclient = await GetGraphClient(new string[] { 
-                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
+            var graphclient = await GetGraphClient(scopesPolicy)
                .ConfigureAwait(false);
 
             //var tokenLifetimePolicy = new TokenLifetimePolicy
@@ -92,8 +93,7 @@ namespace TokenManagement
 
         public async Task<IStsPolicyAppliesToCollectionWithReferencesPage> PolicyAppliesTo(string tokenLifetimePolicyId)
         {
-            var graphclient = await GetGraphClient(new string[] {
-                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })
+            var graphclient = await GetGraphClient(scopesPolicy)
                .ConfigureAwait(false);
 
             var appliesTo = await graphclient
@@ -109,9 +109,7 @@ namespace TokenManagement
         public async Task AssignPolicyToApplication(string applicationId, 
             TokenLifetimePolicy tokenLifetimePolicy)
         {
-            var graphclient = await GetGraphClient(new string[] {
-                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })
-              .ConfigureAwait(false);
+            var graphclient = await GetGraphClient(scopesApplications).ConfigureAwait(false);
 
             var app2 = await graphclient
                 .Applications
@@ -133,9 +131,7 @@ namespace TokenManagement
         public async Task RemovePolicyFromApplication(string applicationId, 
             string tokenLifetimePolicyId)
         {
-            var graphclient = await GetGraphClient(new string[] {
-                "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })
-              .ConfigureAwait(false);
+            var graphclient = await GetGraphClient(scopesApplications).ConfigureAwait(false);
 
             var app2 = await graphclient
                 .Applications
