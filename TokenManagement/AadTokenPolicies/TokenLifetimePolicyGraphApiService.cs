@@ -127,13 +127,26 @@ namespace TokenManagement
                 .ConfigureAwait(false);
         }
 
+        public async Task<IGraphServiceApplicationsCollectionPage> GetApplicationsSingleOrg()
+        {
+            var graphclient = await GetGraphClient(scopesApplications).ConfigureAwait(false);
+
+            return await graphclient
+                .Applications
+                .Request()
+                .Filter($"signInAudience eq 'AzureADMyOrg'")
+                .GetAsync()
+                .ConfigureAwait(false);
+        }
+
         public async Task AssignPolicyToApplication(string appId, TokenLifetimePolicy tokenLifetimePolicy)
         {
             var graphclient = await GetGraphClient(scopesApplications).ConfigureAwait(false);
 
             var app2 = await graphclient
                 .Applications
-                .Request().Filter($"appId eq '{appId}'")
+                .Request()
+                .Filter($"appId eq '{appId}'")
                 .GetAsync()
                 .ConfigureAwait(false);
 
@@ -154,7 +167,8 @@ namespace TokenManagement
 
             var app2 = await graphclient
                 .Applications
-                .Request().Filter($"appId eq '{appId}'")
+                .Request()
+                .Filter($"appId eq '{appId}'")
                 .GetAsync()
                 .ConfigureAwait(false);
 

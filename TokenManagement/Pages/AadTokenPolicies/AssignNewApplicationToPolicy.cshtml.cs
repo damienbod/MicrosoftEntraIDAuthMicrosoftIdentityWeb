@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,6 +19,7 @@ namespace TokenManagement.Pages
         public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
 
         public string ApplicationGraphId { get; set; }
+        public List<SelectListItem> ApplicationOptions { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -33,6 +36,15 @@ namespace TokenManagement.Pages
                 IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
                 Id = policy.Id
             };
+
+            var applications = await _tokenLifetimePolicyGraphApiService.GetApplicationsSingleOrg();
+
+            ApplicationOptions = applications.CurrentPage.Select(a =>
+                                  new SelectListItem
+                                  {
+                                      Value = a.Id,
+                                      Text = $"AppId: {a.AppId}, {a.DisplayName}"
+                                  }).ToList();
 
             if (TokenLifetimePolicyDto == null)
             {
