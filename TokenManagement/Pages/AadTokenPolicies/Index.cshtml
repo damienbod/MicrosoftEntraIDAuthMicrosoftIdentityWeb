@@ -7,7 +7,7 @@
 }
 
 <p>
-    <a asp-page="Create">Create new TokenLifetimePolicy </a>
+    <a asp-page="Create"><i class="far fa-plus-square"></i> Create new TokenLifetimePolicy </a>
 </p>
 <table class="table">
     <thead>
@@ -25,23 +25,25 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.TokenLifetimePolicyDto) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Definition)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DisplayName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsOrganizationDefault)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.TokenLifetimePolicyDto)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Definition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayName)
+                </td>
+                <td>
+                    <input asp-for="@item.IsOrganizationDefault" readonly class="big_checkbox" />
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id"><i class="far fa-edit"></i></a>
+                    <a asp-page="./Details" asp-route-id="@item.Id"><i class="far fa-folder-open"></i></a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id"><i class="far fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+	

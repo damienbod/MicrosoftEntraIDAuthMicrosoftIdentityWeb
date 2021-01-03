@@ -25,7 +25,7 @@
             <dt class="col-sm-4">
                 @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
             <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+                <input asp-for="TokenLifetimePolicyDto.IsOrganizationDefault" readonly class="big_checkbox" />
             </dd>
         </dl>
     </div>

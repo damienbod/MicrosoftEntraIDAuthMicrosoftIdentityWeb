@@ -22,7 +22,7 @@
             <dt class="col-sm-4">
                 @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
             <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+                <input asp-for="TokenLifetimePolicyDto.IsOrganizationDefault" readonly class="big_checkbox" />
             </dd>
         </dl>
     </div>
@@ -34,8 +34,8 @@
     <div class="card-body">
         <div class="alert alert-info" role="alert">
             Only "AzureADMyOrg" and "AzureADMultipleOrgs" applications can be assigned a policy. An application can only be assigned a single policy.
-            If your application is not in the drop down, it is already assigned, or is "AzureADandPersonalMicrosoftAccount" application.
-            Check the <a asp-area="" asp-page="/Applications">AAD Applications</a> to see all .
+            If your application is not in the drop down, it is already assigned, or is an "AzureADandPersonalMicrosoftAccount" application.
+            Check the <a asp-area="" asp-page="/Applications">AAD Applications</a> to see all.
         </div>
         <div class="row">
             <div class="col-md-12">
