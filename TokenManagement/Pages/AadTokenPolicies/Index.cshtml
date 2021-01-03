@@ -35,7 +35,7 @@
                     @Html.DisplayFor(modelItem => item.DisplayName)
                 </td>
                 <td>
-                    <input asp-for="@item.IsOrganizationDefault" readonly class="big_checkbox" />
+                    <input asp-for="@item.IsOrganizationDefault" disabled class="big_checkbox" />
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.Id"><i class="far fa-edit"></i></a>

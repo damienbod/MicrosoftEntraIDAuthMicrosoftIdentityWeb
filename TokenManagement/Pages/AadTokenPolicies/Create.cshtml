@@ -22,9 +22,9 @@
                 <input asp-for="TokenLifetimePolicyDto.DisplayName" class="form-control" />
                 <span asp-validation-for="TokenLifetimePolicyDto.DisplayName" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+            <div class="form-group">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="TokenLifetimePolicyDto.IsOrganizationDefault" /> @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+                    <input class="big_checkbox" asp-for="TokenLifetimePolicyDto.IsOrganizationDefault" /> @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
                 </label>
             </div>
             <div class="form-group">

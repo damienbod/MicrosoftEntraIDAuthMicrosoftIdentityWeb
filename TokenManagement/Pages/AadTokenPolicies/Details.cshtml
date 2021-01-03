@@ -25,7 +25,7 @@
             <dt class="col-sm-4">
                 @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
             <dd class="col-sm-8">
-                <input asp-for="TokenLifetimePolicyDto.IsOrganizationDefault" readonly class="big_checkbox" />
+                <input asp-for="TokenLifetimePolicyDto.IsOrganizationDefault" disabled class="big_checkbox" />
             </dd>
         </dl>
     </div>
@@ -33,7 +33,7 @@
 
 <br />
 <p>
-    <a asp-page="./AssignNewApplicationToPolicy" asp-route-id="@Model.TokenLifetimePolicyDto.Id">Assign TokenLifetimePolicy to application</a>
+    <a asp-page="./AssignNewApplicationToPolicy" asp-route-id="@Model.TokenLifetimePolicyDto.Id"><i class="far fa-edit"></i> Assign TokenLifetimePolicy to application</a>
 </p>
 
 <br />
