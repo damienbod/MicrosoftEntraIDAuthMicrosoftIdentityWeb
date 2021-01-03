@@ -37,10 +37,10 @@
                 <td>
                     <input asp-for="@item.IsOrganizationDefault" disabled class="big_checkbox" />
                 </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id"><i class="far fa-edit"></i></a>
-                    <a asp-page="./Details" asp-route-id="@item.Id"><i class="far fa-folder-open"></i></a>
-                    <a asp-page="./Delete" asp-route-id="@item.Id"><i class="far fa-trash-alt"></i></a>
+                <td style="width:140px">
+                    <a asp-page="./Edit" asp-route-id="@item.Id"><i class="far fa-edit fa-2x"></i></a>
+                    <a asp-page="./Details" asp-route-id="@item.Id"><i class="far fa-folder-open fa-2x"></i></a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id"><i class="far fa-trash-alt fa-2x"></i></a>
                 </td>
             </tr>
         }
