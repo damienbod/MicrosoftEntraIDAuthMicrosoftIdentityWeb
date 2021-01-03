@@ -26,7 +26,7 @@
             <dt class="col-sm-4">
                 @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
             <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+                <input asp-for="TokenLifetimePolicyDto.IsOrganizationDefault" disabled class="big_checkbox" />
             </dd>
         </dl>
     </div>
@@ -37,7 +37,7 @@
 <div>
     <form method="post">
         <input type="hidden" asp-for="TokenLifetimePolicyDto.Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <button type="submit"  class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete</button> 
+        | <a asp-page="./Index">Back to List</a>
     </form>
 </div>
