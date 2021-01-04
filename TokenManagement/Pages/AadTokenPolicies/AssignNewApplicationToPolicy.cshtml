@@ -33,9 +33,9 @@
 <div class="card">
     <div class="card-body">
         <div class="alert alert-info" role="alert">
-            Only "AzureADMyOrg" and "AzureADMultipleOrgs" applications can be assigned a policy. An application can only be assigned a single policy.
-            If your application is not in the drop down, it is already assigned, or is an "AzureADandPersonalMicrosoftAccount" application.
-            Check the <a asp-area="" asp-page="/Applications">AAD Applications</a> to see all.
+            Only <b>AzureADMyOrg</b> and <b>AzureADMultipleOrgs</b> Azure App registrations can be assigned a policy. An application can only be assigned a single policy.
+            If your application is not in the drop down, it is already assigned, or is an <b>AzureADandPersonalMicrosoftAccount</b> Azure App registration.
+            Check the <a asp-area="" asp-page="/Applications">AAD App registrations</a> to see all.
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -43,7 +43,7 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="TokenLifetimePolicyDto.Id" />
                     <div class="form-group">
-                        <label class="control-label">Select Application</label>
+                        <label class="control-label">Select App registration</label>
                         <select asp-for="ApplicationGraphId" asp-items="Model.ApplicationOptions"
                                 class="form-control">
                         </select>
@@ -52,7 +52,7 @@
                     <br />
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-link"></i> Assign TokenLifetimePolicy to selected Application</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-link"></i> Assign TokenLifetimePolicy to selected App registrations</button>
                     </div>
                 </form>
             </div>
