@@ -1,0 +1,43 @@
+﻿@page
+@model TokenManagement.Pages.AadTokenPolicies.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h3>Are you sure you want to delete the TokenLifetimePolicy?</h3>
+
+<div class="card bg-light mb-3">
+    <div class="card-header">Token Lifetime Policy</div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.Definition)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.Definition)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.DisplayName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.DisplayName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+            <dd class="col-sm-8">
+                <input asp-for="TokenLifetimePolicyDto.IsOrganizationDefault" disabled class="big_checkbox" />
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<br />
+
+<div>
+    <form method="post">
+        <input type="hidden" asp-for="TokenLifetimePolicyDto.Id" />
+        <button type="submit"  class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete</button> 
+        | <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

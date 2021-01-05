@@ -1,0 +1,44 @@
+﻿@page
+@model TokenManagement.Pages.ApplicationsModel
+@{
+}
+
+<h4>Azure App registrations in tenant</h4>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AllApplications[0].DisplayName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllApplications[0].AppId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllApplications[0].PolicyAssigned)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllApplications[0].SignInAudience)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.AllApplications)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PolicyAssigned)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SignInAudience)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

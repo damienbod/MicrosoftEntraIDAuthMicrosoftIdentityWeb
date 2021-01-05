@@ -1,0 +1,61 @@
+﻿@page
+@model TokenManagement.Pages.AssignNewApplicationToPolicyModel
+@{
+}
+
+<div class="card bg-light mb-3">
+    <div class="card-header">Token Lifetime Policy</div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.Definition)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.Definition)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.DisplayName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.DisplayName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+            <dd class="col-sm-8">
+                <input asp-for="TokenLifetimePolicyDto.IsOrganizationDefault" disabled class="big_checkbox" />
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<br />
+
+<div class="card">
+    <div class="card-body">
+        <div class="alert alert-info" role="alert">
+            Only <b>AzureADMyOrg</b> and <b>AzureADMultipleOrgs</b> Azure App registrations can be assigned a policy. An application can only be assigned a single policy.
+            If your application is not in the drop down, it is already assigned, or is an <b>AzureADandPersonalMicrosoftAccount</b> Azure App registration.
+            Check the <a asp-area="" asp-page="/AzureAppRegistrations">AAD App registrations</a> to see all.
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="TokenLifetimePolicyDto.Id" />
+                    <div class="form-group">
+                        <label class="control-label">Select App registration</label>
+                        <select asp-for="ApplicationGraphId" asp-items="Model.ApplicationOptions"
+                                class="form-control">
+                        </select>
+                    </div>
+
+                    <br />
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-link"></i> Assign TokenLifetimePolicy to selected App registration</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@page
+@model TokenManagement.Pages.AadTokenPolicies.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a asp-page="Create"><i class="far fa-plus-square"></i> Create new TokenLifetimePolicy </a>
+</p>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto[0].Definition)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto[0].DisplayName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto[0].IsOrganizationDefault)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TokenLifetimePolicyDto)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Definition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayName)
+                </td>
+                <td>
+                    <input asp-for="@item.IsOrganizationDefault" disabled class="big_checkbox" />
+                </td>
+                <td>
+                    <div class="form-group" style="width:140px">
+                        <a asp-page="./Edit" asp-route-id="@item.Id"><i class="far fa-edit fa-2x"></i></a>
+                        <a asp-page="./Details" asp-route-id="@item.Id"><i class="far fa-folder-open fa-2x"></i></a>
+                        <a asp-page="./Delete" asp-route-id="@item.Id"><i class="far fa-trash-alt fa-2x"></i></a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+	

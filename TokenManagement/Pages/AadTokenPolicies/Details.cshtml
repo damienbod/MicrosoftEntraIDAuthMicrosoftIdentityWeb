@@ -1,0 +1,84 @@
+﻿@page
+@model TokenManagement.Pages.AadTokenPolicies.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="card bg-light mb-3">
+    <div class="card-header">Token Lifetime Policy</div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.Definition)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.Definition)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.DisplayName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TokenLifetimePolicyDto.DisplayName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TokenLifetimePolicyDto.IsOrganizationDefault)
+            <dd class="col-sm-8">
+                <input asp-for="TokenLifetimePolicyDto.IsOrganizationDefault" disabled class="big_checkbox" />
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<br />
+<p>
+    <a asp-page="./AssignNewApplicationToPolicy" asp-route-id="@Model.TokenLifetimePolicyDto.Id"><i class="fas fa-link"></i> Assign TokenLifetimePolicy to App registration</a>
+</p>
+
+<br />
+
+<h4>Azure App registrations using this Policy</h4>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PolicyAssignedApplications[0].DisplayName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PolicyAssignedApplications[0].AppId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PolicyAssignedApplications[0].Id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PolicyAssignedApplications)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" asp-for="@item.AppId" />
+                        <input type="hidden" asp-for="@Model.TokenLifetimePolicyDto.Id" />
+                        <div class="form-group">
+                            <button type="submit" style="width:120px" class="btn btn-primary"><i class="far fa-trash-alt"></i> Remove</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
