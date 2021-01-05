@@ -1,6 +1,8 @@
-# Using GRAPH REST API
+
 
 ![setup](./wwwroot/images/tokenPolicyOverview_01.png)
+
+# Using GRAPH REST API
 
 POST https://graph.microsoft.com/v1.0/policies/tokenLifetimePolicies
 
