@@ -7,7 +7,7 @@
     <li><a href="https://damienbod.com/2020/11/09/implement-a-web-app-and-an-asp-net-core-secure-api-using-azure-ad-which-delegates-to-second-api/">Implement a Web APP and an ASP.NET Core Secure API using Azure AD which delegates to a second API</a></li>
 	<li><a href="https://damienbod.com/2020/12/08/using-multiple-apis-in-angular-and-asp-net-core-with-azure-ad-authentication/">Using multiple APIs in Angular and ASP.NET Core with Azure AD authentication</a></li>
 	<li><a href="https://damienbod.com/2020/12/14/using-multiple-apis-in-blazor-with-azure-ad-authentication/">Using multiple APIs in Blazor with Azure AD authentication</a></li>
-    <li><a href="">Azure AD Access Token Lifetime Policy Management in ASP.NET Core</a></li>
+    <li><a href="https://damienbod.com/2021/01/05/azure-ad-access-token-lifetime-policy-management-in-asp-net-core/">Azure AD Access Token Lifetime Policy Management in ASP.NET Core</a></li>
 
 </ul>
 
