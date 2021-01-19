@@ -1,5 +1,6 @@
 ﻿using Azure.Identity;
 using Azure.Security.KeyVault.Certificates;
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -79,15 +80,20 @@ namespace MyServerRenderedPortal
         private async Task<X509Certificate2> GetCertificateAsync(string identitifier)
         {
             var vaultBaseUrl = _configuration["CallApi:ClientCertificates:0:KeyVaultUrl"];
-            var client = new CertificateClient(vaultUri: new Uri(vaultBaseUrl), credential: new DefaultAzureCredential());
-            KeyVaultCertificateWithPolicy certificateWithPolicy = client.GetCertificate(identitifier);
+            var secretClient = new SecretClient(vaultUri: new Uri(vaultBaseUrl), credential: new DefaultAzureCredential());
 
+            // Create a new secret using the secret client.
+            var secretName = identitifier;
+            //var secretVersion = "";
+            KeyVaultSecret secret = await secretClient.GetSecretAsync(secretName);
 
-            //var certificateVersionBundle = await keyVaultClient.GetCertificateAsync(vaultBaseUrl, identitifier);
-            //var certificatePrivateKeySecretBundle = await keyVaultClient.GetSecretAsync(certificateVersionBundle.SecretIdentifier.Identifier);
-            //var privateKeyBytes = Convert.FromBase64String(certificatePrivateKeySecretBundle.Value);
-            //var certificateWithPrivateKey = new X509Certificate2(privateKeyBytes, (string)null, X509KeyStorageFlags.MachineKeySet);
-            return null;  // certificateWithPrivateKey;
+            var privateKeyBytes = Convert.FromBase64String(secret.Value);
+
+            var certificateWithPrivateKey = new X509Certificate2(privateKeyBytes, 
+                (string)null, 
+                X509KeyStorageFlags.MachineKeySet);
+
+            return certificateWithPrivateKey;
         }
 
         void MyLoggingMethod(Microsoft.Identity.Client.LogLevel level, string message, bool containsPii)
