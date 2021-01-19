@@ -13,6 +13,8 @@
 
 ## History
 
+2021-01-19 Updated nuget, npm packages, moved to latest secrets access for certs in Key Vault
+
 2021-01-05 Added token management, updated Microsoft.Identity.Web to 1.4.1
 
 2020-12-14 Using multiple APIs in Blazor with Azure AD authentication
