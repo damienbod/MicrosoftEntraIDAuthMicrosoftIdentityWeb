@@ -8,15 +8,15 @@ namespace DeviceFlowWeb
 {
     public class DeviceFlowService
     {
-        private readonly IOptions<AzureAdConfiguration> _azureAdConfiguration;
+        private readonly AzureAdConfiguration _azureAdConfiguration;
         private readonly IHttpClientFactory _clientFactory;
         private readonly DiscoveryDocumentRequest _discoveryDocumentRequest;
 
         public DeviceFlowService(IOptions<AzureAdConfiguration> azureAdConfiguration, IHttpClientFactory clientFactory)
         {
-            _azureAdConfiguration = azureAdConfiguration;
+            _azureAdConfiguration = azureAdConfiguration.Value;
             _clientFactory = clientFactory;
-            var idpEndpoint = $"{azureAdConfiguration.Value.Instance}{azureAdConfiguration.Value.TenantId}/v2.0";
+            var idpEndpoint = $"{_azureAdConfiguration.Instance}{_azureAdConfiguration.TenantId}/v2.0";
             _discoveryDocumentRequest = new DiscoveryDocumentRequest
             {
                 Address = idpEndpoint,
@@ -42,7 +42,7 @@ namespace DeviceFlowWeb
             var deviceAuthorizationRequest = new DeviceAuthorizationRequest
             {
                 Address = disco.DeviceAuthorizationEndpoint,
-                ClientId = _azureAdConfiguration.Value.ClientId
+                ClientId = _azureAdConfiguration.ClientId
             };
             deviceAuthorizationRequest.Scope = "email profile openid";
             var response = await client.RequestDeviceAuthorizationAsync(deviceAuthorizationRequest);
@@ -73,7 +73,7 @@ namespace DeviceFlowWeb
                     var response = await client.RequestDeviceTokenAsync(new DeviceTokenRequest
                     {
                         Address = disco.TokenEndpoint,
-                        ClientId = _azureAdConfiguration.Value.ClientId,
+                        ClientId = _azureAdConfiguration.ClientId,
                         DeviceCode = deviceCode
                     });
 
