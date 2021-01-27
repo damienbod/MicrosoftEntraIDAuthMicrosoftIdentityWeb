@@ -1,5 +1,9 @@
+# ASP.NET Core auth using Device Code flow and Azure AD
 
-Device Code Flow with Azure AD and app registrations
+Device Code Flow with Azure AD and app registrations ( RFC 8628 )
+
+OAuth 2.0 Device Authorization Grant
+
 # Links
 
 https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code

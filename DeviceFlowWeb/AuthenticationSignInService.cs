@@ -12,7 +12,6 @@ namespace DeviceFlowWeb
     {
         public async Task SignIn(HttpContext httpContext, string accessToken, string idToken)
         {
-
             var claims = GetClaims(idToken);
 
             var claimsIdentity = new ClaimsIdentity(
