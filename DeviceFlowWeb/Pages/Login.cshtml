@@ -8,7 +8,7 @@
 
 Login: <p>@Model.AuthenticatorUri</p>
 
-<br />
+<br /><br />
 
 User Code: <p>@Model.UserCode</p>
 <br />
@@ -21,7 +21,9 @@ User Code: <p>@Model.UserCode</p>
 <br />
 
 <form data-ajax="true"  method="post" data-ajax-method="POST">
-    <button class="btn btn-secondary" name="begin_token_check" id="begin_token_check" type="submit">Get token</button>
+    <button class="btn btn-secondary" 
+            name="begin_token_check" 
+            id="begin_token_check" type="submit" style="visibility:hidden">Get device code</button>
 </form>
 
 @section scripts {
