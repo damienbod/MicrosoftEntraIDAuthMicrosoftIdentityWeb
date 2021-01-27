@@ -28,7 +28,7 @@ namespace DeviceFlowWeb
             };
         }
 
-        internal async Task<DeviceAuthorizationResponse> BeginLogin()
+        public async Task<DeviceAuthorizationResponse> GetDeviceCode()
         {
             var client = _clientFactory.CreateClient();
 
@@ -56,7 +56,7 @@ namespace DeviceFlowWeb
             return response;
         }
 
-        internal async Task<TokenResponse> RequestTokenAsync(string deviceCode, int interval)
+        public async Task<TokenResponse> PollTokenRequests(string deviceCode, int interval)
         {
             var client = _clientFactory.CreateClient();
 

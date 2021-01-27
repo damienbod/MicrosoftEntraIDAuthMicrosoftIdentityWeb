@@ -28,7 +28,7 @@ namespace DeviceFlowWeb.Pages
 
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            var deviceAuthorizationResponse = await _deviceFlowService.BeginLogin();
+            var deviceAuthorizationResponse = await _deviceFlowService.GetDeviceCode();
             AuthenticatorUri = deviceAuthorizationResponse.VerificationUri;
             UserCode = deviceAuthorizationResponse.UserCode;
 
@@ -49,7 +49,7 @@ namespace DeviceFlowWeb.Pages
                 interval = 5;
             }
 
-            var tokenresponse = await _deviceFlowService.RequestTokenAsync(deviceCode, interval.Value);
+            var tokenresponse = await _deviceFlowService.PollTokenRequests(deviceCode, interval.Value);
 
             if (tokenresponse.IsError)
             {
