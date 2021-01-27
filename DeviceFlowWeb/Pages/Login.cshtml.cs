@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
@@ -13,14 +10,16 @@ namespace DeviceFlowWeb.Pages
     public class LoginModel : PageModel
     {
         private readonly DeviceFlowService _deviceFlowService;
+        private readonly AuthenticationSignInService _authenticationSignInService;
 
         public string AuthenticatorUri { get; set; }
 
         public string UserCode { get; set; }
 
-        public LoginModel(DeviceFlowService deviceFlowService)
+        public LoginModel(DeviceFlowService deviceFlowService, AuthenticationSignInService authenticationSignInService)
         {
             _deviceFlowService = deviceFlowService;
+            _authenticationSignInService = authenticationSignInService;
         }
 
         public async Task OnGetAsync()
@@ -58,43 +57,11 @@ namespace DeviceFlowWeb.Pages
                 return Page();
             }
 
-            var claims = GetClaims(tokenresponse.IdentityToken);
-
-            var claimsIdentity = new ClaimsIdentity(
-                claims, 
-                CookieAuthenticationDefaults.AuthenticationScheme, 
-                "name", 
-                "user");
-
-            var authProperties = new AuthenticationProperties();
-
-            // save the tokens in the cookie
-            authProperties.StoreTokens(new List<AuthenticationToken>
-            {
-                new AuthenticationToken
-                {
-                    Name = "access_token",
-                    Value = tokenresponse.AccessToken
-                },
-                new AuthenticationToken
-                {
-                    Name = "id_token",
-                    Value = tokenresponse.IdentityToken
-                }
-            });
-
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentity),
-                authProperties);
+            await _authenticationSignInService.SignIn(HttpContext,
+                tokenresponse.AccessToken, tokenresponse.IdentityToken);
 
             return Redirect("/Index");
         }
 
-        private IEnumerable<Claim> GetClaims(string token)
-        {
-            var validJwt = new JwtSecurityToken(token);
-            return validJwt.Claims;
-        }
     }
 }
