@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -10,7 +11,8 @@ namespace DeviceFlowWeb
 {
     public class AuthenticationSignInService
     {
-        public async Task SignIn(HttpContext httpContext, string accessToken, string idToken)
+        public async Task SignIn(HttpContext httpContext, 
+            string accessToken, string idToken, int expiresIn)
         {
             var claims = GetClaims(idToken);
 
@@ -21,6 +23,7 @@ namespace DeviceFlowWeb
                 "user");
 
             var authProperties = new AuthenticationProperties();
+            authProperties.ExpiresUtc = DateTime.UtcNow.AddSeconds(expiresIn);
 
             // save the tokens in the cookie
             authProperties.StoreTokens(new List<AuthenticationToken>
@@ -39,7 +42,7 @@ namespace DeviceFlowWeb
 
             await httpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentity),
+                new ClaimsPrincipal(claimsIdentity), 
                 authProperties);
         }
 

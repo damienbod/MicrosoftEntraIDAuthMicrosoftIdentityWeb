@@ -12,7 +12,8 @@ namespace DeviceFlowWeb
         private readonly IHttpClientFactory _clientFactory;
         private readonly DiscoveryDocumentRequest _discoveryDocumentRequest;
 
-        public DeviceFlowService(IOptions<AzureAdConfiguration> azureAdConfiguration, IHttpClientFactory clientFactory)
+        public DeviceFlowService(IOptions<AzureAdConfiguration> azureAdConfiguration, 
+            IHttpClientFactory clientFactory)
         {
             _azureAdConfiguration = azureAdConfiguration.Value;
             _clientFactory = clientFactory;

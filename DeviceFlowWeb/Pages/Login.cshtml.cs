@@ -58,7 +58,9 @@ namespace DeviceFlowWeb.Pages
             }
 
             await _authenticationSignInService.SignIn(HttpContext,
-                tokenresponse.AccessToken, tokenresponse.IdentityToken);
+                tokenresponse.AccessToken, 
+                tokenresponse.IdentityToken,
+                tokenresponse.ExpiresIn);
 
             return Redirect("/Index");
         }
