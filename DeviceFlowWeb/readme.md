@@ -14,4 +14,6 @@ https://damienbod.com/2019/02/20/asp-net-core-oauth-device-flow-client-with-iden
 
 https://github.com/Azure-Samples/active-directory-dotnetcore-devicecodeflow-v2
 
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/cookie
+
 https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Device-Code-Flow
