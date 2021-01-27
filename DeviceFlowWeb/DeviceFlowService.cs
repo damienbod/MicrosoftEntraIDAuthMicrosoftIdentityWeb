@@ -22,6 +22,7 @@ namespace DeviceFlowWeb
                 Address = idpEndpoint,
                 Policy = new DiscoveryPolicy
                 {
+                    // turned off => Azure AD uses different domains.
                     ValidateEndpoints = false
                 }
             };
