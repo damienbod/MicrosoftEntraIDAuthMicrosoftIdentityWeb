@@ -8,11 +8,11 @@ namespace DeviceFlowWeb
 {
     public class DeviceFlowService
     {
-        private readonly IOptions<AzureAdConfig> _azureAdConfiguration;
+        private readonly IOptions<AzureAdConfiguration> _azureAdConfiguration;
         private readonly IHttpClientFactory _clientFactory;
         private readonly DiscoveryDocumentRequest _discoveryDocumentRequest;
 
-        public DeviceFlowService(IOptions<AzureAdConfig> azureAdConfiguration, IHttpClientFactory clientFactory)
+        public DeviceFlowService(IOptions<AzureAdConfiguration> azureAdConfiguration, IHttpClientFactory clientFactory)
         {
             _azureAdConfiguration = azureAdConfiguration;
             _clientFactory = clientFactory;

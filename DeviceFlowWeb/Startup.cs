@@ -24,7 +24,7 @@ namespace DeviceFlowWeb
         {
             services.AddScoped<DeviceFlowService>();
             services.AddHttpClient();
-            services.Configure<AzureAdConfig>(Configuration.GetSection("AzureAdConfig"));
+            services.Configure<AzureAdConfiguration>(Configuration.GetSection("AzureAd"));
 
             services.AddDistributedMemoryCache();
 

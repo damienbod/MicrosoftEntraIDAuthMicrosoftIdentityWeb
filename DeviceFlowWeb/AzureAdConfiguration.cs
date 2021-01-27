@@ -1,6 +1,6 @@
 ﻿namespace DeviceFlowWeb
 {
-    public class AzureAdConfig
+    public class AzureAdConfiguration
     {
         public string Instance { get; set; }
         public string TenantId { get; set; }
