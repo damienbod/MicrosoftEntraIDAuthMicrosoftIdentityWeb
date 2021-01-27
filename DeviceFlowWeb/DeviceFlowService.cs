@@ -8,17 +8,18 @@ namespace DeviceFlowWeb
 {
     public class DeviceFlowService
     {
-        private readonly IOptions<AuthConfigurations> _authConfigurations;
+        private readonly IOptions<AzureAdConfig> _azureAdConfiguration;
         private readonly IHttpClientFactory _clientFactory;
         private readonly DiscoveryDocumentRequest _discoveryDocumentRequest;
 
-        public DeviceFlowService(IOptions<AuthConfigurations> authConfigurations, IHttpClientFactory clientFactory)
+        public DeviceFlowService(IOptions<AzureAdConfig> azureAdConfiguration, IHttpClientFactory clientFactory)
         {
-            _authConfigurations = authConfigurations;
+            _azureAdConfiguration = azureAdConfiguration;
             _clientFactory = clientFactory;
+            var idpEndpoint = $"{azureAdConfiguration.Value.Instance}{azureAdConfiguration.Value.TenantId}/v2.0";
             _discoveryDocumentRequest = new DiscoveryDocumentRequest
             {
-                Address = _authConfigurations.Value.StsServer,
+                Address = idpEndpoint,
                 Policy = new DiscoveryPolicy
                 {
                     ValidateEndpoints = false
@@ -41,7 +42,7 @@ namespace DeviceFlowWeb
             var deviceAuthorizationRequest = new DeviceAuthorizationRequest
             {
                 Address = disco.DeviceAuthorizationEndpoint,
-                ClientId = "f81baf3d-f8f3-4976-8b5a-798ff57daab5"
+                ClientId = _azureAdConfiguration.Value.ClientId
             };
             deviceAuthorizationRequest.Scope = "email profile openid";
             var response = await client.RequestDeviceAuthorizationAsync(deviceAuthorizationRequest);
@@ -72,7 +73,7 @@ namespace DeviceFlowWeb
                     var response = await client.RequestDeviceTokenAsync(new DeviceTokenRequest
                     {
                         Address = disco.TokenEndpoint,
-                        ClientId = "f81baf3d-f8f3-4976-8b5a-798ff57daab5",
+                        ClientId = _azureAdConfiguration.Value.ClientId,
                         DeviceCode = deviceCode
                     });
 

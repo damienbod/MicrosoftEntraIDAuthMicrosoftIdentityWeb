@@ -24,7 +24,7 @@ namespace DeviceFlowWeb
         {
             services.AddScoped<DeviceFlowService>();
             services.AddHttpClient();
-            services.Configure<AuthConfigurations>(Configuration.GetSection("AuthConfigurations"));
+            services.Configure<AzureAdConfig>(Configuration.GetSection("AzureAdConfig"));
 
             services.AddDistributedMemoryCache();
 
@@ -41,9 +41,6 @@ namespace DeviceFlowWeb
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-            var authConfigurations = Configuration.GetSection("AuthConfigurations");
-            var stsServer = authConfigurations["StsServer"];
 
             services.AddAuthentication(options =>
             {
