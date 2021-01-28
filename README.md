@@ -8,10 +8,13 @@
 	<li><a href="https://damienbod.com/2020/12/08/using-multiple-apis-in-angular-and-asp-net-core-with-azure-ad-authentication/">Using multiple APIs in Angular and ASP.NET Core with Azure AD authentication</a></li>
 	<li><a href="https://damienbod.com/2020/12/14/using-multiple-apis-in-blazor-with-azure-ad-authentication/">Using multiple APIs in Blazor with Azure AD authentication</a></li>
     <li><a href="https://damienbod.com/2021/01/05/azure-ad-access-token-lifetime-policy-management-in-asp-net-core/">Azure AD Access Token Lifetime Policy Management in ASP.NET Core</a></li>
-
+	<li><a href="">Implement OAUTH Device Code Flow with Azure AD and ASP.NET Core</a></li>
+	
 </ul>
 
 ## History
+
+2021-01-28 Added device code flow.
 
 2021-01-19 Updated nuget, npm packages, moved to latest secrets access for certs in Key Vault
 

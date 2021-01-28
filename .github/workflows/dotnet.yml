@@ -17,7 +17,18 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Build
+    - name: Build AngularAzureADMultipleApis
       run: dotnet build ./AngularAzureADMultipleApis/ApiWithMutlipleApis.sln
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Build BlazorWithApis
+      run: dotnet build ./BlazorWithApis/BlazorApis.sln
+    - name: Build ConfidentialClientCredentialsCertificate
+      run: dotnet build ./ConfidentialClientCredentialsCertificate/ConfidentialClientCredentialsCertificate.sln
+    - name: Build DecryptionCertificates
+      run: dotnet build ./DecryptionCertificates/DecryptionCertificates.sln
+    - name: Build DeviceFlowWeb
+      run: dotnet build ./DeviceFlowWeb/DeviceFlowWeb.sln
+    - name: Build DownstreamApis
+      run: dotnet build ./DownstreamApis/DownstreamApis.sln
+    - name: Build TokenManagement
+      run: dotnet build ./TokenManagement/TokenManagement.sln
+
