@@ -18,3 +18,4 @@
 **/dist/
 /AngularAzureADMultipleApis/LogsServiceApi.txt
 /BlazorWithApis/LogsServiceApi.txt
+/BlazorWithApis/BlazorAzureADWithApis/Server/debug.log

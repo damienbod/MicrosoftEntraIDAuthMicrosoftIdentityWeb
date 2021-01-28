@@ -10,36 +10,18 @@ namespace DeviceFlowWeb
     {
         private readonly AzureAdConfiguration _azureAdConfiguration;
         private readonly IHttpClientFactory _clientFactory;
-        private readonly DiscoveryDocumentRequest _discoveryDocumentRequest;
 
         public DeviceFlowService(IOptions<AzureAdConfiguration> azureAdConfiguration, 
             IHttpClientFactory clientFactory)
         {
             _azureAdConfiguration = azureAdConfiguration.Value;
             _clientFactory = clientFactory;
-            var idpEndpoint = $"{_azureAdConfiguration.Instance}{_azureAdConfiguration.TenantId}/v2.0";
-            _discoveryDocumentRequest = new DiscoveryDocumentRequest
-            {
-                Address = idpEndpoint,
-                Policy = new DiscoveryPolicy
-                {
-                    // turned off => Azure AD uses different domains.
-                    ValidateEndpoints = false
-                }
-            };
         }
 
         public async Task<DeviceAuthorizationResponse> GetDeviceCode()
         {
             var client = _clientFactory.CreateClient();
-
-            var disco = await HttpClientDiscoveryExtensions
-                .GetDiscoveryDocumentAsync(client, _discoveryDocumentRequest);
-
-            if (disco.IsError)
-            {
-                throw new ApplicationException($"Status code: {disco.IsError}, Error: {disco.Error}");
-            }
+            var disco = await GetDiscoveryEndpoints(client);
 
             var deviceAuthorizationRequest = new DeviceAuthorizationRequest
             {
@@ -60,13 +42,7 @@ namespace DeviceFlowWeb
         public async Task<TokenResponse> PollTokenRequests(string deviceCode, int interval)
         {
             var client = _clientFactory.CreateClient();
-
-            var disco = await HttpClientDiscoveryExtensions.GetDiscoveryDocumentAsync(client, _discoveryDocumentRequest);
-
-            if (disco.IsError)
-            {
-                throw new ApplicationException($"Status code: {disco.IsError}, Error: {disco.Error}");
-            }
+            var disco = await GetDiscoveryEndpoints(client);
 
             while (true)
             {
@@ -103,5 +79,28 @@ namespace DeviceFlowWeb
             }
         }
 
+        private async Task<DiscoveryDocumentResponse> GetDiscoveryEndpoints(HttpClient client)
+        {
+            var idpEndpoint = $"{_azureAdConfiguration.Instance}{_azureAdConfiguration.TenantId}/v2.0";
+            var discoveryDocumentRequest = new DiscoveryDocumentRequest
+            {
+                Address = idpEndpoint,
+                Policy = new DiscoveryPolicy
+                {
+                    // turned off => Azure AD uses different domains.
+                    ValidateEndpoints = false
+                }
+            };
+
+            var disco = await HttpClientDiscoveryExtensions
+                .GetDiscoveryDocumentAsync(client, discoveryDocumentRequest);
+
+            if (disco.IsError)
+            {
+                throw new ApplicationException($"Status code: {disco.IsError}, Error: {disco.Error}");
+            }
+
+            return disco;
+        }
     }
 }
