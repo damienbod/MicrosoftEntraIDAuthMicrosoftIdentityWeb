@@ -79,11 +79,11 @@ namespace WebApiWithRoles
                 {
                     p.RequireClaim("roles","web-api-with-roles-user");
                 });
-                policies.AddPolicy("p-web-api-with-roles-user", p =>
+                policies.AddPolicy("p-web-api-with-roles-student", p =>
                 {
                     p.RequireClaim("roles", "web-api-with-roles-student");
                 });
-                policies.AddPolicy("p-web-api-with-roles-user", p =>
+                policies.AddPolicy("p-web-api-with-roles-admin", p =>
                 {
                     p.RequireClaim("roles", "web-api-with-roles-admin");
                 });
