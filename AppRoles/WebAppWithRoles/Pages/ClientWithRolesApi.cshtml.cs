@@ -8,7 +8,9 @@ namespace WebAppWithRoles.Pages
     {
         private readonly ClientApiWithRolesService _apiService;
 
-        public JArray DataFromApi { get; set; }
+        public JArray UserDataFromApi { get; set; }
+        public JArray StudentDataFromApi { get; set; }
+        public JArray AdminDataFromApi { get; set; }
         public ClientWithRolesApiModel(ClientApiWithRolesService apiService)
         {
             _apiService = apiService;
@@ -16,7 +18,9 @@ namespace WebAppWithRoles.Pages
 
         public async Task OnGetAsync()
         {
-            DataFromApi = await _apiService.GetUserDataFromApi();
+            UserDataFromApi = await _apiService.GetUserDataFromApi();
+            StudentDataFromApi = await _apiService.GetStudentDataFromApi();
+            AdminDataFromApi = await _apiService.GetAdminDataFromApi();
         }
     }
 }

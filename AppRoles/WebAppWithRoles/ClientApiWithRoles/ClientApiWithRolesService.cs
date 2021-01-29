@@ -2,6 +2,7 @@
 using Microsoft.Identity.Web;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -60,8 +61,9 @@ namespace WebAppWithRoles
 
                     return data;
                 }
-
-                throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
+                var errorList = new List<string> { $"Status code: {response.StatusCode}", $"Error: {response.ReasonPhrase}" };
+                return JArray.FromObject(errorList);
+                //throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
             }
             catch (Exception e)
             {
