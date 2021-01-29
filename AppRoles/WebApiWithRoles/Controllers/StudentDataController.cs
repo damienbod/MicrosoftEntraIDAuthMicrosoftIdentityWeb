@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApiWithRoles.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "p-web-api-with-roles-student")]
     [ApiController]
     [Route("api/[controller]")]
     public class StudentDataController : ControllerBase

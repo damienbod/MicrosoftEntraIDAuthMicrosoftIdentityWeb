@@ -73,6 +73,22 @@ namespace WebApiWithRoles
                 });
             });
 
+            services.AddAuthorization(policies =>
+            {
+                policies.AddPolicy("web-api-with-roles-user", p => 
+                {
+                    p.RequireRole("p-web-api-with-roles-user");
+                });
+                policies.AddPolicy("web-api-with-roles-user", p =>
+                {
+                    p.RequireRole("p-web-api-with-roles-student");
+                });
+                policies.AddPolicy("web-api-with-roles-user", p =>
+                {
+                    p.RequireRole("p-web-api-with-roles-admin");
+                });
+            });
+
             services.AddControllers(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
