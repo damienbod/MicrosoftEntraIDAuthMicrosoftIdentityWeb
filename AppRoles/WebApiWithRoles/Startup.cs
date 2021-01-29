@@ -75,22 +75,39 @@ namespace WebApiWithRoles
 
             services.AddAuthorization(policies =>
             {
-                policies.AddPolicy("web-api-with-roles-user", p => 
+                policies.AddPolicy("p-web-api-with-roles-user", p => 
                 {
-                    p.RequireRole("p-web-api-with-roles-user");
+                    p.RequireRole("web-api-with-roles-user");
                 });
-                policies.AddPolicy("web-api-with-roles-user", p =>
+                policies.AddPolicy("p-web-api-with-roles-user", p =>
                 {
-                    p.RequireRole("p-web-api-with-roles-student");
+                    p.RequireRole("web-api-with-roles-student");
                 });
-                policies.AddPolicy("web-api-with-roles-user", p =>
+                policies.AddPolicy("p-web-api-with-roles-user", p =>
                 {
-                    p.RequireRole("p-web-api-with-roles-admin");
+                    p.RequireRole("web-api-with-roles-admin");
+                });
+
+                policies.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
+                {
+                    validateAccessTokenPolicy.RequireClaim("scp", "access_as_user");
+
+                    // Validate id of application for which the token was created
+                    // In this case the UI application 
+                    validateAccessTokenPolicy.RequireClaim("azp", "5c201b60-89f6-47d8-b2ef-9d9fe2a42751");
+
+                    // only allow tokens which used "Private key JWT Client authentication"
+                    // // https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
+                    // Indicates how the client was authenticated. For a public client, the value is "0". 
+                    // If client ID and client secret are used, the value is "1". 
+                    // If a client certificate was used for authentication, the value is "2".
+                    validateAccessTokenPolicy.RequireClaim("azpacr", "1");
                 });
             });
 
             services.AddControllers(options =>
             {
+                // global
                 var policy = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()
                    // .RequireClaim("email") // disabled this to test with users that have no email (no license added)
