@@ -26,7 +26,7 @@ namespace WebAppWithRoles
 
             services.AddOptions();
 
-            string[] initialScopes = Configuration.GetValue<string>("CallApi:ScopeForAccessToken")?.Split(' ');
+            string[] initialScopes = Configuration.GetValue<string>("ApiWithRoles:ScopeForAccessToken")?.Split(' ');
 
             services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
                 .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)

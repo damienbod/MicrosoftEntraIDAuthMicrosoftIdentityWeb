@@ -4,19 +4,19 @@ using System.Threading.Tasks;
 
 namespace WebAppWithRoles.Pages
 {
-    public class CallApiModel : PageModel
+    public class ClientWithRolesApiModel : PageModel
     {
         private readonly ClientApiWithRolesService _apiService;
 
         public JArray DataFromApi { get; set; }
-        public CallApiModel(ClientApiWithRolesService apiService)
+        public ClientWithRolesApiModel(ClientApiWithRolesService apiService)
         {
             _apiService = apiService;
         }
 
         public async Task OnGetAsync()
         {
-            DataFromApi = await _apiService.GetApiDataAsync();
+            DataFromApi = await _apiService.GetUserDataFromApi();
         }
     }
 }

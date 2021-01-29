@@ -23,20 +23,36 @@ namespace WebAppWithRoles
             _configuration = configuration;
         }
 
-        public async Task<JArray> GetApiDataAsync()
+        public async Task<JArray> GetUserDataFromApi()
+        {
+            return await GetDataFromApi("userdata");
+        }
+
+        public async Task<JArray> GetStudentDataFromApi()
+        {
+            return await GetDataFromApi("studentdata");
+        }
+
+        public async Task<JArray> GetAdminDataFromApi()
+        {
+            return await GetDataFromApi("admindata");
+        }
+
+
+        private async Task<JArray> GetDataFromApi(string path)
         {
             try
             {
                 var client = _clientFactory.CreateClient();
 
-                var scope = _configuration["CallApi:ScopeForAccessToken"];
+                var scope = _configuration["ApiWithRoles:ScopeForAccessToken"];
                 var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
 
-                client.BaseAddress = new Uri(_configuration["CallApi:ApiBaseAddress"]);
+                client.BaseAddress = new Uri(_configuration["ApiWithRoles:ApiBaseAddress"]);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
        
-                var response = await client.GetAsync("weatherforecast");
+                var response = await client.GetAsync($"api/{path}");
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
