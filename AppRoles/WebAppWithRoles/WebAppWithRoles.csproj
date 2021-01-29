@@ -2,13 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>aspnet-WebAppWithRoles-C5CB1E61-55D5-4D0D-A192-68F28533B4EA</UserSecretsId>
-    <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Identity.Web" Version="1.4.1" />
-    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.4.1" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.5.1" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.5.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
   </ItemGroup>
 
