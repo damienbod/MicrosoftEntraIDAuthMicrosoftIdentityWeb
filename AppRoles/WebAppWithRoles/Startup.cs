@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace WebAppWithRoles
 {
@@ -43,6 +44,8 @@ namespace WebAppWithRoles
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

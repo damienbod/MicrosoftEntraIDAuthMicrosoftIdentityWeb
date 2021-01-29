@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace WebApiWithRoles
 {
@@ -35,6 +36,13 @@ namespace WebApiWithRoles
 
             // Adds Microsoft Identity platform (AAD v2.0) support to protect this Api
             services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
+
+            // The following lines code instruct the asp.net core middleware to use the data in the "roles" claim in the Authorize attribute and User.IsInrole()
+            services.Configure<OpenIdConnectOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
+            {
+                // The claim in the Jwt token where App roles are available.
+                options.TokenValidationParameters.RoleClaimType = "roles";
+            });
 
             services.AddSwaggerGen(c =>
             {
