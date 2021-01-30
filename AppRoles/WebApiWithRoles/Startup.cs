@@ -42,6 +42,7 @@ namespace WebApiWithRoles
             {
                 // The claim in the Jwt token where App roles are available.
                 options.TokenValidationParameters.RoleClaimType = "roles";
+                options.TokenValidationParameters.NameClaimType = "name";
             });
 
             services.AddSwaggerGen(c =>
