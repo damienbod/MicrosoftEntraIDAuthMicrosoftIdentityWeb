@@ -17,3 +17,9 @@ https://docs.microsoft.com/en-us/azure/active-directory/develop/id-tokens
 
 https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
 
+# Azure authorization
+
+https://docs.microsoft.com/en-us/azure/role-based-access-control/overview
+
+https://devblogs.microsoft.com/devops/demystifying-service-principals-managed-identities/
+
