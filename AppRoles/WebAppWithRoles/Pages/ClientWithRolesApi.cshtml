@@ -1,0 +1,24 @@
+﻿@page
+@model WebAppWithRoles.Pages.ClientWithRolesApiModel
+@{
+    ViewData["Title"] = "CallApi";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>API Data</h1>
+<h6>gets the data from the Azure AD protected Web API</h6>
+
+<h6>API User Data</h6>
+
+<pre>@Model.UserDataFromApi</pre>
+
+
+<h6>API Student Data</h6>
+
+<pre>@Model.StudentDataFromApi</pre>
+
+
+<h6>API Admin Data</h6>
+
+<pre>@Model.AdminDataFromApi</pre>
+
