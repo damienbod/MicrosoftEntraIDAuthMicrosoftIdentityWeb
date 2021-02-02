@@ -25,3 +25,8 @@ https://docs.microsoft.com/en-us/azure/role-based-access-control/overview
 
 https://devblogs.microsoft.com/devops/demystifying-service-principals-managed-identities/
 
+https://docs.microsoft.com/en-us/azure/active-directory/roles/permissions-reference
+
+https://docs.microsoft.com/en-us/azure/architecture/framework/security/design-identity-authorization
+
+https://docs.microsoft.com/en-us/dotnet/api/overview/azure/identity-readme
