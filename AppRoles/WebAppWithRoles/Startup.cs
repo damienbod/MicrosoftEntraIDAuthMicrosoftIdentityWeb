@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,9 +30,18 @@ namespace WebAppWithRoles
 
             string[] initialScopes = Configuration.GetValue<string>("ApiWithRoles:ScopeForAccessToken")?.Split(' ');
 
-            services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
-                .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-                .AddInMemoryTokenCaches();
+            services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+                 .AddMicrosoftIdentityWebApp(options =>
+                 {
+                     Configuration.Bind("AzureAd", options);
+                     options.UsePkce = true;
+                 }, options => { Configuration.Bind("AzureAd", options); })
+                 .EnableTokenAcquisitionToCallDownstreamApi(options => Configuration.Bind("AzureAd", options), initialScopes)
+                 .AddInMemoryTokenCaches();
+
+            //services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
+            //    .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+            //    .AddInMemoryTokenCaches();
 
             services.AddRazorPages().AddMvcOptions(options =>
             {
