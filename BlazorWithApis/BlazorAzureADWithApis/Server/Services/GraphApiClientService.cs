@@ -2,43 +2,43 @@
 using Microsoft.Identity.Web;
 using System;
 using System.IO;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace BlazorAzureADWithApis.Server.Services
 {
     public class GraphApiClientService
     {
-        private readonly ITokenAcquisition _tokenAcquisition;
-        private readonly IHttpClientFactory _clientFactory;
+        private readonly GraphServiceClient _graphServiceClient;
 
-        public GraphApiClientService(ITokenAcquisition tokenAcquisition,
-            IHttpClientFactory clientFactory)
+        public GraphApiClientService(GraphServiceClient graphServiceClient)
         {
-            _clientFactory = clientFactory;
-            _tokenAcquisition = tokenAcquisition;
+            _graphServiceClient = graphServiceClient;
         }
 
         public async Task<User> GetGraphApiUser()
         {
-            var graphclient = await GetGraphClient(new string[] { "User.ReadBasic.All", "user.read" })
-               .ConfigureAwait(false);
-
-            return await graphclient.Me.Request().GetAsync().ConfigureAwait(false);
+            return await _graphServiceClient
+                .Me
+                .Request()
+                .WithScopes("User.ReadBasic.All", "user.read")
+                .GetAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task<string> GetGraphApiProfilePhoto()
         {
             try
             {
-                var graphclient = await GetGraphClient(new string[] { "User.ReadBasic.All", "user.read" })
-               .ConfigureAwait(false);
-
                 var photo = string.Empty;
                 // Get user photo
-                using (var photoStream = await graphclient.Me.Photo
-                    .Content.Request().GetAsync().ConfigureAwait(false))
+                using (var photoStream = await _graphServiceClient
+                    .Me
+                    .Photo
+                    .Content
+                    .Request()
+                    .WithScopes("User.ReadBasic.All", "user.read")
+                    .GetAsync()
+                    .ConfigureAwait(false))
                 {
                     byte[] photoByte = ((MemoryStream)photoStream).ToArray();
                     photo = Convert.ToBase64String(photoByte);
@@ -49,29 +49,8 @@ namespace BlazorAzureADWithApis.Server.Services
             catch
             {
                 return string.Empty;
-            }   
-        }
-
-       
-        private async Task<GraphServiceClient> GetGraphClient(string[] scopes)
-        {
-            var token = await _tokenAcquisition.GetAccessTokenForUserAsync(
-             scopes).ConfigureAwait(false);
-
-            var client = _clientFactory.CreateClient();
-            client.BaseAddress = new Uri("https://graph.microsoft.com/beta");
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            GraphServiceClient graphClient = new GraphServiceClient(client)
-            {
-                AuthenticationProvider = new DelegateAuthenticationProvider(async (requestMessage) =>
-                {
-                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", token);
-                })
-            };
-
-            graphClient.BaseUrl = "https://graph.microsoft.com/beta";
-            return graphClient;
+            }
         }
     }
 }
+

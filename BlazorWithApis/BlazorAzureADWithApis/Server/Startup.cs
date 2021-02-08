@@ -34,6 +34,7 @@ namespace BlazorAzureADWithApis.Server
 
             services.AddMicrosoftIdentityWebApiAuthentication(Configuration)
                  .EnableTokenAcquisitionToCallDownstreamApi()
+                 .AddMicrosoftGraph("https://graph.microsoft.com/beta", "User.ReadBasic.All user.read")
                  .AddInMemoryTokenCaches();
 
             services.AddControllers(options =>
