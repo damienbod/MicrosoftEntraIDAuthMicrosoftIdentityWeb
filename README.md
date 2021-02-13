@@ -21,6 +21,8 @@
 
 ## History
 
+2021-02-13 Added MSAL exception handling, Microsoft.Identity.Web to 1.6.0
+
 2021-02-01 Added app roles authorization example
 
 2021-01-28 Added device code flow, Microsoft.Identity.Web to 1.5.1
