@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Identity.Web;
 
 namespace TokenManagement.Pages
 {
+    [AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })]
     public class ApplicationsModel : PageModel
     {
         private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
