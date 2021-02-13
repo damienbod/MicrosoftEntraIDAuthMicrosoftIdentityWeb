@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
 
 namespace UserApiTwo.Controllers
 {
     [Authorize]
+    [AuthorizeForScopes(Scopes = new string[] { "api://b2a09168-54e2-4bc4-af92-a710a64ef1fa/access_as_user" })]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
