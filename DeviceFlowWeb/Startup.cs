@@ -25,12 +25,13 @@ namespace DeviceFlowWeb
             services.AddHttpClient();
             services.Configure<AzureAdConfiguration>(Configuration.GetSection("AzureAd"));
 
-            //services.AddDistributedMemoryCache();
+            services.AddDistributedMemoryCache();
 
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(60);
                 options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
             });
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -84,11 +85,12 @@ namespace DeviceFlowWeb
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseSession();
-
+  
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();
