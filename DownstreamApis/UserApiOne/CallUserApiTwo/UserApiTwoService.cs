@@ -25,33 +25,26 @@ namespace UserApiOne
 
         public async Task<JArray> GetApiDataAsync()
         {
-            try
+            var client = _clientFactory.CreateClient();
+
+            // user_impersonation access_as_user access_as_application .default
+            var scope = _configuration["UserApiTwo:ScopeForAccessToken"];
+            var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
+
+            client.BaseAddress = new Uri(_configuration["UserApiTwo:ApiBaseAddress"]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var response = await client.GetAsync("weatherforecast");
+            if (response.IsSuccessStatusCode)
             {
-                var client = _clientFactory.CreateClient();
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var data = JArray.Parse(responseContent);
 
-                // user_impersonation access_as_user access_as_application .default
-                var scope = _configuration["UserApiTwo:ScopeForAccessToken"];
-                var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
-
-                client.BaseAddress = new Uri(_configuration["UserApiTwo:ApiBaseAddress"]);
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-       
-                var response = await client.GetAsync("weatherforecast");
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseContent = await response.Content.ReadAsStringAsync();
-                    var data = JArray.Parse(responseContent);
-
-                    return data;
-                }
-
-                throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
+                return data;
             }
-            catch (Exception e)
-            {
-                throw new ApplicationException($"Exception {e}");
-            }
+
+            throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
         }
     }
 }
