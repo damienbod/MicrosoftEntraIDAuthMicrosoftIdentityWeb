@@ -4,10 +4,12 @@ using ApiWithMutlipleApis.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Web;
 
 namespace ApiWithMutlipleApis.Controllers
 {
     [Authorize(Policy = "ValidateAccessTokenPolicy", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [AuthorizeForScopes(Scopes = new string[] { "User.ReadBasic.All", "user.read" })]
     [ApiController]
     [Route("[controller]")]
     public class GraphApiCallsController : ControllerBase
