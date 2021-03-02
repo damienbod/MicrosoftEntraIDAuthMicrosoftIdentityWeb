@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace BlazorAzureADWithApis.Client
@@ -19,9 +20,19 @@ namespace BlazorAzureADWithApis.Client
             builder.Services.TryAddSingleton<AuthenticationStateProvider, HostAuthenticationStateProvider>();
             builder.Services.TryAddSingleton(sp => (HostAuthenticationStateProvider)sp.GetRequiredService<AuthenticationStateProvider>());
             builder.Services.AddTransient<AuthorizedHandler>();
-            builder.Services.AddHttpClient("default", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
-            builder.Services.AddHttpClient("authorizedClient")
-                .AddHttpMessageHandler<AuthorizedHandler>();
+
+            builder.Services.AddHttpClient("default", client =>
+            {
+                client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            });
+
+            builder.Services.AddHttpClient("authorizedClient", client =>
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            }).AddHttpMessageHandler<AuthorizedHandler>();
+
             builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("default"));
 
             builder.RootComponents.Add<App>("#app");

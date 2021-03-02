@@ -9,7 +9,7 @@ using Microsoft.Identity.Web;
 namespace BlazorAzureADWithApis.Server.Controllers
 {
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    [AuthorizeForScopes(Scopes = new string[] { "api://2b50a014-f353-4c10-aace-024f19a55569/access_as_user" })]
+    [AuthorizeForScopes(Scopes = new string[] { "User.ReadBasic.All user.read" })]
     [ApiController]
     [Route("[controller]")]
     public class GraphApiCallsController : ControllerBase

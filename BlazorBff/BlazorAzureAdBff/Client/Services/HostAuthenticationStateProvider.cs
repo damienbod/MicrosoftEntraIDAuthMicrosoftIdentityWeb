@@ -31,7 +31,10 @@ namespace BlazorAzureADWithApis.Client.Services
             _logger = logger;
         }
 
-        public override async Task<AuthenticationState> GetAuthenticationStateAsync() => new AuthenticationState(await GetUser(useCache: true));
+        public override async Task<AuthenticationState> GetAuthenticationStateAsync()
+        {
+            return new AuthenticationState(await GetUser(useCache: false));
+        }
 
         public void SignIn(string customReturnUrl = null)
         {
@@ -68,6 +71,7 @@ namespace BlazorAzureADWithApis.Client.Services
 
             try
             {
+                _logger.LogInformation(_client.BaseAddress.ToString());
                 user = await _client.GetFromJsonAsync<UserInfo>("User");
             }
             catch (Exception exc)
