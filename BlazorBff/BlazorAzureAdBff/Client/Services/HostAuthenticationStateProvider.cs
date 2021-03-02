@@ -44,11 +44,6 @@ namespace BlazorAzureADWithApis.Client.Services
             _navigation.NavigateTo(logInUrl.ToString(), true);
         }
 
-        public void SignOut()
-        {
-            _navigation.NavigateTo(_navigation.ToAbsoluteUri(LogOutPath).ToString(), true);
-        }
-
         private async ValueTask<ClaimsPrincipal> GetUser(bool useCache = false)
         {
             var now = DateTimeOffset.Now;
