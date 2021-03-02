@@ -18,8 +18,9 @@ namespace BlazorAzureADWithApis.Server.Controllers
             });
         }
 
+        //[ValidateAntiForgeryToken]
         [Authorize]
-        [HttpGet("Logout")]
+        [HttpPost("Logout")]
         public IActionResult Logout()
         {
             return SignOut(
