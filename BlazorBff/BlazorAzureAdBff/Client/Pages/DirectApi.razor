@@ -1,6 +1,5 @@
 ﻿@page "/directapi"
 @using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @attribute [Authorize]
 @inject HttpClient Http
 
@@ -34,14 +33,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            apiData = await Http.GetFromJsonAsync<string[]>("DirectApi");
-        }
-        catch (AccessTokenNotAvailableException exception)
-        {
-            exception.Redirect();
-        }
+        apiData = await Http.GetFromJsonAsync<string[]>("DirectApi");
     }
 
 }
