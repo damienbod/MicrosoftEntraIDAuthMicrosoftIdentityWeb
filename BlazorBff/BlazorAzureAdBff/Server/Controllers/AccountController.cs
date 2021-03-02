@@ -12,9 +12,9 @@ namespace BlazorAzureADWithApis.Server.Controllers
         [HttpGet("Login")]
         public ActionResult Login(string returnUrl)
         {
-            return Challenge(new AuthenticationProperties 
-            { 
-                RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/" 
+            return Challenge(new AuthenticationProperties
+            {
+                RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/"
             });
         }
 
