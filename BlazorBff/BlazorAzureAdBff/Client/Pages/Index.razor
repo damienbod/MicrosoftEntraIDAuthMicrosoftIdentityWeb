@@ -1,14 +1,5 @@
 ﻿@page "/"
 
-<h1>Azure AD with multiple APIs</h1>
+<h1>Azure AD using cookies</h1>
 
 
-<AuthorizeView>
-    <Authorized>
-        <strong>Hello, @context.User.Identity.Name!</strong>
-        <a href="Account/Logout">Log out</a>
-    </Authorized>
-    <NotAuthorized>
-        <a href="Account/Login">Log in</a>
-    </NotAuthorized>
-</AuthorizeView>

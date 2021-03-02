@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>BlazorAzureADWithApis.Server-B86B9EF3-5CCE-46B7-A115-E5D3ACB43477</UserSecretsId>
     <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
+    <UserSecretsId>7b7a3ab3-3ad6-4820-a521-dcdaf28f15cb</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +18,9 @@
     <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraphBeta" Version="1.7.0" />
     <PackageReference Include="Microsoft.Identity.Web" Version="1.7.0" />
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.7.0" />
+    <PackageReference Include="IdentityModel" Version="5.0.0" />
+    <PackageReference Include="IdentityModel.AspNetCore" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.2" />
   </ItemGroup>
 
 </Project>

@@ -27,9 +27,11 @@ namespace BlazorAzureADWithApis.Server
             services.AddHttpClient();
             services.AddOptions();
 
+            string[] initialScopes = Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
+
             services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
-                .EnableTokenAcquisitionToCallDownstreamApi()
-                .AddMicrosoftGraph("https://graph.microsoft.com/beta",
+                .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+                 .AddMicrosoftGraph("https://graph.microsoft.com/beta",
                     "User.ReadBasic.All user.read")
                 .AddInMemoryTokenCaches();
 
