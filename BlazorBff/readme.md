@@ -20,3 +20,5 @@ https://docs.microsoft.com/en-us/aspnet/core/security/anti-request-forgery
 https://docs.microsoft.com/en-us/aspnet/core/blazor/security
 
 https://arvehansen.net/codecave/2020/10/19/securing-blazor-server-app-using-identityserver4/
+
+https://github.com/saber-wang/BlazorAppFormTset
