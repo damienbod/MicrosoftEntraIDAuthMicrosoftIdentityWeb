@@ -76,7 +76,7 @@ namespace BlazorAzureADWithApis.Server
             {
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
-                endpoints.MapFallbackToPage("/_Host");      
+                endpoints.MapFallbackToPage("/_Host");
             });
         }
     }
