@@ -7,8 +7,6 @@ Author: Bernd Hirschmann
 
 https://github.com/berhir/BlazorWebAssemblyCookieAuth
 
-https://twitter.com/berhir
-
 # Links
 
 https://github.com/berhir/BlazorWebAssemblyCookieAuth
