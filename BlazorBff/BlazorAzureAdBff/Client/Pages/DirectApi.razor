@@ -29,6 +29,8 @@ else
 @code {
     private string[] apiData;
 
+
+
     protected override async Task OnInitializedAsync()
     {
         apiData = await Http.GetFromJsonAsync<string[]>("DirectApi");
