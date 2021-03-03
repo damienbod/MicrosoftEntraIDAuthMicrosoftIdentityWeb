@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace BlazorAzureADWithApis.Client.Services
 {
+    // orig src https://github.com/berhir/BlazorWebAssemblyCookieAuth
     public class AuthorizedHandler : DelegatingHandler
     {
         private readonly HostAuthenticationStateProvider _authenticationStateProvider;

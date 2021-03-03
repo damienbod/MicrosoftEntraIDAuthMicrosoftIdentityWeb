@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlazorAzureADWithApis.Client.Services
 {
+    // orig src https://github.com/berhir/BlazorWebAssemblyCookieAuth
     public class HostAuthenticationStateProvider : AuthenticationStateProvider
     {
         private static readonly TimeSpan _userCacheRefreshInterval = TimeSpan.FromSeconds(60);
@@ -33,7 +34,7 @@ namespace BlazorAzureADWithApis.Client.Services
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            return new AuthenticationState(await GetUser(useCache: false));
+            return new AuthenticationState(await GetUser(useCache: true));
         }
 
         public void SignIn(string customReturnUrl = null)
