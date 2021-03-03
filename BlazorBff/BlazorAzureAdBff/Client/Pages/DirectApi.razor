@@ -1,5 +1,6 @@
 ﻿@page "/directapi"
 @inject HttpClient Http
+@inject IJSRuntime JSRuntime
 
 <h1>Data from Direct API</h1>
 
@@ -29,10 +30,12 @@ else
 @code {
     private string[] apiData;
 
-
-
     protected override async Task OnInitializedAsync()
     {
+        var token = await JSRuntime.InvokeAsync<string>("getAntiForgeryToken");
+
+        Http.DefaultRequestHeaders.Add("X-XSRF-TOKEN", token);
+
         apiData = await Http.GetFromJsonAsync<string[]>("DirectApi");
     }
 

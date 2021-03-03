@@ -26,7 +26,10 @@ namespace BlazorAzureADWithApis.Server
         {
             services.AddScoped<GraphApiClientService>();
 
-            services.AddAntiforgery();
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-XSRF-TOKEN";
+            });
 
             services.AddHttpClient();
             services.AddOptions();
