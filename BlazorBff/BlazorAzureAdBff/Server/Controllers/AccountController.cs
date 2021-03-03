@@ -18,7 +18,7 @@ namespace BlazorAzureADWithApis.Server.Controllers
             });
         }
 
-        //[ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken] // not needed explicitly due the  the Auto global definition.
         [Authorize]
         [HttpPost("Logout")]
         public IActionResult Logout()

@@ -1,15 +1,13 @@
 
 # Credits
 
-A lot of code in this repo was built using original code src from: 
-
-Author: Bernd Hirschmann
+Some of the code in this repo was built using original code src from Bernd Hirschmann. 
 
 https://github.com/berhir/BlazorWebAssemblyCookieAuth
+
+Thank you for the git repository.
 
 # Links
-
-https://github.com/berhir/BlazorWebAssemblyCookieAuth
 
 https://guidnew.com/en/blog/secure-a-blazor-webassembly-application-with-cookie-authentication/
 

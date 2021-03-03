@@ -20,7 +20,6 @@
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.7.0" />
     <PackageReference Include="IdentityModel" Version="5.0.0" />
     <PackageReference Include="IdentityModel.AspNetCore" Version="3.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.2" />
   </ItemGroup>
 
 </Project>
