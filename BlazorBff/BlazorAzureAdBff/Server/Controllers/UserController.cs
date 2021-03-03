@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorAzureADWithApis.Server.Controllers
 {
+    // orig src https://github.com/berhir/BlazorWebAssemblyCookieAuth
     [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
