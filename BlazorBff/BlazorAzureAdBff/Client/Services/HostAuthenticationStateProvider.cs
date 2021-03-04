@@ -68,7 +68,7 @@ namespace BlazorAzureADWithApis.Client.Services
             try
             {
                 _logger.LogInformation(_client.BaseAddress.ToString());
-                user = await _client.GetFromJsonAsync<UserInfo>("User");
+                user = await _client.GetFromJsonAsync<UserInfo>("api/User");
             }
             catch (Exception exc)
             {
