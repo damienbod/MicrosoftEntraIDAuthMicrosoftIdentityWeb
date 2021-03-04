@@ -21,6 +21,8 @@ namespace BlazorAzureADWithApis.Client
             builder.Services.TryAddSingleton(sp => (HostAuthenticationStateProvider)sp.GetRequiredService<AuthenticationStateProvider>());
             builder.Services.AddTransient<AuthorizedHandler>();
 
+            builder.RootComponents.Add<App>("#app");
+
             builder.Services.AddHttpClient("default", client =>
             {
                 client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
