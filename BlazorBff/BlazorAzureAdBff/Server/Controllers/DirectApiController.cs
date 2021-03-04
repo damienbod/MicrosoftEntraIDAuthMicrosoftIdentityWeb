@@ -10,7 +10,7 @@ namespace BlazorAzureADWithApis.Server.Controllers
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     [AuthorizeForScopes(Scopes = new string[] { "api://b2a09168-54e2-4bc4-af92-a710a64ef1fa/access_as_user" })]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class DirectApiController : ControllerBase
     {
         [HttpGet]

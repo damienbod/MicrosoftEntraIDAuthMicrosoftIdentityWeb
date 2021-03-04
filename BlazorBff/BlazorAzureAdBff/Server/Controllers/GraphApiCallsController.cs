@@ -11,7 +11,7 @@ namespace BlazorAzureADWithApis.Server.Controllers
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     [AuthorizeForScopes(Scopes = new string[] { "User.ReadBasic.All user.read" })]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class GraphApiCallsController : ControllerBase
     {
         private GraphApiClientService _graphApiClientService;

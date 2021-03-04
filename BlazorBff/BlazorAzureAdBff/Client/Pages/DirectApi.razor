@@ -36,7 +36,7 @@ else
 
         Http.DefaultRequestHeaders.Add("X-XSRF-TOKEN", token);
 
-        apiData = await Http.GetFromJsonAsync<string[]>("DirectApi");
+        apiData = await Http.GetFromJsonAsync<string[]>("api/DirectApi");
     }
 
 }
