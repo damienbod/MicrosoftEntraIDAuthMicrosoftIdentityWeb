@@ -15,8 +15,8 @@ namespace BlazorAzureADWithApis.Client.Services
     {
         private static readonly TimeSpan _userCacheRefreshInterval = TimeSpan.FromSeconds(60);
 
-        private const string LogInPath = "Account/Login";
-        private const string LogOutPath = "Account/Logout";
+        private const string LogInPath = "api/Account/Login";
+        private const string LogOutPath = "api/Account/Logout";
 
         private readonly NavigationManager _navigation;
         private readonly HttpClient _client;
