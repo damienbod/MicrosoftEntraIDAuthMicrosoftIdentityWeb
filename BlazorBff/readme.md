@@ -1,7 +1,7 @@
 
 # Credits
 
-Some of the code in this repo was built using original code src from Bernd Hirschmann. 
+Some of the code in this repo was built using original soiurce code from Bernd Hirschmann. 
 
 https://github.com/berhir/BlazorWebAssemblyCookieAuth
 
