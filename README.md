@@ -15,9 +15,7 @@
     <li><a href="https://damienbod.com/2021/01/05/azure-ad-access-token-lifetime-policy-management-in-asp-net-core/">Azure AD Access Token Lifetime Policy Management in ASP.NET Core</a></li>
 	<li><a href="https://damienbod.com/2021/01/28/implement-oauth-device-code-flow-with-azure-ad-and-asp-net-core/">Implement OAUTH Device Code Flow with Azure AD and ASP.NET Core</a></li>
 	<li><a href="https://damienbod.com/2021/02/01/implement-app-roles-authorization-with-azure-ad-and-asp-net-core/">Implement app roles authorization with Azure AD and ASP.NET Core</a></li>
-	
 	<li><a href="https://damienbod.com/2021/03/08/securing-blazor-web-assembly-using-cookies/">Securing Blazor Web assembly using cookies</a></li>
-
 </ul>
 
 ## History
