@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
+    <UserSecretsId>7b7a3ab3-3ad6-4820-a521-dcdaf28f15cb</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Client\BlazorAzureADWithApis.Client.csproj" />
+    <ProjectReference Include="..\Shared\BlazorAzureADWithApis.Shared.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.3" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.3" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraphBeta" Version="1.7.0" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.7.0" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.7.0" />
+    <PackageReference Include="IdentityModel" Version="5.0.1" />
+    <PackageReference Include="IdentityModel.AspNetCore" Version="3.0.0" />
+  </ItemGroup>
+
+</Project>
