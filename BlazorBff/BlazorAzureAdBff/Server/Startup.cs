@@ -28,6 +28,9 @@ namespace BlazorAzureADWithApis.Server
             services.AddAntiforgery(options =>
             {
                 options.HeaderName = "X-XSRF-TOKEN";
+                options.Cookie.Name = "__Host-X-XSRF-TOKEN";
+                options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+                options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
             });
 
             services.AddHttpClient();
