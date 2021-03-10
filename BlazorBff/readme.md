@@ -9,7 +9,7 @@ https://damienbod.com/2021/03/08/securing-blazor-web-assembly-using-cookies/
 
 # Credits
 
-Some of the code in this repo was built using original soiurce code from Bernd Hirschmann. 
+Some of the code in this repo was built using original source code from Bernd Hirschmann. 
 
 https://github.com/berhir/BlazorWebAssemblyCookieAuth
 
