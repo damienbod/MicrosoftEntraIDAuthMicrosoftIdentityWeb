@@ -27,17 +27,22 @@ namespace DeviceFlowWeb
 
             services.AddDistributedMemoryCache();
 
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-XSRF-TOKEN";
+                options.Cookie.Name = "__Host-X-XSRF-TOKEN";
+                options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+                options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
+            });
+
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(60);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
-            });
-
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.Cookie.Name = "__Host-SESSION";
+                options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+                options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
             });
 
             services.AddAuthentication(options =>
@@ -84,8 +89,7 @@ namespace DeviceFlowWeb
             //);
 
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-  
+
             app.UseStaticFiles();
 
             app.UseRouting();
