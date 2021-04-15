@@ -9,3 +9,4 @@
 **/dist/
 **/*.csproj.user
 /AngularAzureADMultipleApis/LogsServiceApi.txt
+/BlazorWithApis/LogsServiceApi.txt
