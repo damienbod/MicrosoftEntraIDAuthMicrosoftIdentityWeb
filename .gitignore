@@ -10,3 +10,5 @@
 **/*.csproj.user
 /AngularAzureADMultipleApis/LogsServiceApi.txt
 /BlazorWithApis/LogsServiceApi.txt
+/ConfidentialClientCredentialsCertificate/LogsServiceApi.txt
+/ConfidentialClientCredentialsCertificate/LogsMyServerRenderedPortal.txt
