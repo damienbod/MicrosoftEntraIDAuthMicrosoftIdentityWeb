@@ -1,8 +1,11 @@
-# Azure AD roles with Web APPs, web APIs
 
-# History
+## WebAppWithRoles secrets
 
-2021-03-11 Updated packages
+```
+ "AzureAd": {
+    "ClientSecret": "your-secret"
+  }
+```
 
 # Links
 

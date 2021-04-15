@@ -1,10 +1,20 @@
 
+## BlazorAzureADWithApis.Server secrets
+
+```
+ "AzureAd": {
+    "ClientSecret": "your-secret"
+  }
+```
+
+
 # Blog 
 
 https://damienbod.com/2021/03/08/securing-blazor-web-assembly-using-cookies/
 
 ## History
 
+2021-04-15 Updated nuget packages
 
 2021-03-11 Updated nuget packages
 

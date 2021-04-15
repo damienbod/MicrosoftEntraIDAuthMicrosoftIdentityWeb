@@ -5,7 +5,8 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D041721B-5836-402C-8F6C-5E1F556180CD}"
 	ProjectSection(SolutionItems) = preProject
-		readme.md = readme.md
+		..\README.md = ..\README.md
+		README_CONFIG.md = README_CONFIG.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAzureADWithApis.Server", "BlazorAzureAdBff\Server\BlazorAzureADWithApis.Server.csproj", "{90A119E7-B368-4445-92CA-9474101C2026}"

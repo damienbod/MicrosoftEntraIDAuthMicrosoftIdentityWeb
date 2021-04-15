@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>BlazorAzureADWithApis.Server-B86B9EF3-5CCE-46B7-A115-E5D3ACB43477</UserSecretsId>
     <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
+    <UserSecretsId>3c83752e-aded-433a-8d36-41e450f542f2</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,11 +12,11 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.4" />
-    <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraphBeta" Version="1.8.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4" NoWarn="NU1605" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.4" NoWarn="NU1605" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="1.8.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.5" />
+    <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraphBeta" Version="1.9.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.5" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.5" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.9.1" />
   </ItemGroup>
 
 </Project>

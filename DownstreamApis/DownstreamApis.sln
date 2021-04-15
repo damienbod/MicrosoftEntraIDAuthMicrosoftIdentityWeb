@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1CF61267-6B41-4FD5-9054-296126C4AB0C}"
 	ProjectSection(SolutionItems) = preProject
 		..\Readme.md = ..\Readme.md
+		README_CONFIG.md = README_CONFIG.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserApiOne", "UserApiOne\UserApiOne.csproj", "{C4E0B7F3-8D05-4598-A60C-8219035CC917}"
