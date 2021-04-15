@@ -12,3 +12,5 @@
 /BlazorWithApis/LogsServiceApi.txt
 /ConfidentialClientCredentialsCertificate/LogsServiceApi.txt
 /ConfidentialClientCredentialsCertificate/LogsMyServerRenderedPortal.txt
+/DecryptionCertificates/LogsApiDecryptionCertificates.txt
+/DecryptionCertificates/LogsPortalDecryptionCertificates.txt

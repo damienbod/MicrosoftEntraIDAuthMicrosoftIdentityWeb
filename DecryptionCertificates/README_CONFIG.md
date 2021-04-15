@@ -1,0 +1,8 @@
+
+## PortalDecryptionCertificates secrets
+
+```
+ "AzureAd": {
+    
+  }
+```
