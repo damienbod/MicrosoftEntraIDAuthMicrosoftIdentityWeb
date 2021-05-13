@@ -32,11 +32,11 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var token = await JSRuntime.InvokeAsync<string>("getAntiForgeryToken");
+        var token = await JSRuntime.InvokeAsync<string>("getAntiForgeryToken").ConfigureAwait(false);
 
         Http.DefaultRequestHeaders.Add("X-XSRF-TOKEN", token);
 
-        apiData = await Http.GetFromJsonAsync<string[]>("api/DirectApi");
+        apiData = await Http.GetFromJsonAsync<string[]>("api/DirectApi").ConfigureAwait(false);
     }
 
 }
