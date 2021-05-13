@@ -20,6 +20,8 @@
 
 ## History
 
+2021-05-13 Microsoft.Identity.Web to 1.9.2, updated packages
+
 2021-04-15 Microsoft.Identity.Web to 1.9.1
 
 2021-03-11 Microsoft.Identity.Web to 1.8.0
