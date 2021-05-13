@@ -48,7 +48,7 @@ namespace TokenManagement.Pages.AadTokenPolicies
                 IsOrganizationDefault = TokenLifetimePolicyDto.IsOrganizationDefault
             };
 
-            await _tokenLifetimePolicyGraphApiService.CreatePolicy(tokenLifetimePolicy);
+            await _tokenLifetimePolicyGraphApiService.CreatePolicy(tokenLifetimePolicy).ConfigureAwait(false);
 
             return RedirectToPage("./Index");
         }

@@ -50,11 +50,11 @@ namespace TokenManagement.Pages.AadTokenPolicies
                 return NotFound();
             }
 
-            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
+            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id).ConfigureAwait(false);
 
             if (policy != null)
             {
-                await _tokenLifetimePolicyGraphApiService.DeletePolicy(policy.Id);
+                await _tokenLifetimePolicyGraphApiService.DeletePolicy(policy.Id).ConfigureAwait(false);
             }
 
             return RedirectToPage("./Index");

@@ -20,7 +20,7 @@ namespace TokenManagement.Pages.AadTokenPolicies
 
         public async Task OnGetAsync()
         {
-            var policies = await _tokenLifetimePolicyGraphApiService.GetPolicies();
+            var policies = await _tokenLifetimePolicyGraphApiService.GetPolicies().ConfigureAwait(false);
             TokenLifetimePolicyDto = policies.CurrentPage.Select(policy => new TokenLifetimePolicyDto
             {
                 Definition = policy.Definition.FirstOrDefault(),

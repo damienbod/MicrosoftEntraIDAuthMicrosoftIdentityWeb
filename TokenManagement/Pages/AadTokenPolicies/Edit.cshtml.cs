@@ -29,7 +29,7 @@ namespace TokenManagement.Pages.AadTokenPolicies
                 return NotFound();
             }
 
-            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
+            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id).ConfigureAwait(false);
             TokenLifetimePolicyDto = new TokenLifetimePolicyDto
             {
                 Definition = policy.Definition.FirstOrDefault(),
@@ -55,7 +55,7 @@ namespace TokenManagement.Pages.AadTokenPolicies
             }
 
             // get existing
-            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(TokenLifetimePolicyDto.Id);
+            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(TokenLifetimePolicyDto.Id).ConfigureAwait(false);
             var tokenLifetimePolicy = new TokenLifetimePolicy
             {
                 Id = TokenLifetimePolicyDto.Id,
@@ -68,7 +68,7 @@ namespace TokenManagement.Pages.AadTokenPolicies
             };
 
 
-            await _tokenLifetimePolicyGraphApiService.UpdatePolicy(tokenLifetimePolicy);
+            await _tokenLifetimePolicyGraphApiService.UpdatePolicy(tokenLifetimePolicy).ConfigureAwait(false);
 
             return RedirectToPage("./Index");
         }

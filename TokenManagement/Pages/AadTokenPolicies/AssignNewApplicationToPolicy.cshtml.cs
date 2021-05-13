@@ -30,7 +30,7 @@ namespace TokenManagement.Pages
                 return NotFound();
             }
 
-            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
+            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id).ConfigureAwait(false);
             TokenLifetimePolicyDto = new TokenLifetimePolicyDto
             {
                 Definition = policy.Definition.FirstOrDefault(),
@@ -39,8 +39,10 @@ namespace TokenManagement.Pages
                 Id = policy.Id
             };
 
-            var singleAndMultipleOrgApplications = await _tokenLifetimePolicyGraphApiService.GetApplicationsSingleOrMultipleOrg();
-            
+            var singleAndMultipleOrgApplications = await _tokenLifetimePolicyGraphApiService
+                .GetApplicationsSingleOrMultipleOrg()
+                .ConfigureAwait(false);
+
             ApplicationOptions = singleAndMultipleOrgApplications.CurrentPage
                 .Where(app => app.TokenLifetimePolicies != null && app.TokenLifetimePolicies.Count <=0)
                 .Select(a =>
@@ -67,7 +69,8 @@ namespace TokenManagement.Pages
             }
 
             await _tokenLifetimePolicyGraphApiService
-                .AssignTokenPolicyToApplicationUsingGraphId(applicationGraphId, policyId);
+                .AssignTokenPolicyToApplicationUsingGraphId(applicationGraphId, policyId)
+                .ConfigureAwait(false);
 
             return Redirect($"./Details?id={policyId}");
         }

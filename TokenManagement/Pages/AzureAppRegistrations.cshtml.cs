@@ -23,7 +23,7 @@ namespace TokenManagement.Pages
         public async Task<IActionResult> OnGetAsync()
         {
 
-            var allApplications = await _tokenLifetimePolicyGraphApiService.GetApplications();
+            var allApplications = await _tokenLifetimePolicyGraphApiService.GetApplications().ConfigureAwait(false);
             AllApplications = allApplications.CurrentPage.Select(app => new PolicyAssignedApplicationsDto
             {
                 Id = app.Id,
