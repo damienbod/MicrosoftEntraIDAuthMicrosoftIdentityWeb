@@ -44,7 +44,7 @@ namespace TokenManagement.Pages
                 .ConfigureAwait(false);
 
             ApplicationOptions = singleAndMultipleOrgApplications.CurrentPage
-                .Where(app => app.TokenLifetimePolicies != null && app.TokenLifetimePolicies.Count <=0)
+                .Where(app => app.TokenLifetimePolicies != null && app.TokenLifetimePolicies.Count <= 0)
                 .Select(a =>
                     new SelectListItem
                     {
