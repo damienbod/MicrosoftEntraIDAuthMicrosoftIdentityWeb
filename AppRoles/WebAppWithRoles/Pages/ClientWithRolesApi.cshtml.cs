@@ -20,9 +20,9 @@ namespace WebAppWithRoles.Pages
 
         public async Task OnGetAsync()
         {
-            UserDataFromApi = await _apiService.GetUserDataFromApi();
-            StudentDataFromApi = await _apiService.GetStudentDataFromApi();
-            AdminDataFromApi = await _apiService.GetAdminDataFromApi();
+            UserDataFromApi = await _apiService.GetUserDataFromApi().ConfigureAwait(false);
+            StudentDataFromApi = await _apiService.GetStudentDataFromApi().ConfigureAwait(false);
+            AdminDataFromApi = await _apiService.GetAdminDataFromApi().ConfigureAwait(false);
         }
     }
 }

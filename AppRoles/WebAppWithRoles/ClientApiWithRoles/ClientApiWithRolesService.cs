@@ -26,17 +26,17 @@ namespace WebAppWithRoles
 
         public async Task<JArray> GetUserDataFromApi()
         {
-            return await GetDataFromApi("userdata");
+            return await GetDataFromApi("userdata").ConfigureAwait(false);
         }
 
         public async Task<JArray> GetStudentDataFromApi()
         {
-            return await GetDataFromApi("studentdata");
+            return await GetDataFromApi("studentdata").ConfigureAwait(false);
         }
 
         public async Task<JArray> GetAdminDataFromApi()
         {
-            return await GetDataFromApi("admindata");
+            return await GetDataFromApi("admindata").ConfigureAwait(false);
         }
 
 
@@ -45,7 +45,8 @@ namespace WebAppWithRoles
             var client = _clientFactory.CreateClient();
 
             var scope = _configuration["ApiWithRoles:ScopeForAccessToken"];
-            var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
+            var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope })
+                .ConfigureAwait(false);
 
             client.BaseAddress = new Uri(_configuration["ApiWithRoles:ApiBaseAddress"]);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -54,7 +55,9 @@ namespace WebAppWithRoles
             var response = await client.GetAsync($"api/{path}");
             if (response.IsSuccessStatusCode)
             {
-                var responseContent = await response.Content.ReadAsStringAsync();
+                var responseContent = await response.Content.ReadAsStringAsync()
+                    .ConfigureAwait(false);
+
                 var data = JArray.Parse(responseContent);
 
                 return data;
