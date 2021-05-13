@@ -29,9 +29,9 @@ namespace ServiceApi
 
         private bool HasServiceApiRole(IEnumerable<Claim> roleClaims)
         {
-            foreach(var role in roleClaims)
+            foreach (var role in roleClaims)
             {
-                if("service-api" == role.Value)
+                if ("service-api" == role.Value)
                 {
                     return true;
                 }

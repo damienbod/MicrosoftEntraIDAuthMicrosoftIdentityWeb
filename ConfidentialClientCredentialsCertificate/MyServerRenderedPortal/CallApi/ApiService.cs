@@ -19,7 +19,7 @@ namespace MyServerRenderedPortal
         private readonly IConfiguration _configuration;
         private readonly ILogger<ApiService> _logger;
 
-        public ApiService(IHttpClientFactory clientFactory, 
+        public ApiService(IHttpClientFactory clientFactory,
             IConfiguration configuration,
             ILoggerFactory loggerFactory)
         {
@@ -81,8 +81,8 @@ namespace MyServerRenderedPortal
 
             var privateKeyBytes = Convert.FromBase64String(secret.Value);
 
-            var certificateWithPrivateKey = new X509Certificate2(privateKeyBytes, 
-                (string)null, 
+            var certificateWithPrivateKey = new X509Certificate2(privateKeyBytes,
+                (string)null,
                 X509KeyStorageFlags.MachineKeySet);
 
             return certificateWithPrivateKey;

@@ -34,7 +34,7 @@ namespace ServiceApi
                 options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
                 {
                     validateAccessTokenPolicy.Requirements.Add(new HasServiceApiRoleRequirement());
-                    
+
                     // Validate ClientId from token
                     validateAccessTokenPolicy.RequireClaim("azp", Configuration["AzureAd:ClientId"]);
 
