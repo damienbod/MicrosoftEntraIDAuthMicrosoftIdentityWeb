@@ -18,7 +18,7 @@ namespace MyServerRenderedPortal.Pages
         }
 
         public void OnGet()
-        { 
+        {
         }
     }
 }
