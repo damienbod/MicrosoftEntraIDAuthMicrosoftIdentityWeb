@@ -19,7 +19,7 @@ namespace BlazorAzureADWithApis.Client.Services
             HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
-            var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
+            var authState = await _authenticationStateProvider.GetAuthenticationStateAsync().ConfigureAwait(false);
             HttpResponseMessage responseMessage;
             if (!authState.User.Identity.IsAuthenticated)
             {
@@ -28,7 +28,7 @@ namespace BlazorAzureADWithApis.Client.Services
             }
             else
             {
-                responseMessage = await base.SendAsync(request, cancellationToken);
+                responseMessage = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
             }
 
             if (responseMessage.StatusCode == HttpStatusCode.Unauthorized)

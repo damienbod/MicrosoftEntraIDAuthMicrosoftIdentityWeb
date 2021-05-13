@@ -27,22 +27,25 @@ namespace BlazorAzureADWithApis.Server.Services
             var client = _clientFactory.CreateClient();
 
             var scope = "api://b178f3a5-7588-492a-924f-72d7887b7e48/.default"; // CC flow access_as_application";
-            var accessToken = await _tokenAcquisition.GetAccessTokenForAppAsync(scope);
+            var accessToken = await _tokenAcquisition.GetAccessTokenForAppAsync(scope)
+                .ConfigureAwait(false);
 
             client.BaseAddress = new Uri("https://localhost:44324");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var response = await client.GetAsync("ApiForServiceData");
+            var response = await client.GetAsync("ApiForServiceData").ConfigureAwait(false);
+
             if (response.IsSuccessStatusCode)
             {
-                var data = await JsonSerializer.DeserializeAsync<List<string>>(
-                    await response.Content.ReadAsStreamAsync());
+                var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 
-                return data;
+                var payload = await JsonSerializer.DeserializeAsync<List<string>>(stream).ConfigureAwait(false);
+
+                return payload;
             }
 
-            throw new Exception("oh no...");
+            throw new ApplicationException("oh no...");
         }
     }
 }

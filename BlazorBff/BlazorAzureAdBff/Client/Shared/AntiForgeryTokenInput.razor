@@ -9,7 +9,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        token = await JSRuntime.InvokeAsync<string>("getAntiForgeryToken");
+        token = await JSRuntime.InvokeAsync<string>("getAntiForgeryToken").ConfigureAwait(false);
     }
 
     public string GetToken()
