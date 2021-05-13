@@ -18,7 +18,7 @@ namespace WebAppUserApis.Pages
 
         public async Task OnGetAsync()
         {
-            DataFromApi = await _apiService.GetApiDataAsync();
+            DataFromApi = await _apiService.GetApiDataAsync().ConfigureAwait(false);
         }
     }
 }
