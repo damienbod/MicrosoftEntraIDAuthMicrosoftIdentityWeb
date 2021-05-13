@@ -49,7 +49,7 @@ namespace ApiWithMutlipleApis.Services
             catch
             {
                 return string.Empty;
-            }   
+            }
         }
     }
 }

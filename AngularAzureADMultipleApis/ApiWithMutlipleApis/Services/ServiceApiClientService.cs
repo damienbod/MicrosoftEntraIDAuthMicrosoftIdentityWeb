@@ -27,7 +27,8 @@ namespace ApiWithMutlipleApis.Services
             var client = _clientFactory.CreateClient();
 
             var scope = "api://b178f3a5-7588-492a-924f-72d7887b7e48/.default"; // CC flow access_as_application";
-            var accessToken = await _tokenAcquisition.GetAccessTokenForAppAsync(scope);
+            var accessToken = await _tokenAcquisition.GetAccessTokenForAppAsync(scope)
+                .ConfigureAwait(false);
 
             client.BaseAddress = new Uri("https://localhost:44324");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -42,7 +43,7 @@ namespace ApiWithMutlipleApis.Services
                 return data;
             }
 
-            throw new Exception("oh no...");
+            throw new ApplicationException("oh no...");
         }
     }
 }

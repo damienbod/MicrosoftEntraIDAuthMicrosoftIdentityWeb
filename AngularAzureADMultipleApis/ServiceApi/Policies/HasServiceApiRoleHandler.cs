@@ -29,9 +29,9 @@ namespace ServiceApi
         private bool HasServiceApiRole(IEnumerable<Claim> roleClaims)
         {
             // we could also validate the "access_as_application" scope
-            foreach(var role in roleClaims)
+            foreach (var role in roleClaims)
             {
-                if("service-api" == role.Value)
+                if ("service-api" == role.Value)
                 {
                     return true;
                 }
