@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthenticatedResult } from 'angular-auth-oidc-client';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
@@ -11,7 +12,7 @@ import { AuthService } from '../auth.service';
 export class GraphApiCallComponent implements OnInit {
   userData$: Observable<any>;
   dataFromAzureProtectedApi$: Observable<any>;
-  isAuthenticated$: Observable<boolean>;
+  isAuthenticated$: Observable<AuthenticatedResult>;
   httpRequestRunning = false;
   constructor(
     private authService: AuthService,

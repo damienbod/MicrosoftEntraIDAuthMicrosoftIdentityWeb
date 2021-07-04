@@ -1,3 +1,4 @@
+import { AuthenticatedResult } from 'angular-auth-oidc-client';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
@@ -10,12 +11,16 @@ import { AuthService } from '../auth.service';
 export class NavMenuComponent implements OnInit {
   userData$: Observable<any>;
   dataFromAzureProtectedApi$: Observable<any>;
-  isAuthenticated$: Observable<boolean>;
+  isAuthenticated = false;
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.userData$ = this.authService.userData$;
-    this.isAuthenticated$ = this.authService.signedIn$;
+    this.authService.signedIn$.subscribe(({ isAuthenticated }) => {
+      this.isAuthenticated = isAuthenticated;
+
+      console.warn('authenticated: ', isAuthenticated);
+    });
   }
 
   login() {
