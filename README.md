@@ -20,6 +20,8 @@
 
 ## History
 
+2021-08-13 Updated Blazor BFF app and fixed login button
+
 2021-07-03 Microsoft.Identity.Web to 1.14, Angular OIDC V12
 
 2021-06-20 Microsoft.Identity.Web to 1.13.1
