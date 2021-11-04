@@ -42,6 +42,10 @@ namespace PortalDecryptionCertificates
 
                 return data;
             }
+            else
+            {
+                var error = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            }
 
             throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
         }
