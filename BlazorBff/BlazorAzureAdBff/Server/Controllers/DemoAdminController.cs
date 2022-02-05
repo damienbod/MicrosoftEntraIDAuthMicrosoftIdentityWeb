@@ -16,7 +16,7 @@ namespace BlazorAzureADWithApis.Server.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new List<string> { "some data", "more data", "loads of data" };
+            return new List<string> { "admin data", "secret admin record", "loads of admin data" };
         }
     }
 }

@@ -36,6 +36,6 @@ else
         var client = HttpClientFactory.CreateClient("authorizedClient");
         client.DefaultRequestHeaders.Add("X-XSRF-TOKEN", token);
 
-        apiData = await client.GetFromJsonAsync<string[]>("api/demoadmin");
+        apiData = await client.GetFromJsonAsync<string[]>("api/DemoAdmin");
     }
 }
