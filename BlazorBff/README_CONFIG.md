@@ -45,3 +45,5 @@ https://github.com/saber-wang/BlazorAppFormTset
 https://jonhilton.net/blazor-wasm-prerendering-missing-http-client/
 
 https://andrewlock.net/enabling-prerendering-for-blazor-webassembly-apps/
+
+https://chrissainty.com/securing-your-blazor-apps-configuring-policy-based-authorization-with-blazor/

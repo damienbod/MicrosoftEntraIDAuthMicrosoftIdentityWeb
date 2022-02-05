@@ -1,6 +1,7 @@
 using BlazorAzureADWithApis.Server.Services;
 using BlazorAzureADWithApis.Server.Services.Application;
 using BlazorAzureADWithApis.Server.Services.Delegated;
+using BlazorAzureADWithApis.Shared.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -61,7 +62,13 @@ namespace BlazorAzureADWithApis.Server
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddMicrosoftIdentityUI();
 
-            services.AddAuthz();
+            services.AddAuthorization(options =>
+            {
+                // By default, all incoming requests will be authorized according to the default policy
+                options.FallbackPolicy = options.DefaultPolicy;
+                options.AddPolicy("DemoAdmins", policy => Policies.DemoAdminsPolicy());
+                options.AddPolicy("DemoUsers", policy => Policies.DemoUsersPolicy());
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

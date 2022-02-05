@@ -1,4 +1,5 @@
 ﻿using BlazorAzureADWithApis.Client.Services;
+using BlazorAzureADWithApis.Shared.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,7 +38,11 @@ namespace BlazorAzureADWithApis.Client
 
             builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("default"));
 
-            builder.Services.AddAuthz();
+            builder.Services.AddAuthorizationCore(options =>
+            {
+                options.AddPolicy("DemoAdmins", policy => Policies.DemoAdminsPolicy());
+                options.AddPolicy("DemoUsers", policy => Policies.DemoUsersPolicy());
+            });
 
             await builder.Build().RunAsync().ConfigureAwait(false);
         }
