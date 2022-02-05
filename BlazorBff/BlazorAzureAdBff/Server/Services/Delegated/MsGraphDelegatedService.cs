@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace BlazorAzureADWithApis.Server.Services.Delegated
 {
-    public class MicrosoftGraphDelegatedClientService
+    public class MsGraphDelegatedService
     {
         private readonly GraphServiceClient _graphServiceClient;
 
-        public MicrosoftGraphDelegatedClientService(GraphServiceClient graphServiceClient)
+        public MsGraphDelegatedService(GraphServiceClient graphServiceClient)
         {
             _graphServiceClient = graphServiceClient;
         }

@@ -14,9 +14,9 @@ namespace BlazorAzureADWithApis.Server.Controllers
     [Route("api/[controller]")]
     public class GraphApiCallsController : ControllerBase
     {
-        private MicrosoftGraphDelegatedClientService _microsoftGraphDelegatedClientService;
+        private MsGraphDelegatedService _microsoftGraphDelegatedClientService;
 
-        public GraphApiCallsController(MicrosoftGraphDelegatedClientService microsoftGraphDelegatedClientService)
+        public GraphApiCallsController(MsGraphDelegatedService microsoftGraphDelegatedClientService)
         {
             _microsoftGraphDelegatedClientService = microsoftGraphDelegatedClientService;
         }

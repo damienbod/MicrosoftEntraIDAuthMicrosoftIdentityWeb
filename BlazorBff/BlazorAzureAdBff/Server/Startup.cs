@@ -27,9 +27,8 @@ namespace BlazorAzureADWithApis.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<MicrosoftGraphDelegatedClientService>();
-            services.AddScoped<MicrosoftGraphApplicationClient>();
-            services.AddSingleton<ApiTokenInMemoryClient>();
+            services.AddScoped<MsGraphDelegatedService>();
+            services.AddScoped<MsGraphApplicationService>();
             services.AddTransient<IClaimsTransformation, GraphApiClaimsTransformation>();
 
             services.AddAntiforgery(options =>

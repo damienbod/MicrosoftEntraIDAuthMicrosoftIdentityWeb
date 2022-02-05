@@ -8,11 +8,11 @@ namespace BlazorAzureADWithApis.Server
 {
     public class GraphApiClaimsTransformation : IClaimsTransformation
     {
-        private readonly MicrosoftGraphApplicationClient _microsoftGraphApplicationClient;
+        private readonly MsGraphApplicationService _msGraphApplicationService;
 
-        public GraphApiClaimsTransformation(MicrosoftGraphApplicationClient microsoftGraphApplicationClient)
+        public GraphApiClaimsTransformation(MsGraphApplicationService msGraphApplicationService)
         {
-            _microsoftGraphApplicationClient = microsoftGraphApplicationClient;
+            _msGraphApplicationService = msGraphApplicationService;
         }
 
         public async Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)
@@ -24,7 +24,7 @@ namespace BlazorAzureADWithApis.Server
                 var objectidentifierClaimType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
                 var objectIdentifier = principal.Claims.FirstOrDefault(t => t.Type == objectidentifierClaimType);
 
-                var groupIds = await _microsoftGraphApplicationClient
+                var groupIds = await _msGraphApplicationService
                     .GetGraphUserMemberGroups(objectIdentifier.Value);
 
                 foreach (var groupId in groupIds.ToList())

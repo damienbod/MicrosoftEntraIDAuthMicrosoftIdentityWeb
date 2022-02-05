@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace BlazorAzureADWithApis.Server.Services.Application
 {
-    public class MicrosoftGraphApplicationClient
+    public class MsGraphApplicationService
     {
         private readonly IConfiguration _configuration;
 
-        public MicrosoftGraphApplicationClient(IConfiguration configuration)
+        public MsGraphApplicationService(IConfiguration configuration)
         {
             _configuration = configuration;
         }
