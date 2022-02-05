@@ -33,7 +33,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         var token = await JSRuntime.InvokeAsync<string>("getAntiForgeryToken");
-        var client = HttpClientFactory.CreateClient("default");
+        var client = HttpClientFactory.CreateClient("authorizedClient");
         client.DefaultRequestHeaders.Add("X-XSRF-TOKEN", token);
 
         apiData = await client.GetFromJsonAsync<string[]>("api/demoadmin");

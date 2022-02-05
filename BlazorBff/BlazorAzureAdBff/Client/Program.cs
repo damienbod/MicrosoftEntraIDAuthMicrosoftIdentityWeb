@@ -36,7 +36,7 @@ namespace BlazorAzureADWithApis.Client
 
             builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("default"));
 
-           // builder.Services.AddAuthz();
+            builder.Services.AddAuthz();
 
             await builder.Build().RunAsync().ConfigureAwait(false);
         }
