@@ -1,6 +1,8 @@
 ﻿@page "/demoadmin"
+@using Microsoft.AspNetCore.Authorization
 @inject IHttpClientFactory HttpClientFactory
 @inject IJSRuntime JSRuntime
+@attribute [Authorize(Policy ="DemoAdmins")]
 
 <h1>Demo Admin</h1>
 

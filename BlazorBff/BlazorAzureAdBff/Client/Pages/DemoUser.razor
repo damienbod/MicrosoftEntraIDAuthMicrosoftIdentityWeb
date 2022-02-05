@@ -1,6 +1,8 @@
 ﻿@page "/demouser"
+@using Microsoft.AspNetCore.Authorization
 @inject IHttpClientFactory HttpClientFactory
 @inject IJSRuntime JSRuntime
+@attribute [Authorize(Policy ="DemoUsers")]
 
 <h1>Demo User</h1>
 

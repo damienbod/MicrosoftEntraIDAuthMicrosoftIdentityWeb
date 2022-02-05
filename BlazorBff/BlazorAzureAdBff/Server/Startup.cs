@@ -66,8 +66,8 @@ namespace BlazorAzureADWithApis.Server
             {
                 // By default, all incoming requests will be authorized according to the default policy
                 options.FallbackPolicy = options.DefaultPolicy;
-                options.AddPolicy("DemoAdmins", policy => Policies.DemoAdminsPolicy());
-                options.AddPolicy("DemoUsers", policy => Policies.DemoUsersPolicy());
+                options.AddPolicy("DemoAdmins", Policies.DemoAdminsPolicy());
+                options.AddPolicy("DemoUsers", Policies.DemoUsersPolicy());
             });
         }
 

@@ -40,8 +40,8 @@ namespace BlazorAzureADWithApis.Client
 
             builder.Services.AddAuthorizationCore(options =>
             {
-                options.AddPolicy("DemoAdmins", policy => Policies.DemoAdminsPolicy());
-                options.AddPolicy("DemoUsers", policy => Policies.DemoUsersPolicy());
+                options.AddPolicy("DemoAdmins", Policies.DemoAdminsPolicy());
+                options.AddPolicy("DemoUsers", Policies.DemoUsersPolicy());
             });
 
             await builder.Build().RunAsync().ConfigureAwait(false);

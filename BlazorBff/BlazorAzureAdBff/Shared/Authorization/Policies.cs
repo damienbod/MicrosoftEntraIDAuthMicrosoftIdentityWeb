@@ -10,7 +10,7 @@ namespace BlazorAzureADWithApis.Shared.Authorization
         public const string DemoUsersIdentifier = "demo-users";
         public const string DemoUsersValue = "1";
 
-        public static AuthorizationPolicy DemoUsersPolicy()
+        public static AuthorizationPolicy DemoAdminsPolicy()
         {
             return new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
@@ -18,7 +18,7 @@ namespace BlazorAzureADWithApis.Shared.Authorization
                 .Build();
         }
 
-        public static AuthorizationPolicy DemoAdminsPolicy()
+        public static AuthorizationPolicy DemoUsersPolicy()
         {
             return new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
