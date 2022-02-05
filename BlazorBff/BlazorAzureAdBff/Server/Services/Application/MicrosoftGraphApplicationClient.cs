@@ -14,23 +14,23 @@ namespace BlazorAzureADWithApis.Server.Services.Application
             _configuration = configuration;
         }
 
-        public async Task<IUserAppRoleAssignmentsCollectionPage> GetGraphApiUserAppRoles(string userId)
+        public async Task<IUserAppRoleAssignmentsCollectionPage> GetGraphUserAppRoles(string objectIdentifier)
         {
             var graphServiceClient = GetGraphClient();
 
-            return await graphServiceClient.Users[userId]
+            return await graphServiceClient.Users[objectIdentifier]
                     .AppRoleAssignments
                     .Request()
                     .GetAsync();
         }
 
-        public async Task<IDirectoryObjectGetMemberGroupsCollectionPage> GetGraphApiUserMemberGroups(string userId)
+        public async Task<IDirectoryObjectGetMemberGroupsCollectionPage> GetGraphUserMemberGroups(string objectIdentifier)
         {
             var securityEnabledOnly = true;
 
             var graphServiceClient = GetGraphClient();
 
-            return await graphServiceClient.Users[userId]
+            return await graphServiceClient.Users[objectIdentifier]
                 .GetMemberGroups(securityEnabledOnly)
                 .Request().PostAsync();
         }
