@@ -1,4 +1,7 @@
 using BlazorAzureADWithApis.Server.Services;
+using BlazorAzureADWithApis.Server.Services.Application;
+using BlazorAzureADWithApis.Server.Services.Delegated;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,7 +27,10 @@ namespace BlazorAzureADWithApis.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<GraphApiClientService>();
+            services.AddScoped<MicrosoftGraphDelegatedClientService>();
+            services.AddScoped<MicrosoftGraphApplicationClient>();
+            services.AddSingleton<ApiTokenInMemoryClient>();
+            services.AddTransient<IClaimsTransformation, GraphApiClaimsTransformation>();
 
             services.AddAntiforgery(options =>
             {
@@ -55,6 +61,8 @@ namespace BlazorAzureADWithApis.Server
                     .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddMicrosoftIdentityUI();
+
+            services.AddAuthz();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

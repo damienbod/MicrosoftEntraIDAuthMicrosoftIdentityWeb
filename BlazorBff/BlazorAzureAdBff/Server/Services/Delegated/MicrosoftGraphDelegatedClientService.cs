@@ -4,13 +4,13 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace BlazorAzureADWithApis.Server.Services
+namespace BlazorAzureADWithApis.Server.Services.Delegated
 {
-    public class GraphApiClientService
+    public class MicrosoftGraphDelegatedClientService
     {
         private readonly GraphServiceClient _graphServiceClient;
 
-        public GraphApiClientService(GraphServiceClient graphServiceClient)
+        public MicrosoftGraphDelegatedClientService(GraphServiceClient graphServiceClient)
         {
             _graphServiceClient = graphServiceClient;
         }

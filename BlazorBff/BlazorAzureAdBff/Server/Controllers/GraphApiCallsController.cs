@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BlazorAzureADWithApis.Server.Services;
+using BlazorAzureADWithApis.Server.Services.Delegated;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,17 +14,17 @@ namespace BlazorAzureADWithApis.Server.Controllers
     [Route("api/[controller]")]
     public class GraphApiCallsController : ControllerBase
     {
-        private GraphApiClientService _graphApiClientService;
+        private MicrosoftGraphDelegatedClientService _microsoftGraphDelegatedClientService;
 
-        public GraphApiCallsController(GraphApiClientService graphApiClientService)
+        public GraphApiCallsController(MicrosoftGraphDelegatedClientService microsoftGraphDelegatedClientService)
         {
-            _graphApiClientService = graphApiClientService;
+            _microsoftGraphDelegatedClientService = microsoftGraphDelegatedClientService;
         }
 
         [HttpGet]
         public async Task<IEnumerable<string>> Get()
         {
-            var userData = await _graphApiClientService.GetGraphApiUser().ConfigureAwait(false);
+            var userData = await _microsoftGraphDelegatedClientService.GetGraphApiUser();
             return new List<string> { $"DisplayName: {userData.DisplayName}",
                 $"GivenName: {userData.GivenName}", $"AboutMe: {userData.AboutMe}" };
         }
