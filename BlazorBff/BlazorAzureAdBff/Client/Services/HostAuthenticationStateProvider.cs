@@ -34,7 +34,7 @@ namespace BlazorAzureADWithApis.Client.Services
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            return new AuthenticationState(await GetUser(useCache: true).ConfigureAwait(false));
+            return new AuthenticationState(await GetUser(useCache: true));
         }
 
         public void SignIn(string customReturnUrl = null)
@@ -55,7 +55,7 @@ namespace BlazorAzureADWithApis.Client.Services
             }
 
             _logger.LogDebug("Fetching user");
-            _cachedUser = await FetchUser().ConfigureAwait(false);
+            _cachedUser = await FetchUser();
             _userLastCheck = now;
 
             return _cachedUser;
@@ -68,7 +68,7 @@ namespace BlazorAzureADWithApis.Client.Services
             try
             {
                 _logger.LogInformation(_client.BaseAddress.ToString());
-                user = await _client.GetFromJsonAsync<UserInfo>("api/User").ConfigureAwait(false);
+                user = await _client.GetFromJsonAsync<UserInfo>("api/User");
             }
             catch (Exception exc)
             {
