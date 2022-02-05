@@ -1,4 +1,5 @@
 ﻿using BlazorAzureADWithApis.Server.Services.Application;
+using BlazorAzureADWithApis.Shared.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using System.Linq;
 using System.Security.Claims;
@@ -29,7 +30,8 @@ namespace BlazorAzureADWithApis.Server
 
                 foreach (var groupId in groupIds.ToList())
                 {
-                    claimsIdentity.AddClaim(new Claim(groupClaimType, groupId));
+                    var claim = GetGroupClaim(groupId);
+                    if (claim != null) claimsIdentity.AddClaim(claim);
                 }
             }
 
@@ -37,6 +39,16 @@ namespace BlazorAzureADWithApis.Server
             return principal;
         }
 
+        private Claim GetGroupClaim(string groupId)
+        {
+            Claim claim = groupId switch
+            {
+                "1d9fba7e-b98a-45ec-b576-7ee77366cf10" => new Claim(Constants.DemoUsersIdentifier, Constants.DemoUsersValue),
+                "be30f1dd-39c9-457b-ab22-55f5b67fb566" => new Claim(Constants.DemoAdminsIdentifier, Constants.DemoAdminsValue)
+                _ => null
+            };
 
+            return claim;
+        }
     }
 }
