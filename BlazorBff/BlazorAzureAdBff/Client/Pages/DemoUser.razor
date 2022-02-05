@@ -1,4 +1,4 @@
-﻿@page "/directapi"
+﻿@page "/demouser"
 @inject IHttpClientFactory HttpClientFactory
 @inject IJSRuntime JSRuntime
 
@@ -32,11 +32,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var token = await JSRuntime.InvokeAsync<string>("getAntiForgeryToken").ConfigureAwait(false);
+        var token = await JSRuntime.InvokeAsync<string>("getAntiForgeryToken");
         var client = HttpClientFactory.CreateClient("default");
         client.DefaultRequestHeaders.Add("X-XSRF-TOKEN", token);
 
-        apiData = await client.GetFromJsonAsync<string[]>("api/DirectApi").ConfigureAwait(false);
+        apiData = await client.GetFromJsonAsync<string[]>("api/demouser");
     }
-
 }

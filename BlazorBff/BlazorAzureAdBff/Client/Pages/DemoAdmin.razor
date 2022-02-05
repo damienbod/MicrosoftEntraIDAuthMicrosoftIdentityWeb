@@ -1,7 +1,8 @@
-﻿@page "/graphapicall"
-@inject HttpClient Http
+﻿@page "/demoadmin"
+@inject IHttpClientFactory HttpClientFactory
+@inject IJSRuntime JSRuntime
 
-<h1>Data from Graph API</h1>
+<h1>Data from Direct API</h1>
 
 @if (apiData == null)
 {
@@ -31,7 +32,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        apiData = await Http.GetFromJsonAsync<string[]>("api/GraphApiCalls").ConfigureAwait(false);
-    }
+        var token = await JSRuntime.InvokeAsync<string>("getAntiForgeryToken");
+        var client = HttpClientFactory.CreateClient("default");
+        client.DefaultRequestHeaders.Add("X-XSRF-TOKEN", token);
 
+        apiData = await client.GetFromJsonAsync<string[]>("api/demoadmin");
+    }
 }

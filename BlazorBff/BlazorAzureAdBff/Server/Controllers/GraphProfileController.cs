@@ -12,11 +12,11 @@ namespace BlazorAzureADWithApis.Server.Controllers
     [AuthorizeForScopes(Scopes = new string[] { "User.ReadBasic.All user.read" })]
     [ApiController]
     [Route("api/[controller]")]
-    public class GraphApiCallsController : ControllerBase
+    public class GraphProfileController : ControllerBase
     {
         private MsGraphDelegatedService _microsoftGraphDelegatedClientService;
 
-        public GraphApiCallsController(MsGraphDelegatedService microsoftGraphDelegatedClientService)
+        public GraphProfileController(MsGraphDelegatedService microsoftGraphDelegatedClientService)
         {
             _microsoftGraphDelegatedClientService = microsoftGraphDelegatedClientService;
         }
