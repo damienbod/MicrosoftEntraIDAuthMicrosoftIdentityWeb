@@ -35,23 +35,6 @@ namespace BlazorAzureADWithApis.Server.Services.Application
                 .Request().PostAsync();
         }
 
-        private async Task<string> GetUserIdAsync(string email, GraphServiceClient graphServiceClient)
-        {
-            var filter = $"userPrincipalName eq '{email}'";
-            //var filter = $"startswith(userPrincipalName,'{email}')";
-
-            var users = await graphServiceClient.Users
-                .Request()
-                .Filter(filter)
-                .GetAsync();
-
-            if (users.CurrentPage.Count == 0)
-            {
-                return string.Empty;
-            }
-            return users.CurrentPage[0].Id;
-        }
-
         private GraphServiceClient GetGraphClient()
         {
             string[] scopes = new[] { "https://graph.microsoft.com/.default" };
