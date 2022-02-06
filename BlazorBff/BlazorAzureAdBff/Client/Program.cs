@@ -17,7 +17,12 @@ namespace BlazorAzureADWithApis.Client
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.Services.AddOptions();
-            builder.Services.AddAuthorizationCore();
+            builder.Services.AddAuthorizationCore(options =>
+            {
+                options.AddPolicy("DemoAdmins", Policies.DemoAdminsPolicy());
+                options.AddPolicy("DemoUsers", Policies.DemoUsersPolicy());
+            });
+
             builder.Services.TryAddSingleton<AuthenticationStateProvider, HostAuthenticationStateProvider>();
             builder.Services.TryAddSingleton(sp => (HostAuthenticationStateProvider)sp.GetRequiredService<AuthenticationStateProvider>());
             builder.Services.AddTransient<AuthorizedHandler>();
@@ -37,12 +42,6 @@ namespace BlazorAzureADWithApis.Client
             }).AddHttpMessageHandler<AuthorizedHandler>();
 
             builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("default"));
-
-            builder.Services.AddAuthorizationCore(options =>
-            {
-                options.AddPolicy("DemoAdmins", Policies.DemoAdminsPolicy());
-                options.AddPolicy("DemoUsers", Policies.DemoUsersPolicy());
-            });
 
             await builder.Build().RunAsync().ConfigureAwait(false);
         }
