@@ -1,6 +1,7 @@
 ﻿using BlazorAzureADWithApis.Server.Services.Application;
 using BlazorAzureADWithApis.Shared.Authorization;
 using Microsoft.AspNetCore.Authentication;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -41,14 +42,20 @@ namespace BlazorAzureADWithApis.Server
 
         private Claim GetGroupClaim(string groupId)
         {
-            Claim claim = groupId switch
-            {
-                "1d9fba7e-b98a-45ec-b576-7ee77366cf10" => new Claim(Policies.DemoUsersIdentifier, Policies.DemoUsersValue),
-                "be30f1dd-39c9-457b-ab22-55f5b67fb566" => new Claim(Policies.DemoAdminsIdentifier, Policies.DemoAdminsValue),
-                _ => null
+            Dictionary<string, Claim> mappings = new Dictionary<string, Claim>() {
+                { "1d9fba7e-b98a-45ec-b576-7ee77366cf10",
+                    new Claim(Policies.DemoUsersIdentifier, Policies.DemoUsersValue)},
+
+                { "be30f1dd-39c9-457b-ab22-55f5b67fb566",
+                    new Claim(Policies.DemoAdminsIdentifier, Policies.DemoAdminsValue)},
             };
 
-            return claim;
+            if (mappings.ContainsKey(groupId))
+            {
+                return mappings[groupId];
+            }
+
+            return null;
         }
     }
 }
