@@ -14,7 +14,7 @@ namespace BlazorAzureADWithApis.Server.Controllers;
 [Route("api/[controller]")]
 public class GraphProfileController : ControllerBase
 {
-    private MsGraphDelegatedService _microsoftGraphDelegatedClientService;
+    private readonly MsGraphDelegatedService _microsoftGraphDelegatedClientService;
 
     public GraphProfileController(MsGraphDelegatedService microsoftGraphDelegatedClientService)
     {
