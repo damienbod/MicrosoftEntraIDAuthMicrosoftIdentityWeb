@@ -90,6 +90,6 @@ public class ApiService
 
     void MyLoggingMethod(Microsoft.Identity.Client.LogLevel level, string message, bool containsPii)
     {
-        _logger.LogInformation($"MSAL {level} {containsPii} {message}");
+        _logger.LogInformation("MSAL {level} {containsPii} {message}", level, containsPii, message);
     }
 }
