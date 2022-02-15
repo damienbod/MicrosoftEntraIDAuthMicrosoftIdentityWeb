@@ -20,6 +20,8 @@
 
 ## History
 
+2022-02-15 Updated nuget packages
+
 2022-01-07 Updated nuget packages
 
 2021-11-04 Updated to .NET 6
