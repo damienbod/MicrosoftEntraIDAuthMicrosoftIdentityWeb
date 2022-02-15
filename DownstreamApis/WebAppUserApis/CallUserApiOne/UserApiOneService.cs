@@ -29,16 +29,16 @@ public class UserApiOneService
         var client = _clientFactory.CreateClient();
 
         var scope = _configuration["UserApiOne:ScopeForAccessToken"];
-        var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope }).ConfigureAwait(false);
+        var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
 
         client.BaseAddress = new Uri(_configuration["UserApiOne:ApiBaseAddress"]);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-        var response = await client.GetAsync("weatherforecast").ConfigureAwait(false);
+        var response = await client.GetAsync("weatherforecast");
         if (response.IsSuccessStatusCode)
         {
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync();
             var data = JArray.Parse(responseContent);
 
             return data;

@@ -37,7 +37,7 @@ namespace UserApiOne.Controllers
             var scopeRequiredByApi = new string[] { "access_as_user" };
             HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
-            DataFromApi = await _apiService.GetApiDataAsync().ConfigureAwait(false);
+            DataFromApi = await _apiService.GetApiDataAsync();
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
