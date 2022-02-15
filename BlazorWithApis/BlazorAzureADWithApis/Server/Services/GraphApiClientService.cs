@@ -4,53 +4,51 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace BlazorAzureADWithApis.Server.Services
+namespace BlazorAzureADWithApis.Server.Services;
+
+public class GraphApiClientService
 {
-    public class GraphApiClientService
+    private readonly GraphServiceClient _graphServiceClient;
+
+    public GraphApiClientService(GraphServiceClient graphServiceClient)
     {
-        private readonly GraphServiceClient _graphServiceClient;
+        _graphServiceClient = graphServiceClient;
+    }
 
-        public GraphApiClientService(GraphServiceClient graphServiceClient)
-        {
-            _graphServiceClient = graphServiceClient;
-        }
+    public async Task<User> GetGraphApiUser()
+    {
+        return await _graphServiceClient
+            .Me
+            .Request()
+            .WithScopes("User.ReadBasic.All", "user.read")
+            .GetAsync()
+            .ConfigureAwait(false);
+    }
 
-        public async Task<User> GetGraphApiUser()
+    public async Task<string> GetGraphApiProfilePhoto()
+    {
+        try
         {
-            return await _graphServiceClient
+            var photo = string.Empty;
+            // Get user photo
+            using (var photoStream = await _graphServiceClient
                 .Me
+                .Photo
+                .Content
                 .Request()
                 .WithScopes("User.ReadBasic.All", "user.read")
                 .GetAsync()
-                .ConfigureAwait(false);
+                .ConfigureAwait(false))
+            {
+                byte[] photoByte = ((MemoryStream)photoStream).ToArray();
+                photo = Convert.ToBase64String(photoByte);
+            }
+
+            return photo;
         }
-
-        public async Task<string> GetGraphApiProfilePhoto()
+        catch
         {
-            try
-            {
-                var photo = string.Empty;
-                // Get user photo
-                using (var photoStream = await _graphServiceClient
-                    .Me
-                    .Photo
-                    .Content
-                    .Request()
-                    .WithScopes("User.ReadBasic.All", "user.read")
-                    .GetAsync()
-                    .ConfigureAwait(false))
-                {
-                    byte[] photoByte = ((MemoryStream)photoStream).ToArray();
-                    photo = Convert.ToBase64String(photoByte);
-                }
-
-                return photo;
-            }
-            catch
-            {
-                return string.Empty;
-            }
+            return string.Empty;
         }
     }
 }
-
