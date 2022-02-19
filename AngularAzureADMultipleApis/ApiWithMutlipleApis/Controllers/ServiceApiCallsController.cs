@@ -24,8 +24,7 @@ namespace ApiWithMutlipleApis.Controllers
         [HttpGet]
         public async Task<IEnumerable<string>> Get()
         {
-            return await _serviceApiClientService.GetApiDataAsync()
-                .ConfigureAwait(false);
+            return await _serviceApiClientService.GetApiDataAsync();
         }
     }
 }
