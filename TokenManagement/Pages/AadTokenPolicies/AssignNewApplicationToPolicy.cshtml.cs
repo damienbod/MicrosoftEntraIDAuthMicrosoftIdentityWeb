@@ -6,73 +6,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TokenManagement.Pages
-{
-    [AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })]
-    public class AssignNewApplicationToPolicyModel : PageModel
-    {
-        private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
+namespace TokenManagement.Pages;
 
-        public AssignNewApplicationToPolicyModel(TokenLifetimePolicyGraphApiService tokenLifetimePolicyGraphApiService)
+[AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })]
+public class AssignNewApplicationToPolicyModel : PageModel
+{
+    private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
+
+    public AssignNewApplicationToPolicyModel(TokenLifetimePolicyGraphApiService tokenLifetimePolicyGraphApiService)
+    {
+        _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
+    }
+
+    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
+
+    public string ApplicationGraphId { get; set; }
+    public List<SelectListItem> ApplicationOptions { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(string id)
+    {
+        if (id == null)
         {
-            _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
+            return NotFound();
         }
 
-        public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
-
-        public string ApplicationGraphId { get; set; }
-        public List<SelectListItem> ApplicationOptions { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(string id)
+        var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
+        TokenLifetimePolicyDto = new TokenLifetimePolicyDto
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            Definition = policy.Definition.FirstOrDefault(),
+            DisplayName = policy.DisplayName,
+            IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
+            Id = policy.Id
+        };
 
-            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id).ConfigureAwait(false);
-            TokenLifetimePolicyDto = new TokenLifetimePolicyDto
-            {
-                Definition = policy.Definition.FirstOrDefault(),
-                DisplayName = policy.DisplayName,
-                IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
-                Id = policy.Id
-            };
+        var singleAndMultipleOrgApplications = await _tokenLifetimePolicyGraphApiService
+            .GetApplicationsSingleOrMultipleOrg();
 
-            var singleAndMultipleOrgApplications = await _tokenLifetimePolicyGraphApiService
-                .GetApplicationsSingleOrMultipleOrg()
-                .ConfigureAwait(false);
+        ApplicationOptions = singleAndMultipleOrgApplications.CurrentPage
+            .Where(app => app.TokenLifetimePolicies != null && app.TokenLifetimePolicies.Count <= 0)
+            .Select(a =>
+                new SelectListItem
+                {
+                    Value = a.Id,
+                    Text = $"{a.DisplayName}" // AppId: {a.AppId}, 
+                }).ToList();
 
-            ApplicationOptions = singleAndMultipleOrgApplications.CurrentPage
-                .Where(app => app.TokenLifetimePolicies != null && app.TokenLifetimePolicies.Count <= 0)
-                .Select(a =>
-                    new SelectListItem
-                    {
-                        Value = a.Id,
-                        Text = $"{a.DisplayName}" // AppId: {a.AppId}, 
-                    }).ToList();
+        if (TokenLifetimePolicyDto == null)
+        {
+            return NotFound();
+        }
+        return Page();
+    }
 
-            if (TokenLifetimePolicyDto == null)
-            {
-                return NotFound();
-            }
+    public async Task<IActionResult> OnPostAsync()
+    {
+        var applicationGraphId = Request.Form["ApplicationGraphId"];
+        var policyId = Request.Form["TokenLifetimePolicyDto.Id"];
+        if (!ModelState.IsValid)
+        {
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            var applicationGraphId = Request.Form["ApplicationGraphId"];
-            var policyId = Request.Form["TokenLifetimePolicyDto.Id"];
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+        await _tokenLifetimePolicyGraphApiService
+            .AssignTokenPolicyToApplicationUsingGraphId(applicationGraphId, policyId);
 
-            await _tokenLifetimePolicyGraphApiService
-                .AssignTokenPolicyToApplicationUsingGraphId(applicationGraphId, policyId)
-                .ConfigureAwait(false);
-
-            return Redirect($"./Details?id={policyId}");
-        }
+        return Redirect($"./Details?id={policyId}");
     }
 }

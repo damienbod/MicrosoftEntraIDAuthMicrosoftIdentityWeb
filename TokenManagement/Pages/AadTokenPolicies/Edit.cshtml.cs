@@ -7,70 +7,69 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Graph;
 using Microsoft.Identity.Web;
 
-namespace TokenManagement.Pages.AadTokenPolicies
-{
-    [AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })]
-    public class EditModel : PageModel
-    {
-        private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
+namespace TokenManagement.Pages.AadTokenPolicies;
 
-        public EditModel(TokenLifetimePolicyGraphApiService tokenLifetimePolicyGraphApiService)
+[AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })]
+public class EditModel : PageModel
+{
+    private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
+
+    public EditModel(TokenLifetimePolicyGraphApiService tokenLifetimePolicyGraphApiService)
+    {
+        _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
+    }
+
+    [BindProperty]
+    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(string id)
+    {
+        if (id == null)
         {
-            _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
+            return NotFound();
         }
 
-        [BindProperty]
-        public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(string id)
+        var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
+        TokenLifetimePolicyDto = new TokenLifetimePolicyDto
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            Definition = policy.Definition.FirstOrDefault(),
+            DisplayName = policy.DisplayName,
+            IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
+            Id = policy.Id
+        };
 
-            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id).ConfigureAwait(false);
-            TokenLifetimePolicyDto = new TokenLifetimePolicyDto
-            {
-                Definition = policy.Definition.FirstOrDefault(),
-                DisplayName = policy.DisplayName,
-                IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
-                Id = policy.Id
-            };
+        if (TokenLifetimePolicyDto == null)
+        {
+            return NotFound();
+        }
+        return Page();
+    }
 
-            if (TokenLifetimePolicyDto == null)
-            {
-                return NotFound();
-            }
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more details, see https://aka.ms/RazorPagesCRUD.
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid)
+        {
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        // get existing
+        var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(TokenLifetimePolicyDto.Id);
+        var tokenLifetimePolicy = new TokenLifetimePolicy
         {
-            if (!ModelState.IsValid)
+            Id = TokenLifetimePolicyDto.Id,
+            Definition = new List<string>()
             {
-                return Page();
-            }
-
-            // get existing
-            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(TokenLifetimePolicyDto.Id).ConfigureAwait(false);
-            var tokenLifetimePolicy = new TokenLifetimePolicy
-            {
-                Id = TokenLifetimePolicyDto.Id,
-                Definition = new List<string>()
-                {
-                    TokenLifetimePolicyDto.Definition
-                },
-                DisplayName = TokenLifetimePolicyDto.DisplayName,
-                IsOrganizationDefault = TokenLifetimePolicyDto.IsOrganizationDefault,
-            };
+                TokenLifetimePolicyDto.Definition
+            },
+            DisplayName = TokenLifetimePolicyDto.DisplayName,
+            IsOrganizationDefault = TokenLifetimePolicyDto.IsOrganizationDefault,
+        };
 
 
-            await _tokenLifetimePolicyGraphApiService.UpdatePolicy(tokenLifetimePolicy).ConfigureAwait(false);
+        await _tokenLifetimePolicyGraphApiService.UpdatePolicy(tokenLifetimePolicy);
 
-            return RedirectToPage("./Index");
-        }
+        return RedirectToPage("./Index");
     }
 }

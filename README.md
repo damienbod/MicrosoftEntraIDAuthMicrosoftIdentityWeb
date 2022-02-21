@@ -5,20 +5,22 @@
 
 # Blogs
 
-<ul>
-	<li><a href="https://damienbod.com/2020/10/01/implement-azure-ad-client-credentials-flow-using-client-certificates-for-service-apis/">Implement Azure AD Client credentials flow using Client Certificates for service APIs</a></li>
-	<li><a href="https://damienbod.com/2020/10/09/using-key-vault-certificates-with-microsoft-identity-web-and-asp-net-core-applications/">Using Key Vault certificates with Microsoft.Identity.Web and ASP.NET Core applications</a></li>
-	<li><a href="https://damienbod.com/2020/10/22/using-encrypted-access-tokens-in-azure-with-microsoft-identity-web-and-azure-app-registrations/">Using encrypted access tokens in Azure with Microsoft.Identity.Web and Azure App registrations</a></li>
-    <li><a href="https://damienbod.com/2020/11/09/implement-a-web-app-and-an-asp-net-core-secure-api-using-azure-ad-which-delegates-to-second-api/">Implement a Web APP and an ASP.NET Core Secure API using Azure AD which delegates to a second API</a></li>
-	<li><a href="https://damienbod.com/2020/12/08/using-multiple-apis-in-angular-and-asp-net-core-with-azure-ad-authentication/">Using multiple APIs in Angular and ASP.NET Core with Azure AD authentication</a></li>
-	<li><a href="https://damienbod.com/2020/12/14/using-multiple-apis-in-blazor-with-azure-ad-authentication/">Using multiple APIs in Blazor with Azure AD authentication</a></li>
-    <li><a href="https://damienbod.com/2021/01/05/azure-ad-access-token-lifetime-policy-management-in-asp-net-core/">Azure AD Access Token Lifetime Policy Management in ASP.NET Core</a></li>
-	<li><a href="https://damienbod.com/2021/01/28/implement-oauth-device-code-flow-with-azure-ad-and-asp-net-core/">Implement OAUTH Device Code Flow with Azure AD and ASP.NET Core</a></li>
-	<li><a href="https://damienbod.com/2021/02/01/implement-app-roles-authorization-with-azure-ad-and-asp-net-core/">Implement app roles authorization with Azure AD and ASP.NET Core</a></li>
-	<li><a href="https://damienbod.com/2021/03/08/securing-blazor-web-assembly-using-cookies/">Securing Blazor Web assembly using cookies</a></li>
-</ul>
+- [Implement Azure AD Client credentials flow using Client Certificates for service APIs](https://damienbod.com/2020/10/01/implement-azure-ad-client-credentials-flow-using-client-certificates-for-service-apis/)
+- [Using Key Vault certificates with Microsoft.Identity.Web and ASP.NET Core applications](https://damienbod.com/2020/10/09/using-key-vault-certificates-with-microsoft-identity-web-and-asp-net-core-applications/)
+- [Using encrypted access tokens in Azure with Microsoft.Identity.Web and Azure App registrations](https://damienbod.com/2020/10/22/using-encrypted-access-tokens-in-azure-with-microsoft-identity-web-and-azure-app-registrations/)
+- [Implement a Web APP and an ASP.NET Core Secure API using Azure AD which delegates to a second API](https://damienbod.com/2020/11/09/implement-a-web-app-and-an-asp-net-core-secure-api-using-azure-ad-which-delegates-to-second-api/)
+- [Using multiple APIs in Angular and ASP.NET Core with Azure AD authentication](https://damienbod.com/2020/12/08/using-multiple-apis-in-angular-and-asp-net-core-with-azure-ad-authentication/)
+- [Using multiple APIs in Blazor with Azure AD authentication](https://damienbod.com/2020/12/14/using-multiple-apis-in-blazor-with-azure-ad-authentication/)
+- [Azure AD Access Token Lifetime Policy Management in ASP.NET Core](https://damienbod.com/2021/01/05/azure-ad-access-token-lifetime-policy-management-in-asp-net-core/)
+- [Implement OAUTH Device Code Flow with Azure AD and ASP.NET Core](https://damienbod.com/2021/01/28/implement-oauth-device-code-flow-with-azure-ad-and-asp-net-core/)
+- [Implement app roles authorization with Azure AD and ASP.NET Core](https://damienbod.com/2021/02/01/implement-app-roles-authorization-with-azure-ad-and-asp-net-core/)
+- [Securing Blazor Web assembly using cookies](https://damienbod.com/2021/03/08/securing-blazor-web-assembly-using-cookies/)
+- [Implementing authorization in Blazor ASP.NET Core applications using Azure AD security groups](https://damienbod.com)
+
 
 ## History
+
+2022-02-19 Updated nuget packages
 
 2022-01-07 Updated nuget packages
 

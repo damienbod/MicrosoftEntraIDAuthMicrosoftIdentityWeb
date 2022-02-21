@@ -21,8 +21,7 @@ namespace ApiWithMutlipleApis.Services
                 .Me
                 .Request()
                 .WithScopes("User.ReadBasic.All", "user.read")
-                .GetAsync()
-                .ConfigureAwait(false);
+                .GetAsync();
         }
 
         public async Task<string> GetGraphApiProfilePhoto()
@@ -37,8 +36,7 @@ namespace ApiWithMutlipleApis.Services
                     .Content
                     .Request()
                     .WithScopes("User.ReadBasic.All", "user.read")
-                    .GetAsync()
-                    .ConfigureAwait(false))
+                    .GetAsync())
                 {
                     byte[] photoByte = ((MemoryStream)photoStream).ToArray();
                     photo = Convert.ToBase64String(photoByte);

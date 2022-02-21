@@ -1,15 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DeviceFlowWeb.Pages
+namespace DeviceFlowWeb.Pages;
+
+// [Authorize]
+public class IndexModel : PageModel
 {
-   // [Authorize]
-    public class IndexModel : PageModel
+    public void OnGet()
     {
 
-        public void OnGet()
-        {
-
-        }
     }
 }

@@ -14,6 +14,10 @@ https://damienbod.com/2021/03/08/securing-blazor-web-assembly-using-cookies/
 
 ## History
 
+2022-02-10 Updated namespaces
+
+2022-02-06 Updated nuget packages, add authorization
+
 2021-04-15 Updated nuget packages
 
 2021-03-11 Updated nuget packages
@@ -45,3 +49,5 @@ https://github.com/saber-wang/BlazorAppFormTset
 https://jonhilton.net/blazor-wasm-prerendering-missing-http-client/
 
 https://andrewlock.net/enabling-prerendering-for-blazor-webassembly-apps/
+
+https://chrissainty.com/securing-your-blazor-apps-configuring-policy-based-authorization-with-blazor/

@@ -5,69 +5,67 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
 
-namespace TokenManagement.Pages.AadTokenPolicies
-{
-    [AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })]
-    public class DetailsModel : PageModel
-    {
-        private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
+namespace TokenManagement.Pages.AadTokenPolicies;
 
-        public DetailsModel(TokenLifetimePolicyGraphApiService tokenLifetimePolicyGraphApiService)
+[AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })]
+public class DetailsModel : PageModel
+{
+    private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
+
+    public DetailsModel(TokenLifetimePolicyGraphApiService tokenLifetimePolicyGraphApiService)
+    {
+        _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
+    }
+
+    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
+
+    public List<PolicyAssignedApplicationsDto> PolicyAssignedApplications { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(string id)
+    {
+        if (id == null)
         {
-            _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
+            return NotFound();
         }
 
-        public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
-
-        public List<PolicyAssignedApplicationsDto> PolicyAssignedApplications { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(string id)
+        var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
+        TokenLifetimePolicyDto = new TokenLifetimePolicyDto
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            Definition = policy.Definition.FirstOrDefault(),
+            DisplayName = policy.DisplayName,
+            IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
+            Id = policy.Id
+        };
 
-            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id).ConfigureAwait(false);
-            TokenLifetimePolicyDto = new TokenLifetimePolicyDto
-            {
-                Definition = policy.Definition.FirstOrDefault(),
-                DisplayName = policy.DisplayName,
-                IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
-                Id = policy.Id
-            };
+        if (TokenLifetimePolicyDto == null)
+        {
+            return NotFound();
+        }
 
-            if (TokenLifetimePolicyDto == null)
-            {
-                return NotFound();
-            }
+        var applications = await _tokenLifetimePolicyGraphApiService.PolicyAppliesTo(id);
+        PolicyAssignedApplications = applications.CurrentPage.Select(app => new PolicyAssignedApplicationsDto
+        {
+            Id = app.Id,
+            DisplayName = (app as Microsoft.Graph.Application).DisplayName,
+            AppId = (app as Microsoft.Graph.Application).AppId,
+            SignInAudience = (app as Microsoft.Graph.Application).SignInAudience
 
-            var applications = await _tokenLifetimePolicyGraphApiService.PolicyAppliesTo(id).ConfigureAwait(false);
-            PolicyAssignedApplications = applications.CurrentPage.Select(app => new PolicyAssignedApplicationsDto
-            {
-                Id = app.Id,
-                DisplayName = (app as Microsoft.Graph.Application).DisplayName,
-                AppId = (app as Microsoft.Graph.Application).AppId,
-                SignInAudience = (app as Microsoft.Graph.Application).SignInAudience
+        }).ToList();
+        return Page();
+    }
 
-            }).ToList();
+    public async Task<IActionResult> OnPostAsync()
+    {
+        var appId = Request.Form["item.AppId"];
+        var policyId = Request.Form["TokenLifetimePolicyDto.Id"];
+        if (!ModelState.IsValid)
+        {
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            var appId = Request.Form["item.AppId"];
-            var policyId = Request.Form["TokenLifetimePolicyDto.Id"];
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+        await _tokenLifetimePolicyGraphApiService
+            .RemovePolicyFromApplication(appId, policyId);
 
-            await _tokenLifetimePolicyGraphApiService
-                .RemovePolicyFromApplication(appId, policyId)
-                .ConfigureAwait(false);
-
-            return Redirect($"./Details?id={policyId}");
-        }
+        return Redirect($"./Details?id={policyId}");
     }
 }

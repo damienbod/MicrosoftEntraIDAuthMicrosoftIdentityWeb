@@ -1,63 +1,61 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
 
-namespace TokenManagement.Pages.AadTokenPolicies
+namespace TokenManagement.Pages.AadTokenPolicies;
+
+[AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })]
+public class DeleteModel : PageModel
 {
-    [AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })]
-    public class DeleteModel : PageModel
+    private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
+
+    public DeleteModel(TokenLifetimePolicyGraphApiService tokenLifetimePolicyGraphApiService)
     {
-        private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
+        _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
+    }
 
-        public DeleteModel(TokenLifetimePolicyGraphApiService tokenLifetimePolicyGraphApiService)
+    [BindProperty]
+    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(string id)
+    {
+        if (id == null)
         {
-            _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
+            return NotFound();
         }
 
-        [BindProperty]
-        public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(string id)
+        var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
+        TokenLifetimePolicyDto = new TokenLifetimePolicyDto
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            Definition = policy.Definition.FirstOrDefault(),
+            DisplayName = policy.DisplayName,
+            IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
+            Id = policy.Id
+        };
 
-            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
-            TokenLifetimePolicyDto = new TokenLifetimePolicyDto
-            {
-                Definition = policy.Definition.FirstOrDefault(),
-                DisplayName = policy.DisplayName,
-                IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
-                Id = policy.Id
-            };
+        if (TokenLifetimePolicyDto == null)
+        {
+            return NotFound();
+        }
+        return Page();
+    }
 
-            if (TokenLifetimePolicyDto == null)
-            {
-                return NotFound();
-            }
-            return Page();
+    public async Task<IActionResult> OnPostAsync(string id)
+    {
+        if (id == null)
+        {
+            return NotFound();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id)
+        var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
+
+        if (policy != null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id).ConfigureAwait(false);
-
-            if (policy != null)
-            {
-                await _tokenLifetimePolicyGraphApiService.DeletePolicy(policy.Id).ConfigureAwait(false);
-            }
-
-            return RedirectToPage("./Index");
+            await _tokenLifetimePolicyGraphApiService.DeletePolicy(policy.Id);
         }
+
+        return RedirectToPage("./Index");
     }
 }

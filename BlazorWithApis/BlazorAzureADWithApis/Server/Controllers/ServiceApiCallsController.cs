@@ -6,25 +6,24 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Web;
 
-namespace BlazorAzureADWithApis.Server.Controllers
+namespace BlazorAzureADWithApis.Server.Controllers;
+
+[Authorize(Policy = "ValidateAccessTokenPolicy", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+[AuthorizeForScopes(Scopes = new string[] { "api://2b50a014-f353-4c10-aace-024f19a55569/access_as_user" })]
+[ApiController]
+[Route("[controller]")]
+public class ServiceApiCallsController : ControllerBase
 {
-    [Authorize(Policy = "ValidateAccessTokenPolicy", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [AuthorizeForScopes(Scopes = new string[] { "api://2b50a014-f353-4c10-aace-024f19a55569/access_as_user" })]
-    [ApiController]
-    [Route("[controller]")]
-    public class ServiceApiCallsController : ControllerBase
+    private ServiceApiClientService _serviceApiClientService;
+
+    public ServiceApiCallsController(ServiceApiClientService serviceApiClientService)
     {
-        private ServiceApiClientService _serviceApiClientService;
+        _serviceApiClientService = serviceApiClientService;
+    }
 
-        public ServiceApiCallsController(ServiceApiClientService serviceApiClientService)
-        {
-            _serviceApiClientService = serviceApiClientService;
-        }
-
-        [HttpGet]
-        public async Task<IEnumerable<string>> Get()
-        {
-            return await _serviceApiClientService.GetApiDataAsync().ConfigureAwait(false);
-        }
+    [HttpGet]
+    public async Task<IEnumerable<string>> Get()
+    {
+        return await _serviceApiClientService.GetApiDataAsync().ConfigureAwait(false);
     }
 }

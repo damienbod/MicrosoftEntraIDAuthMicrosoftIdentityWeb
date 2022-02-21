@@ -2,21 +2,20 @@
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 
-namespace MyServerRenderedPortal.Pages
+namespace MyServerRenderedPortal.Pages;
+
+public class CallApiModel : PageModel
 {
-    public class CallApiModel : PageModel
+    private readonly ApiService _apiService;
+
+    public JArray DataFromApi { get; set; }
+    public CallApiModel(ApiService apiService)
     {
-        private readonly ApiService _apiService;
+        _apiService = apiService;
+    }
 
-        public JArray DataFromApi { get; set; }
-        public CallApiModel(ApiService apiService)
-        {
-            _apiService = apiService;
-        }
-
-        public async Task OnGetAsync()
-        {
-            DataFromApi = await _apiService.GetApiDataAsync().ConfigureAwait(false);
-        }
+    public async Task OnGetAsync()
+    {
+        DataFromApi = await _apiService.GetApiDataAsync().ConfigureAwait(false);
     }
 }
