@@ -15,7 +15,7 @@
 - [Implement OAUTH Device Code Flow with Azure AD and ASP.NET Core](https://damienbod.com/2021/01/28/implement-oauth-device-code-flow-with-azure-ad-and-asp-net-core/)
 - [Implement app roles authorization with Azure AD and ASP.NET Core](https://damienbod.com/2021/02/01/implement-app-roles-authorization-with-azure-ad-and-asp-net-core/)
 - [Securing Blazor Web assembly using cookies](https://damienbod.com/2021/03/08/securing-blazor-web-assembly-using-cookies/)
-- [Implementing authorization in Blazor ASP.NET Core applications using Azure AD security groups](https://damienbod.com)
+- [Implementing authorization in Blazor ASP.NET Core applications using Azure AD security groups](https://damienbod.com/2022/02/21/implementing-authorization-in-blazor-asp-net-core-applications-using-azure-ad-security-groups/)
 
 
 ## History
