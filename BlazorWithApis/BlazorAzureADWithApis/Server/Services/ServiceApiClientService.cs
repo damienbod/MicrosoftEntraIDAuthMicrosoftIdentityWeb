@@ -25,7 +25,8 @@ public class ServiceApiClientService
     {
         var client = _clientFactory.CreateClient();
 
-        var scope = "api://b178f3a5-7588-492a-924f-72d7887b7e48/.default"; // CC flow access_as_application";
+        // CC flow access_as_application" (App Role in Azure AD app registration)
+        var scope = "api://b178f3a5-7588-492a-924f-72d7887b7e48/.default"; 
         var accessToken = await _tokenAcquisition.GetAccessTokenForAppAsync(scope);
 
         client.BaseAddress = new Uri("https://localhost:44324");
