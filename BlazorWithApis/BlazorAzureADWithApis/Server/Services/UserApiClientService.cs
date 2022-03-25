@@ -21,9 +21,8 @@ public class UserApiClientService
         _tokenAcquisition = tokenAcquisition;
     }
 
-    public async Task<IEnumerable<string>> GetApiDataAsync()
+    public async Task<IEnumerable<string>?> GetApiDataAsync()
     {
-
         var client = _clientFactory.CreateClient();
 
         var scopes = new List<string> { "api://b2a09168-54e2-4bc4-af92-a710a64ef1fa/access_as_user" };

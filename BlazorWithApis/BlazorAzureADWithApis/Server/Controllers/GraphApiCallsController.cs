@@ -14,7 +14,7 @@ namespace BlazorAzureADWithApis.Server.Controllers;
 [Route("[controller]")]
 public class GraphApiCallsController : ControllerBase
 {
-    private GraphApiClientService _graphApiClientService;
+    private readonly GraphApiClientService _graphApiClientService;
 
     public GraphApiCallsController(GraphApiClientService graphApiClientService)
     {

@@ -21,7 +21,7 @@ public class ServiceApiClientService
         _tokenAcquisition = tokenAcquisition;
     }
 
-    public async Task<IEnumerable<string>> GetApiDataAsync()
+    public async Task<IEnumerable<string>?> GetApiDataAsync()
     {
 
         var client = _clientFactory.CreateClient();

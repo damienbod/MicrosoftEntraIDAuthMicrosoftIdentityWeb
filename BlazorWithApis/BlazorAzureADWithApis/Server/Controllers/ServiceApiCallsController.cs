@@ -14,7 +14,7 @@ namespace BlazorAzureADWithApis.Server.Controllers;
 [Route("[controller]")]
 public class ServiceApiCallsController : ControllerBase
 {
-    private ServiceApiClientService _serviceApiClientService;
+    private readonly ServiceApiClientService _serviceApiClientService;
 
     public ServiceApiCallsController(ServiceApiClientService serviceApiClientService)
     {
@@ -22,7 +22,7 @@ public class ServiceApiCallsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<string>> Get()
+    public async Task<IEnumerable<string>?> Get()
     {
         return await _serviceApiClientService.GetApiDataAsync();
     }

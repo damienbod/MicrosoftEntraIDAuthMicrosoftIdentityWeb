@@ -26,7 +26,7 @@ public class HasServiceApiRoleHandler : AuthorizationHandler<HasServiceApiRoleRe
         return Task.CompletedTask;
     }
 
-    private bool HasServiceApiRole(IEnumerable<Claim> roleClaims)
+    private static bool HasServiceApiRole(IEnumerable<Claim> roleClaims)
     {
         // we could also validate the "access_as_application" scope
         foreach (var role in roleClaims)
