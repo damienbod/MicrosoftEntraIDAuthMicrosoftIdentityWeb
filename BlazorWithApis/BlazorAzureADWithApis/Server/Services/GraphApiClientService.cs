@@ -21,8 +21,7 @@ public class GraphApiClientService
             .Me
             .Request()
             .WithScopes("User.ReadBasic.All", "user.read")
-            .GetAsync()
-            .ConfigureAwait(false);
+            .GetAsync();
     }
 
     public async Task<string> GetGraphApiProfilePhoto()

@@ -36,7 +36,7 @@ else
     {
         try
         {
-            apiData = await Http.GetFromJsonAsync<string[]>("ServiceApiCalls").ConfigureAwait(false);
+            apiData = await Http.GetFromJsonAsync<string[]>("ServiceApiCalls");
         }
         catch (AccessTokenNotAvailableException exception)
         {

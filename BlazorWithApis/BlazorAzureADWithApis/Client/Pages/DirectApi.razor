@@ -36,7 +36,7 @@ else
     {
         try
         {
-            apiData = await Http.GetFromJsonAsync<string[]>("DirectApi").ConfigureAwait(false);
+            apiData = await Http.GetFromJsonAsync<string[]>("DirectApi");
         }
         catch (AccessTokenNotAvailableException exception)
         {

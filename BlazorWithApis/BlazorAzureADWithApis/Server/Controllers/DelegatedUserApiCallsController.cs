@@ -25,6 +25,6 @@ public class DelegatedUserApiCallsController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<string>> Get()
     {
-        return await _userApiClientService.GetApiDataAsync().ConfigureAwait(false);
+        return await _userApiClientService.GetApiDataAsync();
     }
 }

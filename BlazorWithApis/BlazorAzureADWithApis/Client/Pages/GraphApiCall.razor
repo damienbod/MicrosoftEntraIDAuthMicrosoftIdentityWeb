@@ -36,7 +36,7 @@ else
     {
         try
         {
-            apiData = await Http.GetFromJsonAsync<string[]>("GraphApiCalls").ConfigureAwait(false);
+            apiData = await Http.GetFromJsonAsync<string[]>("GraphApiCalls");
         }
         catch (AccessTokenNotAvailableException exception)
         {
