@@ -28,7 +28,7 @@ public class Startup
 
         services.AddOptions();
 
-        string[] initialScopes = Configuration.GetValue<string>("ApiWithRoles:ScopeForAccessToken")?.Split(' ');
+        string[]? initialScopes = Configuration.GetValue<string>("ApiWithRoles:ScopeForAccessToken")?.Split(' ');
 
         services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApp(options =>
