@@ -8,10 +8,10 @@ public class UserInfo
 
     public bool IsAuthenticated { get; set; }
 
-    public string NameClaimType { get; set; }
+    public string? NameClaimType { get; set; }
 
-    public string RoleClaimType { get; set; }
+    public string? RoleClaimType { get; set; }
 
-    public ICollection<ClaimValue> Claims { get; set; }
+    public ICollection<ClaimValue> Claims { get; set; } = new List<ClaimValue>();
 }
 

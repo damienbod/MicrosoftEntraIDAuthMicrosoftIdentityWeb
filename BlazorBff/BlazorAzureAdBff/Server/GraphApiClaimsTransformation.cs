@@ -26,13 +26,16 @@ public class GraphApiClaimsTransformation : IClaimsTransformation
             var objectidentifierClaimType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
             var objectIdentifier = principal.Claims.FirstOrDefault(t => t.Type == objectidentifierClaimType);
 
-            var groupIds = await _msGraphApplicationService
-                .GetGraphUserMemberGroups(objectIdentifier.Value);
-
-            foreach (var groupId in groupIds.ToList())
+            if(objectIdentifier != null)
             {
-                var claim = GetGroupClaim(groupId);
-                if (claim != null) claimsIdentity.AddClaim(claim);
+                var groupIds = await _msGraphApplicationService
+                    .GetGraphUserMemberGroups(objectIdentifier.Value);
+
+                foreach (var groupId in groupIds.ToList())
+                {
+                    var claim = GetGroupClaim(groupId);
+                    if (claim != null) claimsIdentity.AddClaim(claim);
+                }
             }
         }
 
@@ -40,9 +43,9 @@ public class GraphApiClaimsTransformation : IClaimsTransformation
         return principal;
     }
 
-    private Claim GetGroupClaim(string groupId)
+    private static Claim? GetGroupClaim(string groupId)
     {
-        Dictionary<string, Claim> mappings = new Dictionary<string, Claim>() {
+        Dictionary<string, Claim> mappings = new() {
             { "1d9fba7e-b98a-45ec-b576-7ee77366cf10",
                 new Claim(Policies.DemoUsersIdentifier, Policies.DemoUsersValue)},
 
