@@ -56,6 +56,8 @@ public class Startup
 
         services.AddSwaggerGen(c =>
         {
+            c.EnableAnnotations();
+
             // add JWT Authentication
             var securityScheme = new OpenApiSecurityScheme
             {
@@ -81,7 +83,7 @@ public class Startup
             {
                 Title = "Service API One",
                 Version = "v1",
-                Description = "User API One",
+                Description = "Service API One",
                 Contact = new OpenApiContact
                 {
                     Name = "damienbod",
