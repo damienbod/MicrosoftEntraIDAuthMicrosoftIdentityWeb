@@ -1,16 +1,16 @@
+using System;
+using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Logging;
-using Serilog;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System;
+using Serilog;
 
 namespace ServiceApi;
 
@@ -74,7 +74,7 @@ public class Startup
             c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
             c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
-                {securityScheme, new string[] { }}
+                {securityScheme, Array.Empty<string>()}
             });
 
             c.SwaggerDoc("v1", new OpenApiInfo

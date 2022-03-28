@@ -10,9 +10,10 @@ public class ClientWithRolesApiModel : PageModel
 {
     private readonly ClientApiWithRolesService _apiService;
 
-    public JArray UserDataFromApi { get; set; }
-    public JArray StudentDataFromApi { get; set; }
-    public JArray AdminDataFromApi { get; set; }
+    public JArray? UserDataFromApi { get; set; }
+    public JArray? StudentDataFromApi { get; set; }
+    public JArray? AdminDataFromApi { get; set; }
+
     public ClientWithRolesApiModel(ClientApiWithRolesService apiService)
     {
         _apiService = apiService;

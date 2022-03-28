@@ -30,13 +30,13 @@ else
 }
 
 @code {
-    private string[] apiData;
+    private string[]? apiData;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            apiData = await Http.GetFromJsonAsync<string[]>("GraphApiCalls").ConfigureAwait(false);
+            apiData = await Http.GetFromJsonAsync<string[]>("GraphApiCalls");
         }
         catch (AccessTokenNotAvailableException exception)
         {

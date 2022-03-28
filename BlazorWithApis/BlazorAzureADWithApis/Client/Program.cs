@@ -30,6 +30,6 @@ public class Program
             options.ProviderOptions.DefaultAccessTokenScopes.Add("api://2b50a014-f353-4c10-aace-024f19a55569/access_as_user");
         });
 
-        await builder.Build().RunAsync().ConfigureAwait(false);
+        await builder.Build().RunAsync();
     }
 }

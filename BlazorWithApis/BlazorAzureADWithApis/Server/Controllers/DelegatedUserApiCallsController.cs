@@ -14,8 +14,7 @@ namespace BlazorAzureADWithApis.Server.Controllers;
 [Route("[controller]")]
 public class DelegatedUserApiCallsController : ControllerBase
 {
-    private UserApiClientService _userApiClientService;
-    static readonly string[] scopeRequiredByApi = new string[] { "access_as_user" };
+    private readonly UserApiClientService _userApiClientService;
 
     public DelegatedUserApiCallsController(UserApiClientService userApiClientService)
     {
@@ -23,8 +22,8 @@ public class DelegatedUserApiCallsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<string>> Get()
+    public async Task<IEnumerable<string>?> Get()
     {
-        return await _userApiClientService.GetApiDataAsync().ConfigureAwait(false);
+        return await _userApiClientService.GetApiDataAsync();
     }
 }

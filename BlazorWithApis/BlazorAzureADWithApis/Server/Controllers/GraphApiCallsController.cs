@@ -14,7 +14,7 @@ namespace BlazorAzureADWithApis.Server.Controllers;
 [Route("[controller]")]
 public class GraphApiCallsController : ControllerBase
 {
-    private GraphApiClientService _graphApiClientService;
+    private readonly GraphApiClientService _graphApiClientService;
 
     public GraphApiCallsController(GraphApiClientService graphApiClientService)
     {
@@ -24,7 +24,7 @@ public class GraphApiCallsController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<string>> Get()
     {
-        var userData = await _graphApiClientService.GetGraphApiUser().ConfigureAwait(false);
+        var userData = await _graphApiClientService.GetGraphApiUser();
         return new List<string> { $"DisplayName: {userData.DisplayName}",
             $"GivenName: {userData.GivenName}", $"AboutMe: {userData.AboutMe}" };
     }

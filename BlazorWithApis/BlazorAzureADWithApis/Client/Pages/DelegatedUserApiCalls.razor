@@ -30,14 +30,13 @@ else
 }
 
 @code {
-    private string[] apiData;
+    private string[]? apiData;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            apiData = await Http.GetFromJsonAsync<string[]>("DelegatedUserApiCalls")
-                .ConfigureAwait(false);
+            apiData = await Http.GetFromJsonAsync<string[]>("DelegatedUserApiCalls");
         }
         catch (AccessTokenNotAvailableException exception)
         {

@@ -42,7 +42,7 @@ public class Startup
         services.AddHttpClient();
         services.AddOptions();
 
-        string[] initialScopes = Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
+        string[]? initialScopes = Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
 
         services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
             .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
