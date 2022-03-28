@@ -16,6 +16,7 @@
 - [Implement app roles authorization with Azure AD and ASP.NET Core](https://damienbod.com/2021/02/01/implement-app-roles-authorization-with-azure-ad-and-asp-net-core/)
 - [Securing Blazor Web assembly using cookies](https://damienbod.com/2021/03/08/securing-blazor-web-assembly-using-cookies/)
 - [Implementing authorization in Blazor ASP.NET Core applications using Azure AD security groups](https://damienbod.com/2022/02/21/implementing-authorization-in-blazor-asp-net-core-applications-using-azure-ad-security-groups/)
+- [Implementing OAuth2 APP to APP security using Azure AD from a Web APP](https://damienbod.com/2022/03/28/implementing-oauth2-app-to-app-security-using-azure-ad-from-a-web-app/)
 
 
 ## History
