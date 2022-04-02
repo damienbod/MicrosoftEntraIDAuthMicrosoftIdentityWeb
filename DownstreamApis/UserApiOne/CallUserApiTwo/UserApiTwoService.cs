@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Web;
-using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace UserApiOne;
@@ -23,7 +24,7 @@ public class UserApiTwoService
         _configuration = configuration;
     }
 
-    public async Task<JArray> GetApiDataAsync()
+    public async Task<List<WeatherForecast>?> GetApiDataAsync()
     {
         var client = _clientFactory.CreateClient();
 
@@ -38,8 +39,8 @@ public class UserApiTwoService
         var response = await client.GetAsync("weatherforecast");
         if (response.IsSuccessStatusCode)
         {
-            var responseContent = await response.Content.ReadAsStringAsync();
-            var data = JArray.Parse(responseContent);
+            var data = await JsonSerializer.DeserializeAsync<List<WeatherForecast>?>(
+                await response.Content.ReadAsStreamAsync());
 
             return data;
         }

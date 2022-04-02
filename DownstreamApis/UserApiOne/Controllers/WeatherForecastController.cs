@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
-using Newtonsoft.Json.Linq;
 
 namespace UserApiOne.Controllers
 {
@@ -19,7 +18,7 @@ namespace UserApiOne.Controllers
     {
         private readonly UserApiTwoService _apiService;
 
-        public JArray? DataFromApi { get; set; }
+        public List<WeatherForecast>? DataFromApi { get; set; }
 
         private static readonly string[] Summaries = new[]
         {
@@ -32,7 +31,7 @@ namespace UserApiOne.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<WeatherForecast>> Get()
+        public async Task<IEnumerable<WeatherForecast>?> Get()
         {
             var scopeRequiredByApi = new string[] { "access_as_user" };
             HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
