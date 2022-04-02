@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>aspnet-UserApiOne-2ba0bbf9-49f5-452e-8333-1e33a467b74e</UserSecretsId>
     <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
+	<Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

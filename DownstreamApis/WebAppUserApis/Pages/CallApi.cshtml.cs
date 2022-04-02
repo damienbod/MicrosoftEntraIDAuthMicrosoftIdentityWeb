@@ -10,7 +10,8 @@ public class CallApiModel : PageModel
 {
     private readonly UserApiOneService _apiService;
 
-    public JArray DataFromApi { get; set; }
+    public JArray? DataFromApi { get; set; }
+
     public CallApiModel(UserApiOneService apiService)
     {
         _apiService = apiService;

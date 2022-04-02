@@ -19,7 +19,7 @@ namespace UserApiOne.Controllers
     {
         private readonly UserApiTwoService _apiService;
 
-        public JArray DataFromApi { get; set; }
+        public JArray? DataFromApi { get; set; }
 
         private static readonly string[] Summaries = new[]
         {
