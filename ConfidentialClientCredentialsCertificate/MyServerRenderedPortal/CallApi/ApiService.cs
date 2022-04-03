@@ -4,8 +4,8 @@ using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
-using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
@@ -28,14 +28,14 @@ public class ApiService
         _logger = loggerFactory.CreateLogger<ApiService>();
     }
 
-    public async Task<JArray> GetApiDataAsync()
+    public async Task<IEnumerable<WeatherForecast>?> GetApiDataAsync()
     {
         // Use Key Vault to get certificate
         var azureServiceTokenProvider = new AzureServiceTokenProvider();
 
         // Get the certificate from Key Vault
         var identifier = _configuration["CallApi:ClientCertificates:0:KeyVaultCertificateName"];
-        var cert = await GetCertificateAsync(identifier).ConfigureAwait(false);
+        var cert = await GetCertificateAsync(identifier);
 
         var client = _clientFactory.CreateClient();
 
@@ -50,18 +50,18 @@ public class ApiService
                     enablePiiLogging: true, enableDefaultPlatformLogging: true)
                 .Build();
 
-        var accessToken = await app.AcquireTokenForClient(new[] { scope }).ExecuteAsync().ConfigureAwait(false);
+        var accessToken = await app.AcquireTokenForClient(new[] { scope }).ExecuteAsync();
 
         client.BaseAddress = new Uri(_configuration["CallApi:ApiBaseAddress"]);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken.AccessToken);
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
         // use access token and get payload
-        var response = await client.GetAsync("weatherforecast").ConfigureAwait(false);
+        var response = await client.GetAsync("weatherforecast");
         if (response.IsSuccessStatusCode)
         {
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var data = JArray.Parse(responseContent);
+            var responseContent = await response.Content.ReadAsStringAsync();
+            var data = System.Text.Json.JsonSerializer.Deserialize<IEnumerable<WeatherForecast>>(responseContent);
 
             return data;
         }
@@ -77,13 +77,12 @@ public class ApiService
         // Create a new secret using the secret client.
         var secretName = identitifier;
         //var secretVersion = "";
-        KeyVaultSecret secret = await secretClient.GetSecretAsync(secretName).ConfigureAwait(false);
+        KeyVaultSecret secret = await secretClient.GetSecretAsync(secretName);
 
         var privateKeyBytes = Convert.FromBase64String(secret.Value);
 
         var certificateWithPrivateKey = new X509Certificate2(privateKeyBytes,
-            (string)null,
-            X509KeyStorageFlags.MachineKeySet);
+            string.Empty, X509KeyStorageFlags.MachineKeySet);
 
         return certificateWithPrivateKey;
     }

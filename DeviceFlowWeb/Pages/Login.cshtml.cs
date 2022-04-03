@@ -12,9 +12,9 @@ public class LoginModel : PageModel
     private readonly DeviceFlowService _deviceFlowService;
     private readonly AuthenticationSignInService _authenticationSignInService;
 
-    public string AuthenticatorUri { get; set; }
+    public string? AuthenticatorUri { get; set; }
 
-    public string UserCode { get; set; }
+    public string? UserCode { get; set; }
 
     public LoginModel(DeviceFlowService deviceFlowService, AuthenticationSignInService authenticationSignInService)
     {
@@ -49,18 +49,21 @@ public class LoginModel : PageModel
             interval = 5;
         }
 
-        var tokenresponse = await _deviceFlowService.PollTokenRequests(deviceCode, interval.Value);
-
-        if (tokenresponse.IsError)
+        if(deviceCode != null && interval != null)
         {
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return Page();
-        }
+            var tokenresponse = await _deviceFlowService.PollTokenRequests(deviceCode, interval.Value);
 
-        await _authenticationSignInService.SignIn(HttpContext,
-            tokenresponse.AccessToken, 
+            if (tokenresponse.IsError)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return Page();
+            }
+
+            await _authenticationSignInService.SignIn(HttpContext,
+            tokenresponse.AccessToken,
             tokenresponse.IdentityToken,
             tokenresponse.ExpiresIn);
+        }
 
         return Redirect("/Index");
     }
