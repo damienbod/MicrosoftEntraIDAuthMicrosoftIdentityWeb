@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MyServerRenderedPortal.Pages;
@@ -8,7 +8,8 @@ public class CallApiModel : PageModel
 {
     private readonly ApiService _apiService;
 
-    public JArray DataFromApi { get; set; }
+    public IEnumerable<WeatherForecast>? DataFromApi { get; set; }
+
     public CallApiModel(ApiService apiService)
     {
         _apiService = apiService;
@@ -16,6 +17,6 @@ public class CallApiModel : PageModel
 
     public async Task OnGetAsync()
     {
-        DataFromApi = await _apiService.GetApiDataAsync().ConfigureAwait(false);
+        DataFromApi = await _apiService.GetApiDataAsync();
     }
 }
