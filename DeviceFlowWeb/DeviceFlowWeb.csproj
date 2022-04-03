@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>7953929f-5999-4847-b4b8-2f6cf964f467</UserSecretsId>
+	<Nullable>enable</Nullable>
   </PropertyGroup>
 
-
   <ItemGroup>
-	  <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
-	  <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.2" />
+	<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+	<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.2" />
     <PackageReference Include="IdentityModel" Version="5.0.1" />
     <PackageReference Include="NWebsec.AspNetCore.Middleware" Version="3.0.0" />
