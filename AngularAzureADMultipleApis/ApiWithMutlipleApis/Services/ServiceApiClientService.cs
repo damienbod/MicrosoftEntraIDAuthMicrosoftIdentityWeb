@@ -40,7 +40,10 @@ namespace ApiWithMutlipleApis.Services
                 var data = await JsonSerializer.DeserializeAsync<List<string>>(
                     await response.Content.ReadAsStreamAsync());
 
-                return data;
+                if(data != null)
+                    return data;
+
+                return Array.Empty<string>();
             }
 
             throw new ApplicationException("oh no...");
