@@ -10,7 +10,8 @@ var builder = new ConfigurationBuilder()
 var configuration = builder.Build();
 
 // 1. Client client credentials client
-var app = ConfidentialClientApplicationBuilder.Create(configuration["AzureADServiceApi:ClientId"])
+var app = ConfidentialClientApplicationBuilder
+    .Create(configuration["AzureADServiceApi:ClientId"])
     .WithClientSecret(configuration["AzureADServiceApi:ClientSecret"])
     .WithAuthority(configuration["AzureADServiceApi:Authority"])
     .Build();
