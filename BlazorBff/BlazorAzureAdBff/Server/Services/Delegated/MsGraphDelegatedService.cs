@@ -1,8 +1,5 @@
 ﻿using Microsoft.Graph;
 using Microsoft.Identity.Web;
-using System;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace BlazorAzureADWithApis.Server.Services.Delegated;
 

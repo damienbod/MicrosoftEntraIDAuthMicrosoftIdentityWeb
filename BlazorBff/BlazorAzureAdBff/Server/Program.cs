@@ -76,9 +76,9 @@ else
     app.UseExceptionHandler("/Error");
 }
 
-//app.UseSecurityHeaders(
-//    SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment(),
-//        configuration["AzureAd:Instance"]));
+app.UseSecurityHeaders(
+    SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment(),
+        configuration["AzureAd:Instance"]));
 
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();

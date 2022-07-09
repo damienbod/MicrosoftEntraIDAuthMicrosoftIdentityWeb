@@ -8,6 +8,7 @@ using Microsoft.Identity.Web;
 
 namespace BlazorAzureADWithApis.Server.Controllers;
 
+[ValidateAntiForgeryToken]
 [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
 [AuthorizeForScopes(Scopes = new string[] { "User.ReadBasic.All user.read" })]
 [ApiController]
