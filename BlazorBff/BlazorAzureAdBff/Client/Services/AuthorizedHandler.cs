@@ -1,7 +1,4 @@
 ﻿using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace BlazorAzureADWithApis.Client.Services;
 
@@ -21,7 +18,7 @@ public class AuthorizedHandler : DelegatingHandler
     {
         var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
         HttpResponseMessage responseMessage;
-        if (authState.User.Identity != null && !authState.User.Identity.IsAuthenticated)
+        if (authState.User.Identity!= null && !authState.User.Identity.IsAuthenticated)
         {
             // if user is not authenticated, immediately set response status to 401 Unauthorized
             responseMessage = new HttpResponseMessage(HttpStatusCode.Unauthorized);
@@ -33,8 +30,17 @@ public class AuthorizedHandler : DelegatingHandler
 
         if (responseMessage.StatusCode == HttpStatusCode.Unauthorized)
         {
+            var content = await responseMessage.Content.ReadAsStringAsync();
+
             // if server returned 401 Unauthorized, redirect to login page
-            _authenticationStateProvider.SignIn();
+            if (content != null && content.Contains("acr")) // CAE
+            {
+                _authenticationStateProvider.CaeStepUp(content);
+            }
+            else // standard
+            {
+                _authenticationStateProvider.SignIn();
+            }
         }
 
         return responseMessage;
