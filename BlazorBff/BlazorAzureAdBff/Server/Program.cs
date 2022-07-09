@@ -37,12 +37,12 @@ services.AddAntiforgery(options =>
 services.AddHttpClient();
 services.AddOptions();
 
-var scopes = configuration.GetValue<string>("DownstreamApi:Scopes");
-string[] initialScopes = scopes.Split(' ');
+string[]? initialScopes = configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
 
 services.AddMicrosoftIdentityWebAppAuthentication(configuration)
     .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-    .AddMicrosoftGraph("https://graph.microsoft.com/v1.0", scopes)
+        .AddMicrosoftGraph("https://graph.microsoft.com/v1.0",
+        "User.ReadBasic.All user.read")
     .AddInMemoryTokenCaches();
 
 services.AddControllersWithViews(options =>
@@ -76,9 +76,9 @@ else
     app.UseExceptionHandler("/Error");
 }
 
-app.UseSecurityHeaders(
-    SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment(),
-        configuration["AzureAd:Instance"]));
+//app.UseSecurityHeaders(
+//    SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment(),
+//        configuration["AzureAd:Instance"]));
 
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
