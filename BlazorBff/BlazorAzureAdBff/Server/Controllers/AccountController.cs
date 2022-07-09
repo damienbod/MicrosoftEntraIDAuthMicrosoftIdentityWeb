@@ -11,12 +11,23 @@ namespace BlazorAzureADWithApis.Server.Controllers;
 public class AccountController : ControllerBase
 {
     [HttpGet("Login")]
-    public ActionResult Login(string returnUrl)
+    public ActionResult Login(string? returnUrl, string? claimsChallenge)
     {
-        return Challenge(new AuthenticationProperties
+        // var claims = "{\"access_token\":{\"acrs\":{\"essential\":true,\"value\":\"c1\"}}}";
+        // var claims = "{\"id_token\":{\"acrs\":{\"essential\":true,\"value\":\"c1\"}}}";
+        var redirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/";
+
+        var properties = new AuthenticationProperties { RedirectUri = redirectUri };
+
+        if(claimsChallenge != null)
         {
-            RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/"
-        });
+            string jsonString = claimsChallenge.Replace("\\", "")
+                .Trim(new char[1] { '"' });
+
+            properties.Items["claims"] = jsonString;
+        }
+
+        return Challenge(properties);
     }
 
     // [ValidateAntiForgeryToken] // not needed explicitly due the the Auto global definition.
