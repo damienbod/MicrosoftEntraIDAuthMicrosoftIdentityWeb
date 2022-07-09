@@ -1,6 +1,6 @@
 ﻿@page "/demouser"
 @using Microsoft.AspNetCore.Authorization
-@inject IHttpClientFactory HttpClientFactory
+@inject IAntiforgeryHttpClientFactory httpClientFactory
 @inject IJSRuntime JSRuntime
 @attribute [Authorize(Policy ="DemoUsers")]
 
@@ -30,14 +30,11 @@ else
 }
 
 @code {
-    private string[] apiData;
+    private string[]? apiData;
 
     protected override async Task OnInitializedAsync()
     {
-        var token = await JSRuntime.InvokeAsync<string>("getAntiForgeryToken");
-        var client = HttpClientFactory.CreateClient("authorizedClient");
-        client.DefaultRequestHeaders.Add("X-XSRF-TOKEN", token);
-
+        var client = await httpClientFactory.CreateClientAsync();
         apiData = await client.GetFromJsonAsync<string[]>("api/DemoUser");
     }
 }

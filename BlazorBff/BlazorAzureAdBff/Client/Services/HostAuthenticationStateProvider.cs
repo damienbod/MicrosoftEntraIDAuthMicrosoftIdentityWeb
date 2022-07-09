@@ -1,12 +1,8 @@
 ﻿using BlazorAzureADWithApis.Shared.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Net.Http;
 using System.Net.Http.Json;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace BlazorAzureADWithApis.Client.Services;
 
@@ -45,6 +41,14 @@ public class HostAuthenticationStateProvider : AuthenticationStateProvider
         _navigation.NavigateTo(logInUrl.ToString(), true);
     }
 
+    public void CaeStepUp(string claimsChallenge, string? customReturnUrl = null)
+    {
+        var returnUrl = customReturnUrl != null ? _navigation.ToAbsoluteUri(customReturnUrl).ToString() : null;
+        var encodedReturnUrl = Uri.EscapeDataString(returnUrl ?? _navigation.Uri);
+        var logInUrl = _navigation.ToAbsoluteUri($"{LogInPath}?claimsChallenge={claimsChallenge}&returnUrl={encodedReturnUrl}");
+        _navigation.NavigateTo(logInUrl.ToString(), true);
+    }
+
     private async ValueTask<ClaimsPrincipal> GetUser(bool useCache = false)
     {
         var now = DateTimeOffset.Now;
@@ -67,9 +71,8 @@ public class HostAuthenticationStateProvider : AuthenticationStateProvider
 
         try
         {
-            _logger.LogInformation("{clientBaseAddress}", _client?.BaseAddress?.ToString());
-            if(_client != null)
-                user = await _client.GetFromJsonAsync<UserInfo>("api/User");
+            _logger.LogInformation("{clientBaseAddress}", _client.BaseAddress?.ToString());
+            user = await _client.GetFromJsonAsync<UserInfo>("api/User");
         }
         catch (Exception exc)
         {
