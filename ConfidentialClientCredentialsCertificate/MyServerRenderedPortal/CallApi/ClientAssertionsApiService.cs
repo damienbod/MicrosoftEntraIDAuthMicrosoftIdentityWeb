@@ -47,9 +47,9 @@ public class ClientAssertionsApiService
         var scope = _configuration["CallApi:ScopeForAccessToken"];
         var authority = $"{_configuration["CallApi:Instance"]}{_configuration["CallApi:TenantId"]}";
 
-        string signedClientAssertion = GetSignedClientAssertion(cert, _configuration["CallApi:TenantId"]);
-            // OR
-            //string signedClientAssertion = GetSignedClientAssertionAlt(certificate);
+        string signedClientAssertion = GetSignedClientAssertion(cert, 
+            _configuration["CallApi:TenantId"], _configuration["CallApi:ClientId"]);
+
 
         var app = ConfidentialClientApplicationBuilder
                 .Create(_configuration["CallApi:ClientId"])
@@ -109,13 +109,11 @@ public class ClientAssertionsApiService
         _logger.LogInformation("MSAL {level} {containsPii} {message}", level, containsPii, message);
     }
 
-    string GetSignedClientAssertion(X509Certificate2 certificate, string tenantId)
+    string GetSignedClientAssertion(X509Certificate2 certificate, string tenantId, string confidentialClientID)
     {
         //aud = https://login.microsoftonline.com/ + Tenant ID + /v2.0
         string aud = $"https://login.microsoftonline.com/{tenantId}/v2.0";
 
-        // client_id
-        string confidentialClientID = "00000000-0000-0000-0000-000000000000";
 
         // no need to add exp, nbf as JsonWebTokenHandler will add them by default.
         var claims = new Dictionary<string, object>()
