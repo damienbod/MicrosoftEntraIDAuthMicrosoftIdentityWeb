@@ -6,11 +6,11 @@ namespace MyServerRenderedPortal.Pages;
 
 public class CallApiModel : PageModel
 {
-    private readonly ApiService _apiService;
+    private readonly ConfidentialClientApiService _apiService;
 
     public IEnumerable<WeatherForecast>? DataFromApi { get; set; }
 
-    public CallApiModel(ApiService apiService)
+    public CallApiModel(ConfidentialClientApiService apiService)
     {
         _apiService = apiService;
     }
