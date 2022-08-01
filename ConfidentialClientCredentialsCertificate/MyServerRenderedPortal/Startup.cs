@@ -24,6 +24,8 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddTransient<ConfidentialClientApiService>();
+        services.AddTransient<ClientAssertionsApiService>();
+        
         services.AddHttpClient();
 
         services.AddOptions();

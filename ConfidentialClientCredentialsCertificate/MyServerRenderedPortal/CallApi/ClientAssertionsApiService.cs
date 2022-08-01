@@ -4,6 +4,8 @@ using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
+using Microsoft.IdentityModel.JsonWebTokens;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -37,18 +39,33 @@ public class ClientAssertionsApiService
         var identifier = _configuration["CallApi:ClientCertificates:0:KeyVaultCertificateName"];
         var cert = await GetCertificateAsync(identifier);
 
+        if (cert == null)
+            throw new Exception("cert cannot be null");
+
         var client = _clientFactory.CreateClient();
 
         var scope = _configuration["CallApi:ScopeForAccessToken"];
         var authority = $"{_configuration["CallApi:Instance"]}{_configuration["CallApi:TenantId"]}";
 
-        // client credentials flows, get access token
-        IConfidentialClientApplication app = ConfidentialClientApplicationBuilder.Create(_configuration["CallApi:ClientId"])
+        string signedClientAssertion = GetSignedClientAssertion(cert, _configuration["CallApi:TenantId"]);
+            // OR
+            //string signedClientAssertion = GetSignedClientAssertionAlt(certificate);
+
+        var app = ConfidentialClientApplicationBuilder
+                .Create(_configuration["CallApi:ClientId"])
                 .WithAuthority(new Uri(authority))
-                .WithCertificate(cert)
+                .WithClientAssertion(signedClientAssertion)
                 .WithLogging(MyLoggingMethod, Microsoft.Identity.Client.LogLevel.Verbose,
                     enablePiiLogging: true, enableDefaultPlatformLogging: true)
                 .Build();
+
+        // client credentials flows, get access token
+        //IConfidentialClientApplication app = ConfidentialClientApplicationBuilder.Create(_configuration["CallApi:ClientId"])
+        //        .WithAuthority(new Uri(authority))
+        //        .WithCertificate(cert)
+        //        .WithLogging(MyLoggingMethod, Microsoft.Identity.Client.LogLevel.Verbose,
+        //            enablePiiLogging: true, enableDefaultPlatformLogging: true)
+        //        .Build();
 
         var accessToken = await app.AcquireTokenForClient(new[] { scope }).ExecuteAsync();
 
@@ -90,5 +107,34 @@ public class ClientAssertionsApiService
     void MyLoggingMethod(Microsoft.Identity.Client.LogLevel level, string message, bool containsPii)
     {
         _logger.LogInformation("MSAL {level} {containsPii} {message}", level, containsPii, message);
+    }
+
+    string GetSignedClientAssertion(X509Certificate2 certificate, string tenantId)
+    {
+        //aud = https://login.microsoftonline.com/ + Tenant ID + /v2.0
+        string aud = $"https://login.microsoftonline.com/{tenantId}/v2.0";
+
+        // client_id
+        string confidentialClientID = "00000000-0000-0000-0000-000000000000";
+
+        // no need to add exp, nbf as JsonWebTokenHandler will add them by default.
+        var claims = new Dictionary<string, object>()
+            {
+                { "aud", aud },
+                { "iss", confidentialClientID },
+                { "jti", Guid.NewGuid().ToString() },
+                { "sub", confidentialClientID }
+            };
+
+        var securityTokenDescriptor = new SecurityTokenDescriptor
+        {
+            Claims = claims,
+            SigningCredentials = new X509SigningCredentials(certificate)
+        };
+
+        var handler = new JsonWebTokenHandler();
+        var signedClientAssertion = handler.CreateToken(securityTokenDescriptor);
+
+        return signedClientAssertion;
     }
 }
