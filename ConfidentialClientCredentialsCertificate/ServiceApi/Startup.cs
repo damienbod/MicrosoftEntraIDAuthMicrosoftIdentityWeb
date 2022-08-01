@@ -52,6 +52,8 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        IdentityModelEventSource.ShowPII = true;
+
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
