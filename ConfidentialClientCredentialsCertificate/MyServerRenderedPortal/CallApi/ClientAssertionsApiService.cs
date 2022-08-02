@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
+using ServiceApi.HttpLogger;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -50,10 +51,10 @@ public class ClientAssertionsApiService
         string signedClientAssertion = GetSignedClientAssertion(cert, 
             _configuration["CallApi:TenantId"], _configuration["CallApi:ClientId"]);
 
-
         var app = ConfidentialClientApplicationBuilder
                 .Create(_configuration["CallApi:ClientId"])
                 .WithAuthority(new Uri(authority))
+                .WithHttpClientFactory(new MsalHttpClientFactoryLogger(_logger))
                 .WithClientAssertion(signedClientAssertion)
                 .WithLogging(MyLoggingMethod, Microsoft.Identity.Client.LogLevel.Verbose,
                     enablePiiLogging: true, enableDefaultPlatformLogging: true)

@@ -4,6 +4,7 @@ using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
+using ServiceApi.HttpLogger;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -45,6 +46,7 @@ public class ConfidentialClientApiService
         // client credentials flows, get access token
         IConfidentialClientApplication app = ConfidentialClientApplicationBuilder.Create(_configuration["CallApi:ClientId"])
                 .WithAuthority(new Uri(authority))
+                .WithHttpClientFactory(new MsalHttpClientFactoryLogger(_logger))
                 .WithCertificate(cert)
                 .WithLogging(MyLoggingMethod, Microsoft.Identity.Client.LogLevel.Verbose,
                     enablePiiLogging: true, enableDefaultPlatformLogging: true)

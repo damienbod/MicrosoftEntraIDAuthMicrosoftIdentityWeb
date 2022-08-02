@@ -21,7 +21,7 @@ public class CallApiModel : PageModel
 
     public async Task OnGetAsync()
     {
-        //DataFromApi = await _confidentialClientApiService.GetApiDataAsync();
-        DataFromApi = await _clientAssertionsApiService.GetApiDataAsync();
+        DataFromApi = await _confidentialClientApiService.GetApiDataAsync();
+        //DataFromApi = await _clientAssertionsApiService.GetApiDataAsync();
     }
 }
