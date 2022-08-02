@@ -23,7 +23,6 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-        IdentityModelEventSource.ShowPII = true;
 
         services.AddSingleton<IAuthorizationHandler, HasServiceApiRoleHandler>();
 
