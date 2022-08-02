@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,19 +18,27 @@ public class MsalLoggingHandler : DelegatingHandler
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        _logger.LogDebug("MSAL Request: {request}", request.ToString());
+        var builder = new StringBuilder();
+        builder.AppendLine("MSAL Request: {request}");
+        builder.AppendLine(request.ToString());
         if (request.Content != null)
         {
-            _logger.LogDebug(await request.Content.ReadAsStringAsync());
+            builder.AppendLine();
+            builder.AppendLine(await request.Content.ReadAsStringAsync());
         }
 
         HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
 
-        _logger.LogDebug("MSAL Response: {response}", response.ToString());
+        builder.AppendLine();
+        builder.AppendLine("MSAL Response: {response}");
+        builder.AppendLine(response.ToString());
         if (response.Content != null)
         {
-            _logger.LogDebug(await response.Content.ReadAsStringAsync());
+            builder.AppendLine();
+            builder.AppendLine(await response.Content.ReadAsStringAsync());
         }
+
+        _logger.LogDebug(builder.ToString());
 
         return response;
     }
