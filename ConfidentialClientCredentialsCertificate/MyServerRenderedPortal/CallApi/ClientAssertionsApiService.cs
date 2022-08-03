@@ -60,14 +60,6 @@ public class ClientAssertionsApiService
                     enablePiiLogging: true, enableDefaultPlatformLogging: true)
                 .Build();
 
-        // client credentials flows, get access token
-        //IConfidentialClientApplication app = ConfidentialClientApplicationBuilder.Create(_configuration["CallApi:ClientId"])
-        //        .WithAuthority(new Uri(authority))
-        //        .WithCertificate(cert)
-        //        .WithLogging(MyLoggingMethod, Microsoft.Identity.Client.LogLevel.Verbose,
-        //            enablePiiLogging: true, enableDefaultPlatformLogging: true)
-        //        .Build();
-
         var accessToken = await app.AcquireTokenForClient(new[] { scope }).ExecuteAsync();
 
         client.BaseAddress = new Uri(_configuration["CallApi:ApiBaseAddress"]);
