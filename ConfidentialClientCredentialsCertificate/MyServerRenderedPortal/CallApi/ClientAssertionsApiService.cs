@@ -107,7 +107,6 @@ public class ClientAssertionsApiService
         //aud = https://login.microsoftonline.com/ + Tenant ID + /v2.0
         string aud = $"https://login.microsoftonline.com/{tenantId}/v2.0";
 
-
         // no need to add exp, nbf as JsonWebTokenHandler will add them by default.
         var claims = new Dictionary<string, object>()
             {
