@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using Microsoft.IdentityModel.Logging;
 using Serilog;
 
 namespace MyServerRenderedPortal;
@@ -23,7 +25,9 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddTransient<ApiService>();
+        services.AddTransient<ConfidentialClientApiService>();
+        services.AddTransient<ClientAssertionsApiService>();
+        
         services.AddHttpClient();
 
         services.AddOptions();
@@ -42,6 +46,8 @@ public class Startup
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        IdentityModelEventSource.ShowPII = true;
+
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();

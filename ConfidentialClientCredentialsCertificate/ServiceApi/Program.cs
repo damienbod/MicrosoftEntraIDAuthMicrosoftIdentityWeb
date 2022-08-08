@@ -42,6 +42,7 @@ public class Program
             .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration)
                 .Enrich.FromLogContext()
+                .MinimumLevel.Verbose()
                 .WriteTo.File("../LogsServiceApi.txt")
                 .WriteTo.Console(theme: AnsiConsoleTheme.Code)
             )
