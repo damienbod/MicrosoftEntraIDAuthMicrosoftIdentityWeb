@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.9" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -17,10 +17,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.6" NoWarn="NU1605" />
-		<PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" Version="1.25.1" />
-		<PackageReference Include="Microsoft.Identity.Web" Version="1.25.1" />
-		<PackageReference Include="Microsoft.Identity.Web.UI" Version="1.25.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.9" NoWarn="NU1605" />
+		<PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" Version="1.25.3" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="1.25.3" />
+		<PackageReference Include="Microsoft.Identity.Web.UI" Version="1.25.3" />
 		<PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="0.17.0" />
 	</ItemGroup>
 
