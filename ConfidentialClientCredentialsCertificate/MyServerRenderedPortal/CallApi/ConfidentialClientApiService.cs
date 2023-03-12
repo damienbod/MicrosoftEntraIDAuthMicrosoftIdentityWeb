@@ -1,6 +1,5 @@
 ﻿using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Identity.Client;
 using ServiceApi.HttpLogger;
 using System.Net.Http.Headers;
@@ -26,7 +25,6 @@ public class ConfidentialClientApiService
     public async Task<IEnumerable<WeatherForecast>?> GetApiDataAsync()
     {
         // Use Key Vault to get certificate
-        var azureServiceTokenProvider = new AzureServiceTokenProvider();
 
         // Get the certificate from Key Vault
         var identifier = _configuration["CallApi:ClientCertificates:0:KeyVaultCertificateName"];
@@ -65,9 +63,11 @@ public class ConfidentialClientApiService
         throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
     }
 
-    private async Task<X509Certificate2> GetCertificateAsync(string identitifier)
+    private async Task<X509Certificate2> GetCertificateAsync(string? identitifier)
     {
         var vaultBaseUrl = _configuration["CallApi:ClientCertificates:0:KeyVaultUrl"];
+        vaultBaseUrl ??= "https://damienbod.vault.azure.net";
+
         var secretClient = new SecretClient(vaultUri: new Uri(vaultBaseUrl), credential: new DefaultAzureCredential());
 
         // Create a new secret using the secret client.
