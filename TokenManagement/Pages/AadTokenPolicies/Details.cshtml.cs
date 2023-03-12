@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
 
@@ -56,8 +53,9 @@ public class DetailsModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        var appId = Request.Form["item.AppId"];
-        var policyId = Request.Form["TokenLifetimePolicyDto.Id"];
+        string? appId = Request.Form["item.AppId"];
+        string? policyId = Request.Form["TokenLifetimePolicyDto.Id"];
+
         if (!ModelState.IsValid)
         {
             return Page();
