@@ -1,11 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Identity.Web;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
+﻿using Microsoft.Identity.Web;
 using System.Net.Http.Headers;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace UserApiOne;
 
@@ -30,9 +25,14 @@ public class UserApiTwoService
 
         // user_impersonation access_as_user access_as_application .default
         var scope = _configuration["UserApiTwo:ScopeForAccessToken"];
+        if(scope == null) throw new ArgumentNullException(nameof(scope));
+        
+        var uri = _configuration["UserApiTwo:ApiBaseAddress"];
+        if (uri == null) throw new ArgumentNullException(nameof(uri));
+
         var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
 
-        client.BaseAddress = new Uri(_configuration["UserApiTwo:ApiBaseAddress"]);
+        client.BaseAddress = new Uri(uri);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
