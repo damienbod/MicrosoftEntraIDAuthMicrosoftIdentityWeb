@@ -2,8 +2,10 @@
 
 public static class SecurityHeadersDefinitions
 {
-    public static HeaderPolicyCollection GetHeaderPolicyCollection(bool isDev, string idpHost)
+    public static HeaderPolicyCollection GetHeaderPolicyCollection(bool isDev, string? idpHost)
     {
+        if(idpHost == null) throw new ArgumentNullException(nameof(idpHost));
+
         var policy = new HeaderPolicyCollection()
             .AddFrameOptionsDeny()
             .AddXssProtectionBlock()
@@ -56,6 +58,8 @@ public static class SecurityHeadersDefinitions
             // maxage = one year in seconds
             policy.AddStrictTransportSecurityMaxAgeIncludeSubDomains(maxAgeInSeconds: 60 * 60 * 24 * 365);
         }
+
+        policy.ApplyDocumentHeadersToAllResponses();
 
         return policy;
     }
