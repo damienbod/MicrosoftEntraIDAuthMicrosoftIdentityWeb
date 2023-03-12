@@ -36,12 +36,13 @@ public class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                webBuilder.UseStartup<Startup>()
-                .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                webBuilder.UseStartup<Startup>();
+                
+            })
+            .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration)
                 .Enrich.FromLogContext()
                 .WriteTo.File("../LogsApiDecryptionCertificates.txt")
                 .WriteTo.Console(theme: AnsiConsoleTheme.Code)
             );
-            });
 }
