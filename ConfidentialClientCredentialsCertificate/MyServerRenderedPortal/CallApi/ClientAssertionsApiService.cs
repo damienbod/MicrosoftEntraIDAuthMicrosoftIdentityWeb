@@ -1,18 +1,11 @@
 ﻿using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using Microsoft.Azure.Services.AppAuthentication;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using ServiceApi.HttpLogger;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 
 namespace MyServerRenderedPortal;
 
@@ -34,7 +27,6 @@ public class ClientAssertionsApiService
     public async Task<IEnumerable<WeatherForecast>?> GetApiDataAsync()
     {
         // Use Key Vault to get certificate
-        var azureServiceTokenProvider = new AzureServiceTokenProvider();
 
         // Get the certificate from Key Vault
         var identifier = _configuration["CallApi:ClientCertificates:0:KeyVaultCertificateName"];
@@ -79,9 +71,11 @@ public class ClientAssertionsApiService
         throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
     }
 
-    private async Task<X509Certificate2> GetCertificateAsync(string identitifier)
+    private async Task<X509Certificate2> GetCertificateAsync(string? identitifier)
     {
         var vaultBaseUrl = _configuration["CallApi:ClientCertificates:0:KeyVaultUrl"];
+        vaultBaseUrl ??= "https://damienbod.vault.azure.net";
+
         var secretClient = new SecretClient(vaultUri: new Uri(vaultBaseUrl), credential: new DefaultAzureCredential());
 
         // Create a new secret using the secret client.
@@ -102,7 +96,7 @@ public class ClientAssertionsApiService
         _logger.LogInformation("MSAL {level} {containsPii} {message}", level, containsPii, message);
     }
 
-    string GetSignedClientAssertion(X509Certificate2 certificate, string tenantId, string confidentialClientID)
+    static string GetSignedClientAssertion(X509Certificate2 certificate, string tenantId, string confidentialClientID)
     {
         //aud = https://login.microsoftonline.com/ + Tenant ID + /v2.0
         string aud = $"https://login.microsoftonline.com/{tenantId}/v2.0";
