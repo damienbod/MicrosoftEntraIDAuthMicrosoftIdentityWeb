@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <UserSecretsId>aspnet-WebAppUserApis-C5CB1E61-55D5-4D0D-A192-68F28533B4EA</UserSecretsId>
-    <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
-	<Nullable>enable</Nullable>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Identity.Web" Version="1.25.3" />
-    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.25.3" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="2.5.0" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="2.5.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.4" />
   </ItemGroup>
 
 </Project>
