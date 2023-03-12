@@ -25,9 +25,14 @@ public class UserApiOneService
         var client = _clientFactory.CreateClient();
 
         var scope = _configuration["UserApiOne:ScopeForAccessToken"];
+        if (scope == null) throw new ArgumentNullException(nameof(scope));
+
         var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
 
-        client.BaseAddress = new Uri(_configuration["UserApiOne:ApiBaseAddress"]);
+        var uri = _configuration["UserApiTwo:ApiBaseAddress"];
+        if (uri == null) throw new ArgumentNullException(nameof(uri));
+
+        client.BaseAddress = new Uri(uri);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
