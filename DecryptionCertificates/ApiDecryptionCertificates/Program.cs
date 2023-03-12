@@ -1,11 +1,6 @@
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
-using System;
 
 namespace ApiDecryptionCertificates;
 
@@ -41,12 +36,13 @@ public class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                webBuilder.UseStartup<Startup>()
-                .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                webBuilder.UseStartup<Startup>();
+                
+            })
+            .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration)
                 .Enrich.FromLogContext()
                 .WriteTo.File("../LogsApiDecryptionCertificates.txt")
                 .WriteTo.Console(theme: AnsiConsoleTheme.Code)
             );
-            });
 }

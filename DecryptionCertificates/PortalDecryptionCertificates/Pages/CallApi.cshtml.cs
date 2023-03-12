@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
 using Newtonsoft.Json.Linq;
-using System.Threading.Tasks;
 
 namespace PortalDecryptionCertificates.Pages;
 
@@ -10,7 +9,8 @@ public class CallApiModel : PageModel
 {
     private readonly ApiService _apiService;
 
-    public JArray DataFromApi { get; set; }
+    public JArray? DataFromApi { get; set; }
+
     public CallApiModel(ApiService apiService)
     {
         _apiService = apiService;
