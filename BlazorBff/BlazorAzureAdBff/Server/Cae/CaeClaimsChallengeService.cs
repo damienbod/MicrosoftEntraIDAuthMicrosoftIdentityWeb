@@ -34,7 +34,7 @@ public class CaeClaimsChallengeService
 
             if (acrsClaim?.Value != authContextId)
             {
-                string clientId = _configuration.GetSection("AzureAd").GetSection("ClientId").Value;
+                var clientId = _configuration.GetSection("AzureAd").GetSection("ClientId").Value;
                 var cae = "{\"id_token\":{\"acrs\":{\"essential\":true,\"value\":\"" + authContextId + "\"}}}";
 
                 return cae;
