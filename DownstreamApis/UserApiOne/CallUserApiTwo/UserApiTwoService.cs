@@ -1,11 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Identity.Web;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
+﻿using Microsoft.Identity.Web;
 using System.Net.Http.Headers;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace UserApiOne;
 
