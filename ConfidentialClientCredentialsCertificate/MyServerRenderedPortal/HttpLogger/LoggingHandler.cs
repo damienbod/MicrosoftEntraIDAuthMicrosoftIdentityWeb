@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using System.Net.Http;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace ServiceApi.HttpLogger;
 
