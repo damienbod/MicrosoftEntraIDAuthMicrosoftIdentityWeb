@@ -51,6 +51,8 @@ public static class SecurityHeadersDefinitions
             policy.AddStrictTransportSecurityMaxAgeIncludeSubDomains(maxAgeInSeconds: 60 * 60 * 24 * 365);
         }
 
+        policy.ApplyDocumentHeadersToAllResponses();
+
         return policy;
     }
 }

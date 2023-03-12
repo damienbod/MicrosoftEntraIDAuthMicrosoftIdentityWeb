@@ -2,7 +2,6 @@
 
 [![.NET](https://github.com/damienbod/AzureADAuthRazorUiServiceApiCertificate/workflows/.NET/badge.svg)](https://github.com/damienbod/AzureADAuthRazorUiServiceApiCertificate/actions?query=workflow%3A.NET) 
 
-
 # Blogs
 
 - [Implement Azure AD Client credentials flow using Client Certificates for service APIs](https://damienbod.com/2020/10/01/implement-azure-ad-client-credentials-flow-using-client-certificates-for-service-apis/)

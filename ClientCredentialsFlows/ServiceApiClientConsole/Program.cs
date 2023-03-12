@@ -30,10 +30,13 @@ else
 {
     Console.WriteLine(authResult.AccessToken);
 
+    var baseUrl = configuration["AzureADServiceApi:ApiBaseAddress"];
+    baseUrl ??= "https://localhost:44324";
+
     // 3. Use access token to access token
     var client = new HttpClient
     {
-        BaseAddress = new Uri(configuration["AzureADServiceApi:ApiBaseAddress"])
+        BaseAddress = new Uri(baseUrl)
     };
 
     client.DefaultRequestHeaders.Authorization 
