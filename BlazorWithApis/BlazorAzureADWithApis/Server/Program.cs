@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-
-namespace BlazorAzureADWithApis.Server;
+﻿namespace BlazorAzureADWithApis.Server;
 
 public class Program
 {
