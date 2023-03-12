@@ -91,12 +91,9 @@ app.UseNoUnauthorizedRedirect("/api");
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapRazorPages();
-    endpoints.MapControllers();
-    endpoints.MapNotFound("/api/{**segment}");
-    endpoints.MapFallbackToPage("/_Host");
-});
+app.MapRazorPages();
+app.MapControllers();
+app.MapNotFound("/api/{**segment}");
+app.MapFallbackToPage("/_Host");
 
 app.Run();
