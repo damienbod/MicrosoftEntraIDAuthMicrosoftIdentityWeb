@@ -23,20 +23,27 @@ public class Startup
 
         services.AddOptions();
 
-        string[]? initialScopes = Configuration.GetValue<string>("ApiWithRoles:ScopeForAccessToken")?.Split(' ');
-
-        services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-                .AddMicrosoftIdentityWebApp(options =>
-                {
-                    Configuration.Bind("AzureAd", options);
-                    options.UsePkce = true;
-                }, options => { Configuration.Bind("AzureAd", options); })
-                .EnableTokenAcquisitionToCallDownstreamApi(options => Configuration.Bind("AzureAd", options), initialScopes)
-                .AddInMemoryTokenCaches();
+        services.AddDistributedMemoryCache();
+        string[]? initialScopes = Configuration.GetValue<string>(
+            "ApiWithRoles:ScopeForAccessToken")?.Split(' ');
 
         //services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
         //    .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-        //    .AddInMemoryTokenCaches();
+        //    .AddDistributedTokenCaches();
+
+        services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+            .AddMicrosoftIdentityWebApp(options =>
+                {
+                    Configuration.Bind("AzureAd", options);
+                    options.UsePkce = true;
+                }, 
+                options => { Configuration.Bind("AzureAd", options); }
+            )
+            .EnableTokenAcquisitionToCallDownstreamApi(
+                options => Configuration.Bind("AzureAd", options), initialScopes)
+            .AddDistributedTokenCaches();
+
+        
 
         services.AddRazorPages().AddMvcOptions(options =>
         {
