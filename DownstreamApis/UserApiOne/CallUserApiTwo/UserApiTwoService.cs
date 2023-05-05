@@ -30,10 +30,13 @@ public class UserApiTwoService
         var uri = _configuration["UserApiTwo:ApiBaseAddress"];
         if (uri == null) throw new ArgumentNullException(nameof(uri));
 
-        var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
+        var accessToken = await _tokenAcquisition
+            .GetAccessTokenForUserAsync(new[] { scope });
+
+        client.DefaultRequestHeaders.Authorization 
+            = new AuthenticationHeaderValue("Bearer", accessToken);
 
         client.BaseAddress = new Uri(uri);
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
         var response = await client.GetAsync("weatherforecast");
