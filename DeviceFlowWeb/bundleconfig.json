@@ -16,8 +16,8 @@
     ],
     // Optionally specify minification options
     "minify": {
-      "enabled": true,
-      "renameLocals": true
+      "enabled": false,
+      "renameLocals": false
     },
     // Optinally generate .map file
     "sourceMap": false
@@ -28,7 +28,7 @@
     "inputFiles": [
       "node_modules/bootstrap/dist/css/bootstrap.min.css"
     ],
-    "minify": { "enabled": true }
+    "minify": { "enabled": false }
   },
   // Vendor JS
   {
@@ -38,8 +38,8 @@
       "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
     ],
     "minify": {
-      "enabled": true,
-      "renameLocals": true
+      "enabled": false,
+      "renameLocals": false
     },
     "sourceMap": false
   },
@@ -53,8 +53,8 @@
       "node_modules//jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"
     ],
     "minify": {
-      "enabled": true,
-      "renameLocals": true
+      "enabled": false,
+      "renameLocals": false
     },
     "sourceMap": false
   }
