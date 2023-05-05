@@ -14,9 +14,13 @@ builder.Services.AddTransient<UserApiTwoService>();
 builder.Services.AddHttpClient();
 builder.Services.AddOptions();
 
-builder.Services.AddMicrosoftIdentityWebApiAuthentication(builder.Configuration, "AzureAd")
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services
+    .AddMicrosoftIdentityWebApiAuthentication(
+        builder.Configuration, "AzureAd")
     .EnableTokenAcquisitionToCallDownstreamApi()
-    .AddInMemoryTokenCaches();
+    .AddDistributedTokenCaches();
 
 builder.Services.AddSwaggerGen(c =>
 {

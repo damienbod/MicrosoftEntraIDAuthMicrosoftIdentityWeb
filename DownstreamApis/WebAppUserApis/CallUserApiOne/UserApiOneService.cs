@@ -29,7 +29,7 @@ public class UserApiOneService
 
         var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
 
-        var uri = _configuration["UserApiTwo:ApiBaseAddress"];
+        var uri = _configuration["UserApiOne:ApiBaseAddress"];
         if (uri == null) throw new ArgumentNullException(nameof(uri));
 
         client.BaseAddress = new Uri(uri);

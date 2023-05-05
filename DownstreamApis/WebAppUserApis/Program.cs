@@ -10,11 +10,13 @@ builder.Services.AddTransient<UserApiOneService>();
 builder.Services.AddHttpClient();
 
 builder.Services.AddOptions();
-
-string[]? initialScopes = builder.Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
-
 builder.Services.AddDistributedMemoryCache();
-builder.Services.AddMicrosoftIdentityWebAppAuthentication(builder.Configuration, "AzureAd", subscribeToOpenIdConnectMiddlewareDiagnosticsEvents: true)
+
+string[]? initialScopes = builder.Configuration.GetValue<string>(
+    "UserApiOne:ScopeForAccessToken")?.Split(' ');
+
+builder.Services.AddMicrosoftIdentityWebAppAuthentication(
+        builder.Configuration, "AzureAd", subscribeToOpenIdConnectMiddlewareDiagnosticsEvents: true)
     .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
     .AddDistributedTokenCaches();
 
