@@ -1,4 +1,4 @@
-# Azure AD authentication, authorization with ASP.NET Core
+# Microsoft Entra ID (Azure AD) authentication, authorization with ASP.NET Core
 
 [![.NET](https://github.com/damienbod/AzureADAuthRazorUiServiceApiCertificate/workflows/.NET/badge.svg)](https://github.com/damienbod/AzureADAuthRazorUiServiceApiCertificate/actions?query=workflow%3A.NET) 
 
