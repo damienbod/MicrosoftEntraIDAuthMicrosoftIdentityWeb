@@ -19,6 +19,8 @@
 
 ## History
 
+2023-08-14 Updated packages
+
 2023-05-05 Updated packages
 
 2023-03-12 Updated .NET 7, updated nuget packages, implicit usings

@@ -43,8 +43,6 @@ public class Startup
                 options => Configuration.Bind("AzureAd", options), initialScopes)
             .AddDistributedTokenCaches();
 
-        
-
         services.AddRazorPages().AddMvcOptions(options =>
         {
             var policy = new AuthorizationPolicyBuilder()
