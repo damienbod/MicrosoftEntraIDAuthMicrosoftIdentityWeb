@@ -1,10 +1,7 @@
 ﻿using BlazorAzureADWithApis.Server.Services.Application;
 using BlazorAzureADWithApis.Shared.Authorization;
 using Microsoft.AspNetCore.Authentication;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace BlazorAzureADWithApis.Server;
 
@@ -29,9 +26,9 @@ public class GraphApiClaimsTransformation : IClaimsTransformation
             if(objectIdentifier != null)
             {
                 var groupIds = await _msGraphApplicationService
-                    .GetGraphUserMemberGroups(objectIdentifier.Value);
+                    .GetGraphApiUserMemberGroups(objectIdentifier.Value);
 
-                foreach (var groupId in groupIds.ToList())
+                foreach (var groupId in groupIds!.Value!.ToList())
                 {
                     var claim = GetGroupClaim(groupId);
                     if (claim != null) claimsIdentity.AddClaim(claim);

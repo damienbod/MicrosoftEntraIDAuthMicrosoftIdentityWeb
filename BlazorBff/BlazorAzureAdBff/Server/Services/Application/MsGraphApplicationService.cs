@@ -1,7 +1,7 @@
 ﻿using Azure.Identity;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Graph.Users.Item.GetMemberGroups;
+using Microsoft.Graph.Models;
 using Microsoft.Graph;
-using System.Threading.Tasks;
 
 namespace BlazorAzureADWithApis.Server.Services.Application;
 
@@ -14,27 +14,28 @@ public class MsGraphApplicationService
         _configuration = configuration;
     }
 
-    public async Task<IUserAppRoleAssignmentsCollectionPage> GetGraphUserAppRoles(string objectIdentifier)
+    public async Task<AppRoleAssignmentCollectionResponse?> GetGraphApiUserAppRoles(string userId)
     {
         var graphServiceClient = GetGraphClient();
 
-        return await graphServiceClient.Users[objectIdentifier]
-                .AppRoleAssignments
-                .Request()
-                .GetAsync();
+        return await graphServiceClient.Users[userId]
+            .AppRoleAssignments
+            .GetAsync();
     }
 
-    public async Task<IDirectoryObjectGetMemberGroupsCollectionPage> GetGraphUserMemberGroups(string objectIdentifier)
+    public async Task<GetMemberGroupsResponse?> GetGraphApiUserMemberGroups(string userId)
     {
-        var securityEnabledOnly = true;
-
         var graphServiceClient = GetGraphClient();
 
-        return await graphServiceClient.Users[objectIdentifier]
-            .GetMemberGroups(securityEnabledOnly)
-            .Request().PostAsync();
-    }
+        var requestBody = new GetMemberGroupsPostRequestBody
+        {
+            SecurityEnabledOnly = true,
+        };
 
+        return await graphServiceClient.Users[userId]
+            .GetMemberGroups
+            .PostAsync(requestBody);
+    }
     private GraphServiceClient GetGraphClient()
     {
         string[] scopes = new[] { "https://graph.microsoft.com/.default" };

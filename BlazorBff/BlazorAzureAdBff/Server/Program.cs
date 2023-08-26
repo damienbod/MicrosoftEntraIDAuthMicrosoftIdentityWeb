@@ -41,8 +41,7 @@ string[]? initialScopes = configuration.GetValue<string>("UserApiOne:ScopeForAcc
 
 services.AddMicrosoftIdentityWebAppAuthentication(configuration)
     .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-        .AddMicrosoftGraph("https://graph.microsoft.com/v1.0",
-        "User.ReadBasic.All user.read")
+    .AddMicrosoftGraph()
     .AddInMemoryTokenCaches();
 
 services.AddControllersWithViews(options =>
