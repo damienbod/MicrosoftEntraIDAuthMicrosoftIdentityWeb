@@ -16,3 +16,5 @@
 /DecryptionCertificates/LogsPortalDecryptionCertificates.txt
 /AngularAzureADMultipleApis/AngularAzureAD/debug.log
 /ClientCredentialsFlows/LogsServiceApi.txt
+/AngularAzureADMultipleApis/_logs-ApiWithMutlipleApis.txt
+/AngularAzureADMultipleApis/_logs-ServiceApi.txt
