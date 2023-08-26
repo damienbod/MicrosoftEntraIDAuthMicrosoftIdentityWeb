@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
-using Serilog;
 using ServiceApi;
 using System.IdentityModel.Tokens.Jwt;
 
