@@ -81,8 +81,6 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty;
 });
 
-app.UseSerilogRequestLogging();
-
 app.UseHttpsRedirection();
 
 app.UseRouting();
