@@ -16,9 +16,7 @@ builder.Services.AddOptions();
 
 builder.Services.AddDistributedMemoryCache();
 
-builder.Services
-    .AddMicrosoftIdentityWebApiAuthentication(
-        builder.Configuration, "AzureAd")
+builder.Services.AddMicrosoftIdentityWebApiAuthentication(builder.Configuration, "AzureAd")
     .EnableTokenAcquisitionToCallDownstreamApi()
     .AddDistributedTokenCaches();
 
