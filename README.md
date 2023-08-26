@@ -118,6 +118,8 @@ https://devblogs.microsoft.com/azure-sdk/authentication-and-the-azure-sdk/
 
 https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-protected-web-api-verification-scope-app-roles
 
+https://dev.to/425show/just-what-is-the-default-scope-in-the-microsoft-identity-platform-azure-ad-2o4d
+
 ## Links Azure SDK
 
 <a href="https://devblogs.microsoft.com/azure-sdk/authentication-and-the-azure-sdk/">Authentication and the Azure SDK</a>
