@@ -1,37 +1,27 @@
-using System;
-using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Serilog;
+using System;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace ServiceApi;
 
-public class Startup
+internal static class HostingExtensions
 {
-    public Startup(IConfiguration configuration)
+    public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
-        Configuration = configuration;
-    }
-
-    public IConfiguration Configuration { get; }
-
-    public void ConfigureServices(IServiceCollection services)
-    {
-        JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-        IdentityModelEventSource.ShowPII = true;
-        JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+        var services = builder.Services;
+        var configuration = builder.Configuration;
 
         services.AddSingleton<IAuthorizationHandler, HasServiceApiRoleHandler>();
 
-        services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
+        services.AddMicrosoftIdentityWebApiAuthentication(builder.Configuration);
 
         services.AddControllers();
 
@@ -93,11 +83,17 @@ public class Startup
             });
         });
 
+        return builder.Build();
     }
-
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    
+    public static WebApplication ConfigurePipeline(this WebApplication app)
     {
-        if (env.IsDevelopment())
+        IdentityModelEventSource.ShowPII = true;
+        JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+        app.UseSerilogRequestLogging();
+
+        if (app.Environment.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }
@@ -109,8 +105,6 @@ public class Startup
             c.RoutePrefix = string.Empty;
         });
 
-        // https://nblumhardt.com/2019/10/serilog-in-aspnetcore-3/
-        // https://nblumhardt.com/2019/10/serilog-mvc-logging/
         app.UseSerilogRequestLogging();
 
         app.UseHttpsRedirection();
@@ -120,9 +114,8 @@ public class Startup
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers();
-        });
+        app.MapControllers();
+
+        return app;
     }
 }
