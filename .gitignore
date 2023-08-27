@@ -18,3 +18,5 @@
 /ClientCredentialsFlows/LogsServiceApi.txt
 /AngularAzureADMultipleApis/_logs-ApiWithMutlipleApis.txt
 /AngularAzureADMultipleApis/_logs-ServiceApi.txt
+/ConfidentialClientCredentialsCertificate/_logs-MyServerRenderedPortal.txt
+/ConfidentialClientCredentialsCertificate/_logs-ServiceApi.txt
