@@ -19,8 +19,6 @@ internal static class HostingExtensions
 
         services.AddControllers();
 
-        services.AddSingleton<IAuthorizationHandler, HasServiceApiRoleHandler>();
-
         services.AddAuthorization(options =>
         {
             options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>

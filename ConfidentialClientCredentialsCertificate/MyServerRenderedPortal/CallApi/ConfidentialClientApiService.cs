@@ -68,7 +68,12 @@ public class ConfidentialClientApiService
         var vaultBaseUrl = _configuration["CallApi:ClientCertificates:0:KeyVaultUrl"];
         vaultBaseUrl ??= "https://damienbod.vault.azure.net";
 
-        var secretClient = new SecretClient(vaultUri: new Uri(vaultBaseUrl), credential: new DefaultAzureCredential());
+        var tenantId = _configuration["CallApi:TenantId"];
+        var clientId = _configuration["CallApi:ClientId"];
+        var clientSecretKeyVaultAccess = _configuration["ClientSecretKeyVaultAccess"];
+
+        var secretClient = new SecretClient(vaultUri: new Uri(vaultBaseUrl),
+            credential: new ClientSecretCredential(tenantId, clientId, clientSecretKeyVaultAccess));
 
         // Create a new secret using the secret client.
         var secretName = identitifier;

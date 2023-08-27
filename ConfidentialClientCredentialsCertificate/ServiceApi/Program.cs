@@ -32,7 +32,7 @@ try
             else
             {
                 // Add Secrets from UserSecrets for local development
-                configurationBuilder.AddUserSecrets("9f17b08c-435a-4f50-ba7a-802e68ca8d80");
+                configurationBuilder.AddUserSecrets("196b270c-b0c0-4b90-8f04-d3108e701d51");
             }
         });
 
