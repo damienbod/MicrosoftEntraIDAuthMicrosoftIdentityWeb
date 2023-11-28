@@ -1,5 +1,5 @@
 
-## BlazorAzureADWithApis.Server secrets
+## Blazor Microsoft Entra ID with APIs.Server secrets
 
 ```
  "AzureAd": {
