@@ -25,7 +25,7 @@ https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
 
 https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies
 
-# Azure authorization
+# Microsoft Entra ID authorization
 
 https://docs.microsoft.com/en-us/azure/role-based-access-control/overview
 

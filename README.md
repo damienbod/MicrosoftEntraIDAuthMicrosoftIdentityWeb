@@ -43,9 +43,9 @@
 - 2021-01-28 Added device code flow, Microsoft.Identity.Web to 1.5.1
 - 2021-01-19 Updated nuget, npm packages, moved to latest secrets access for certs in Key Vault
 - 2021-01-05 Added token management, updated Microsoft.Identity.Web to 1.4.1
-- 2020-12-14 Using multiple APIs in Blazor with Azure AD authentication
+- 2020-12-14 Using multiple APIs in Blazor with Microsoft Entra ID authentication
 - 2020-12-12 Updated Microsoft.Identity.Web to 1.4.0
-- 2020-12-08 Added Using multiple APIs in Angular and ASP.NET Core with Azure AD authentication
+- 2020-12-08 Added Using multiple APIs in Angular and ASP.NET Core with Microsoft Entra ID authentication
 - 2020-12-04 Updated to .NET 5
 - 2020-11-15 Updated Microsoft.Identity.Web to 1.3.0
 - 2020-10-25 Updated Microsoft.Identity.Web to 1.2.0
