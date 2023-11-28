@@ -19,64 +19,36 @@
 
 ## History
 
-2023-08-14 Updated downstream APIs solution
-
-2023-08-14 Updated packages
-
-2023-05-05 Updated packages
-
-2023-03-12 Updated .NET 7, updated nuget packages, implicit usings
-
-2022-10-09 Updated nuget packages
-
-2022-08-01 Updated nuget packages
-
-2022-04-03 Updated nuget packages, added nullable to projects, added CC flow demo
-
-2022-02-19 Updated nuget packages
-
-2022-01-07 Updated nuget packages
-
-2021-11-04 Updated to .NET 6
-
-2021-08-13 Updated Blazor BFF app and fixed login button
-
-2021-07-03 Microsoft.Identity.Web to 1.14, Angular OIDC V12
-
-2021-06-20 Microsoft.Identity.Web to 1.13.1
-
-2021-06-06 Microsoft.Identity.Web to 1.12
-
-2021-05-13 Microsoft.Identity.Web to 1.9.2, updated packages
-
-2021-04-15 Microsoft.Identity.Web to 1.9.1
-
-2021-03-11 Microsoft.Identity.Web to 1.8.0
-
-2021-03-05 Microsoft.Identity.Web to 1.7.0
-
-2021-02-13 Added MSAL exception handling, Microsoft.Identity.Web to 1.6.0
-
-2021-02-01 Added app roles authorization example
-
-2021-01-28 Added device code flow, Microsoft.Identity.Web to 1.5.1
-
-2021-01-19 Updated nuget, npm packages, moved to latest secrets access for certs in Key Vault
-
-2021-01-05 Added token management, updated Microsoft.Identity.Web to 1.4.1
-
-2020-12-14 Using multiple APIs in Blazor with Azure AD authentication
-
-2020-12-12 Updated Microsoft.Identity.Web to 1.4.0
-
-2020-12-08 Added Using multiple APIs in Angular and ASP.NET Core with Azure AD authentication
-
-2020-12-04 Updated to .NET 5
-
-2020-11-15 Updated Microsoft.Identity.Web to 1.3.0
-
-2020-10-25 Updated Microsoft.Identity.Web to 1.2.0
-
+- 2023-08-14 Updated .NET 8
+- 2023-08-14 Updated downstream APIs solution
+- 2023-08-14 Updated packages
+- 2023-05-05 Updated packages
+- 2023-03-12 Updated .NET 7, updated nuget packages, implicit usings
+- 2022-10-09 Updated nuget packages
+- 2022-08-01 Updated nuget packages
+- 2022-04-03 Updated nuget packages, added nullable to projects, added CC flow demo
+- 2022-02-19 Updated nuget packages
+- 2022-01-07 Updated nuget packages
+- 2021-11-04 Updated to .NET 6
+- 2021-08-13 Updated Blazor BFF app and fixed login button
+- 2021-07-03 Microsoft.Identity.Web to 1.14, Angular OIDC V12
+- 2021-06-20 Microsoft.Identity.Web to 1.13.1
+- 2021-06-06 Microsoft.Identity.Web to 1.12
+- 2021-05-13 Microsoft.Identity.Web to 1.9.2, updated packages
+- 2021-04-15 Microsoft.Identity.Web to 1.9.1
+- 2021-03-11 Microsoft.Identity.Web to 1.8.0
+- 2021-03-05 Microsoft.Identity.Web to 1.7.0
+- 2021-02-13 Added MSAL exception handling, Microsoft.Identity.Web to 1.6.0
+- 2021-02-01 Added app roles authorization example
+- 2021-01-28 Added device code flow, Microsoft.Identity.Web to 1.5.1
+- 2021-01-19 Updated nuget, npm packages, moved to latest secrets access for certs in Key Vault
+- 2021-01-05 Added token management, updated Microsoft.Identity.Web to 1.4.1
+- 2020-12-14 Using multiple APIs in Blazor with Azure AD authentication
+- 2020-12-12 Updated Microsoft.Identity.Web to 1.4.0
+- 2020-12-08 Added Using multiple APIs in Angular and ASP.NET Core with Azure AD authentication
+- 2020-12-04 Updated to .NET 5
+- 2020-11-15 Updated Microsoft.Identity.Web to 1.3.0
+- 2020-10-25 Updated Microsoft.Identity.Web to 1.2.0
 
 ## Links Private key JWT Client authentication
 
