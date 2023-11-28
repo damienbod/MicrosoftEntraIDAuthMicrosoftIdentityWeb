@@ -26,7 +26,7 @@ public class GraphProfileController : ControllerBase
     public async Task<IEnumerable<string>> Get()
     {
         var userData = await _microsoftGraphDelegatedClientService.GetGraphApiUser();
-        return new List<string> { $"DisplayName: {userData.DisplayName}",
+        return new List<string> { $"DisplayName: {userData!.DisplayName}",
             $"GivenName: {userData.GivenName}", $"AboutMe: {userData.AboutMe}" };
     }
 }
