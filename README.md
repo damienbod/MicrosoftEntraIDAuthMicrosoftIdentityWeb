@@ -4,18 +4,18 @@
 
 # Blogs
 
-- [Implement Azure AD Client credentials flow using Client Certificates for service APIs](https://damienbod.com/2020/10/01/implement-azure-ad-client-credentials-flow-using-client-certificates-for-service-apis/)
+- [Implement Microsoft Entra ID Client credentials flow using Client Certificates for service APIs](https://damienbod.com/2020/10/01/implement-azure-ad-client-credentials-flow-using-client-certificates-for-service-apis/)
 - [Using Key Vault certificates with Microsoft.Identity.Web and ASP.NET Core applications](https://damienbod.com/2020/10/09/using-key-vault-certificates-with-microsoft-identity-web-and-asp-net-core-applications/)
 - [Using encrypted access tokens in Azure with Microsoft.Identity.Web and Azure App registrations](https://damienbod.com/2020/10/22/using-encrypted-access-tokens-in-azure-with-microsoft-identity-web-and-azure-app-registrations/)
-- [Implement a Web APP and an ASP.NET Core Secure API using Azure AD which delegates to a second API](https://damienbod.com/2020/11/09/implement-a-web-app-and-an-asp-net-core-secure-api-using-azure-ad-which-delegates-to-second-api/)
-- [Using multiple APIs in Angular and ASP.NET Core with Azure AD authentication](https://damienbod.com/2020/12/08/using-multiple-apis-in-angular-and-asp-net-core-with-azure-ad-authentication/)
-- [Using multiple APIs in Blazor with Azure AD authentication](https://damienbod.com/2020/12/14/using-multiple-apis-in-blazor-with-azure-ad-authentication/)
-- [Azure AD Access Token Lifetime Policy Management in ASP.NET Core](https://damienbod.com/2021/01/05/azure-ad-access-token-lifetime-policy-management-in-asp-net-core/)
-- [Implement OAUTH Device Code Flow with Azure AD and ASP.NET Core](https://damienbod.com/2021/01/28/implement-oauth-device-code-flow-with-azure-ad-and-asp-net-core/)
-- [Implement app roles authorization with Azure AD and ASP.NET Core](https://damienbod.com/2021/02/01/implement-app-roles-authorization-with-azure-ad-and-asp-net-core/)
+- [Implement a Web APP and an ASP.NET Core Secure API using Microsoft Entra ID which delegates to a second API](https://damienbod.com/2020/11/09/implement-a-web-app-and-an-asp-net-core-secure-api-using-azure-ad-which-delegates-to-second-api/)
+- [Using multiple APIs in Angular and ASP.NET Core with Microsoft Entra ID authentication](https://damienbod.com/2020/12/08/using-multiple-apis-in-angular-and-asp-net-core-with-azure-ad-authentication/)
+- [Using multiple APIs in Blazor with Microsoft Entra ID authentication](https://damienbod.com/2020/12/14/using-multiple-apis-in-blazor-with-azure-ad-authentication/)
+- [Microsoft Entra ID Access Token Lifetime Policy Management in ASP.NET Core](https://damienbod.com/2021/01/05/azure-ad-access-token-lifetime-policy-management-in-asp-net-core/)
+- [Implement OAUTH Device Code Flow with Microsoft Entra ID and ASP.NET Core](https://damienbod.com/2021/01/28/implement-oauth-device-code-flow-with-azure-ad-and-asp-net-core/)
+- [Implement app roles authorization with Microsoft Entra ID and ASP.NET Core](https://damienbod.com/2021/02/01/implement-app-roles-authorization-with-azure-ad-and-asp-net-core/)
 - [Securing Blazor Web assembly using cookies](https://damienbod.com/2021/03/08/securing-blazor-web-assembly-using-cookies/)
-- [Implementing authorization in Blazor ASP.NET Core applications using Azure AD security groups](https://damienbod.com/2022/02/21/implementing-authorization-in-blazor-asp-net-core-applications-using-azure-ad-security-groups/)
-- [Implementing OAuth2 APP to APP security using Azure AD from a Web APP](https://damienbod.com/2022/03/28/implementing-oauth2-app-to-app-security-using-azure-ad-from-a-web-app/)
+- [Implementing authorization in Blazor ASP.NET Core applications using Microsoft Entra ID security groups](https://damienbod.com/2022/02/21/implementing-authorization-in-blazor-asp-net-core-applications-using-azure-ad-security-groups/)
+- [Implementing OAuth2 APP to APP security using Microsoft Entra ID from a Web APP](https://damienbod.com/2022/03/28/implementing-oauth2-app-to-app-security-using-azure-ad-from-a-web-app/)
 
 ## History
 
@@ -54,7 +54,7 @@
 
 https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow#second-case-access-token-request-with-a-certificate
 
-## Links Azure Client credentials flow
+## Links Microsoft Entra ID Client credentials flow
 
 https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Client-credential-flows
 
