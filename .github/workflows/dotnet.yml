@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: '8.0'
         include-prerelease: True
-    - name: Build AngularMicrsoftEntraIDMultipleApis
-      run: dotnet build ./AngularMicrsoftEntraIDMultipleApis/ApiWithMutlipleApis.sln
+    - name: Build AngularMicrosoftEntraIDMultipleApis
+      run: dotnet build ./AngularMicrosoftEntraIDMultipleApis/ApiWithMutlipleApis.sln
     - name: Build BlazorWithApis
       run: dotnet build ./BlazorWithApis/BlazorApis.sln
     - name: Build ConfidentialClientCredentialsCertificate
