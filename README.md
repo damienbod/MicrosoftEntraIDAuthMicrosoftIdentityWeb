@@ -19,6 +19,7 @@
 
 ## History
 
+- 2024-04-11 Updated packages
 - 2023-12-01 Updated .NET 8
 - 2023-08-14 Updated downstream APIs solution
 - 2023-08-14 Updated packages
