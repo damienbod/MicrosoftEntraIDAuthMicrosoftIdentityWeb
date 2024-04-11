@@ -1,5 +1,5 @@
 
-## BlazorAzureADWithApis.Server secrets
+## BlazorWasmHostedMeID.Server secrets
 
 ```
  "AzureAd": {

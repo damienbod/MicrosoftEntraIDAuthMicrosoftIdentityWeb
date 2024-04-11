@@ -10,11 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README_CONFIG.md = README_CONFIG.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAzureADWithApis.Server", "BlazorAzureAdBff\Server\BlazorAzureADWithApis.Server.csproj", "{90A119E7-B368-4445-92CA-9474101C2026}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWasmHostedMeID.Server", "BlazorWasmHostedMeID\Server\BlazorWasmHostedMeID.Server.csproj", "{90A119E7-B368-4445-92CA-9474101C2026}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAzureADWithApis.Client", "BlazorAzureAdBff\Client\BlazorAzureADWithApis.Client.csproj", "{ECB9E736-157D-4694-90A0-FDC2474A8544}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWasmHostedMeID.Client", "BlazorWasmHostedMeID\Client\BlazorWasmHostedMeID.Client.csproj", "{ECB9E736-157D-4694-90A0-FDC2474A8544}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAzureADWithApis.Shared", "BlazorAzureAdBff\Shared\BlazorAzureADWithApis.Shared.csproj", "{E875E49E-FB31-446F-8B65-60BDC999AEAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWasmHostedMeID.Shared", "BlazorWasmHostedMeID\Shared\BlazorWasmHostedMeID.Shared.csproj", "{E875E49E-FB31-446F-8B65-60BDC999AEAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
