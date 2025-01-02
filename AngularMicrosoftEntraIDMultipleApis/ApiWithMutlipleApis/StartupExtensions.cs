@@ -9,7 +9,7 @@ using Microsoft.OpenApi.Models;
 
 namespace ApiWithMutlipleApis;
 
-internal static class HostingExtensions
+internal static class StartupExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
@@ -81,7 +81,7 @@ internal static class HostingExtensions
             c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
             c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
-                {securityScheme, new string[] { }}
+                {securityScheme, Array.Empty<string>()}
             });
 
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiWithMutlipleApis", Version = "v1" });
@@ -89,7 +89,7 @@ internal static class HostingExtensions
 
         return builder.Build();
     }
-    
+
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
         IdentityModelEventSource.ShowPII = true;
@@ -105,12 +105,9 @@ internal static class HostingExtensions
         app.UseCors("AllowAllOrigins");
 
         app.UseHttpsRedirection();
-
         app.UseRouting();
-
         app.UseAuthentication();
         app.UseAuthorization();
-
         app.MapControllers();
 
         return app;

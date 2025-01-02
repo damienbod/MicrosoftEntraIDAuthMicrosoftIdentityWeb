@@ -7,12 +7,12 @@ using Microsoft.Identity.Web;
 namespace ApiWithMutlipleApis.Controllers;
 
 [Authorize(Policy = "ValidateAccessTokenPolicy", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-[AuthorizeForScopes(Scopes = new string[] { "User.ReadBasic.All", "user.read" })]
+[AuthorizeForScopes(Scopes = ["User.ReadBasic.All", "user.read"])]
 [ApiController]
 [Route("[controller]")]
 public class GraphApiCallsController : ControllerBase
 {
-    private GraphApiClientService _graphApiClientService;
+    private readonly GraphApiClientService _graphApiClientService;
 
     public GraphApiCallsController(GraphApiClientService graphApiClientService)
     {
@@ -24,7 +24,7 @@ public class GraphApiCallsController : ControllerBase
     {
         var userData = await _graphApiClientService.GetGraphApiUser();
 
-        return new List<string> { $"DisplayName: {userData.DisplayName}",
-            $"GivenName: {userData.GivenName}", $"AboutMe: {userData.AboutMe}" };
+        return [ $"DisplayName: {userData!.DisplayName}",
+            $"GivenName: {userData!.GivenName}", $"AboutMe: {userData!.AboutMe}" ];
     }
 }

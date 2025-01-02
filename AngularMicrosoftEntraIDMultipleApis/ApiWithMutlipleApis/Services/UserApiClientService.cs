@@ -9,9 +9,7 @@ public class UserApiClientService
     private readonly IHttpClientFactory _clientFactory;
     private readonly ITokenAcquisition _tokenAcquisition;
 
-    public UserApiClientService(
-        ITokenAcquisition tokenAcquisition,
-        IHttpClientFactory clientFactory)
+    public UserApiClientService(ITokenAcquisition tokenAcquisition, IHttpClientFactory clientFactory)
     {
         _clientFactory = clientFactory;
         _tokenAcquisition = tokenAcquisition;
@@ -19,7 +17,6 @@ public class UserApiClientService
 
     public async Task<IEnumerable<string>> GetApiDataAsync()
     {
-
         var client = _clientFactory.CreateClient();
 
         var scopes = new List<string> { "api://b2a09168-54e2-4bc4-af92-a710a64ef1fa/access_as_user" };
@@ -37,10 +34,9 @@ public class UserApiClientService
 
             var data = await JsonSerializer.DeserializeAsync<List<string>>(stream);
 
-            if (data != null)
-                return data;
+            if (data != null) return data;
 
-            return Array.Empty<string>();
+            return [];
         }
 
         throw new ApplicationException("oh no...");
