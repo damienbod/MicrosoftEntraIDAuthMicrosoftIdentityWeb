@@ -81,7 +81,7 @@ internal static class StartupExtensions
             c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
             c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
-                {securityScheme, new string[] { }}
+                {securityScheme, Array.Empty<string>()}
             });
 
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiWithMutlipleApis", Version = "v1" });
@@ -105,12 +105,9 @@ internal static class StartupExtensions
         app.UseCors("AllowAllOrigins");
 
         app.UseHttpsRedirection();
-
         app.UseRouting();
-
         app.UseAuthentication();
         app.UseAuthorization();
-
         app.MapControllers();
 
         return app;
