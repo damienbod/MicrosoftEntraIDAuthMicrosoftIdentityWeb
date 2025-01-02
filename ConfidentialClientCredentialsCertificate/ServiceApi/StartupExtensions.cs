@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Logging;
@@ -6,7 +9,7 @@ using Serilog;
 
 namespace ServiceApi;
 
-internal static class HostingExtensions
+internal static class StartupExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
