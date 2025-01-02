@@ -1,7 +1,5 @@
-using Microsoft.AspNetCore.Builder;
+using ApiDecryptionCertificates;
 using Serilog;
-using ServiceApi;
-using System;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
