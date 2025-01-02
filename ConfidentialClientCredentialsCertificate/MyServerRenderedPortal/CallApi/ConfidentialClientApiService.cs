@@ -81,9 +81,8 @@ public class ConfidentialClientApiService
         KeyVaultSecret secret = await secretClient.GetSecretAsync(secretName);
 
         var privateKeyBytes = Convert.FromBase64String(secret.Value);
-
         var certificateWithPrivateKey = new X509Certificate2(privateKeyBytes,
-            string.Empty, X509KeyStorageFlags.MachineKeySet);
+           string.Empty, X509KeyStorageFlags.MachineKeySet);
 
         return certificateWithPrivateKey;
     }
