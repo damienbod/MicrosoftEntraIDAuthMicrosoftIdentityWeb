@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyServerRenderedPortal.CallApi;
 
 namespace MyServerRenderedPortal.Pages;
 
