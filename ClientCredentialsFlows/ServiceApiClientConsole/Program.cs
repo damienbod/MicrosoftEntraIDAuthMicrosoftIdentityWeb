@@ -50,4 +50,6 @@ else
     {
         Console.WriteLine(await response.Content.ReadAsStringAsync());
     }
+
+    Console.ReadKey();
 }

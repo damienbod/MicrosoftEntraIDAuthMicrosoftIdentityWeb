@@ -33,7 +33,7 @@ internal static class StartupExtensions
 
                 // Validate id of application for which the token was created
                 // In this case the CC client application 
-                validateAccessTokenPolicy.RequireClaim("azp", "2b50a014-f353-4c10-aace-024f19a55569");
+                validateAccessTokenPolicy.RequireClaim("azp", "b178f3a5-7588-492a-924f-72d7887b7e48");
 
                 // only allow tokens which used "Private key JWT Client authentication"
                 // // https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
