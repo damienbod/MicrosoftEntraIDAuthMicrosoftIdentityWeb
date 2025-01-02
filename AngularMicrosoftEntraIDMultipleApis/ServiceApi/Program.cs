@@ -8,7 +8,6 @@ using System;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
-    .WriteTo.AzureApp()
     .CreateBootstrapLogger();
 
 try
