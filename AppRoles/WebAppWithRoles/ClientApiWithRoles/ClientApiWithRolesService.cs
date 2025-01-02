@@ -10,8 +10,8 @@ public class ClientApiWithRolesService
     private readonly ITokenAcquisition _tokenAcquisition;
     private readonly IConfiguration _configuration;
 
-    public ClientApiWithRolesService(IHttpClientFactory clientFactory, 
-        ITokenAcquisition tokenAcquisition, 
+    public ClientApiWithRolesService(IHttpClientFactory clientFactory,
+        ITokenAcquisition tokenAcquisition,
         IConfiguration configuration)
     {
         _clientFactory = clientFactory;
