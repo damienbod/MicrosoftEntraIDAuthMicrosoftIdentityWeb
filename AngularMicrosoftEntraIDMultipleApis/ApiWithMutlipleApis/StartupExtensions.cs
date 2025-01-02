@@ -93,7 +93,7 @@ internal static class StartupExtensions
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
         IdentityModelEventSource.ShowPII = true;
-        JsonWebTokenHandler.DefaultMapInboundClaims = false;
+        JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
         app.UseSwagger();
         app.UseSwaggerUI(c =>
