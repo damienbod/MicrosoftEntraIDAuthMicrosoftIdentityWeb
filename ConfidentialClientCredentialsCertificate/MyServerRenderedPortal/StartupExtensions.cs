@@ -31,7 +31,7 @@ internal static class StartupExtensions
         }).AddMicrosoftIdentityUI();
         return builder.Build();
     }
-    
+
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
         IdentityModelEventSource.ShowPII = true;

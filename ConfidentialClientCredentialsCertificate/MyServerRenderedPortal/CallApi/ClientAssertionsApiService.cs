@@ -40,7 +40,7 @@ public class ClientAssertionsApiService
         var scope = _configuration["CallApi:ScopeForAccessToken"];
         var authority = $"{_configuration["CallApi:Instance"]}{_configuration["CallApi:TenantId"]}";
 
-        string signedClientAssertion = GetSignedClientAssertion(cert, 
+        string signedClientAssertion = GetSignedClientAssertion(cert,
             _configuration["CallApi:TenantId"], _configuration["CallApi:ClientId"]);
 
         var app = ConfidentialClientApplicationBuilder

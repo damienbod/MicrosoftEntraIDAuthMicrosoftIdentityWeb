@@ -4,7 +4,7 @@ namespace MyServerRenderedPortal.Pages;
 
 public class CallApiModel : PageModel
 {
-    
+
     private readonly ClientAssertionsApiService _clientAssertionsApiService;
     private readonly ConfidentialClientApiService _confidentialClientApiService;
 

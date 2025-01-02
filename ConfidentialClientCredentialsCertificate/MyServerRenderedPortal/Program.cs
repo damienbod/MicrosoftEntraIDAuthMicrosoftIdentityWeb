@@ -1,8 +1,5 @@
-using Microsoft.AspNetCore.Builder;
 using MyServerRenderedPortal;
 using Serilog;
-using ServiceApi;
-using System;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
