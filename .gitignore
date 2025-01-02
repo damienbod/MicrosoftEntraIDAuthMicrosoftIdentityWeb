@@ -2,11 +2,8 @@
 **/obj
 /.vs
 **/.vs
-**/serviceDependencies.json
-**/serviceDependencies.local.json
-**/serviceDependencies.local.json.user
+**/serviceDependencies*
 **/node_modules/
-**/dist/
 **/*.csproj.user
 /AngularAzureADMultipleApis/AngularAzureAD/debug.log
 **/_logs*
