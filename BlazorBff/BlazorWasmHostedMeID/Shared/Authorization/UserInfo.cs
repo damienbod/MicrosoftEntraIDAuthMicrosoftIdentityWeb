@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace BlazorWasmHostedMeID.Shared.Authorization;
+﻿namespace BlazorWasmHostedMeID.Shared.Authorization;
 
 public class UserInfo
 {

@@ -1,7 +1,7 @@
 ﻿using Azure.Identity;
-using Microsoft.Graph.Users.Item.GetMemberGroups;
-using Microsoft.Graph.Models;
 using Microsoft.Graph;
+using Microsoft.Graph.Models;
+using Microsoft.Graph.Users.Item.GetMemberGroups;
 
 namespace BlazorWasmHostedMeID.Server.Services.Application;
 

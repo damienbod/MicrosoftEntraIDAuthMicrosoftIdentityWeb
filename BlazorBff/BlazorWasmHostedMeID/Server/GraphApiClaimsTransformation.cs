@@ -23,7 +23,7 @@ public class GraphApiClaimsTransformation : IClaimsTransformation
             var objectidentifierClaimType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
             var objectIdentifier = principal.Claims.FirstOrDefault(t => t.Type == objectidentifierClaimType);
 
-            if(objectIdentifier != null)
+            if (objectIdentifier != null)
             {
                 var groupIds = await _msGraphApplicationService
                     .GetGraphApiUserMemberGroups(objectIdentifier.Value);

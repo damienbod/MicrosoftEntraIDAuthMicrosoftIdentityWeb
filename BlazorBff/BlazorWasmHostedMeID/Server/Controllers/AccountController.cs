@@ -19,7 +19,7 @@ public class AccountController : ControllerBase
 
         var properties = new AuthenticationProperties { RedirectUri = redirectUri };
 
-        if(claimsChallenge != null)
+        if (claimsChallenge != null)
         {
             string jsonString = claimsChallenge.Replace("\\", "")
                 .Trim(new char[1] { '"' });

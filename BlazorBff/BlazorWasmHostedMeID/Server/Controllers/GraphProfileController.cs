@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using BlazorWasmHostedMeID.Server.Services.Delegated;
+﻿using BlazorWasmHostedMeID.Server.Services.Delegated;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
