@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Serilog;
-using ServiceApi;
+using DeviceFlowWeb;
 using System;
 
 Log.Logger = new LoggerConfiguration()

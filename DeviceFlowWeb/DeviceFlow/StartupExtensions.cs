@@ -1,11 +1,9 @@
-using DeviceFlowWeb;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Logging;
 using Serilog;
-using System.Configuration;
 
-namespace ServiceApi;
+namespace DeviceFlowWeb;
 
 internal static class StartupExtensions
 {
