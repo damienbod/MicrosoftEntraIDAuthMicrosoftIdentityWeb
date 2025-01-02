@@ -1,6 +1,6 @@
-using ServiceApi;
 using Microsoft.AspNetCore.Builder;
 using Serilog;
+using ServiceApi;
 using System;
 
 Log.Logger = new LoggerConfiguration()
