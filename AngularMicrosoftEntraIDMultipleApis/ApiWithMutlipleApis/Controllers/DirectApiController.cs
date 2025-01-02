@@ -7,7 +7,7 @@ namespace ApiWithMutlipleApis.Controllers;
 
 [Authorize(Policy = "ValidateAccessTokenPolicy",
     AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-[AuthorizeForScopes(Scopes = new string[] { "api://2b50a014-f353-4c10-aace-024f19a55569/access_as_user" })]
+[AuthorizeForScopes(Scopes = ["api://2b50a014-f353-4c10-aace-024f19a55569/access_as_user"])]
 [ApiController]
 [Route("[controller]")]
 public class DirectApiController : ControllerBase
@@ -15,6 +15,6 @@ public class DirectApiController : ControllerBase
     [HttpGet]
     public IEnumerable<string> Get()
     {
-        return new List<string> { "some data", "more data", "loads of data" };
+        return ["some data", "more data", "loads of data"];
     }
 }
