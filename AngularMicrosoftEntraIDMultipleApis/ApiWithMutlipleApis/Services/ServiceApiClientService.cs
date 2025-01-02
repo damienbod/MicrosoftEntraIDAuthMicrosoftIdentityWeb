@@ -36,7 +36,7 @@ public class ServiceApiClientService
             var data = await JsonSerializer.DeserializeAsync<List<string>>(
                 await response.Content.ReadAsStreamAsync());
 
-            if(data != null)
+            if (data != null)
                 return data;
 
             return Array.Empty<string>();

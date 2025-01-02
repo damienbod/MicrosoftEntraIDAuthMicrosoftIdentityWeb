@@ -77,7 +77,6 @@ var app = builder.Build();
 
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 IdentityModelEventSource.ShowPII = true;
-JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
 if (app.Environment.IsDevelopment())
 {

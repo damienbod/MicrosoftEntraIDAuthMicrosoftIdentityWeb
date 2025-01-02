@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ServiceApi;
-    
+
 public class HasServiceApiRoleHandler : AuthorizationHandler<HasServiceApiRoleRequirement>
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, HasServiceApiRoleRequirement requirement)

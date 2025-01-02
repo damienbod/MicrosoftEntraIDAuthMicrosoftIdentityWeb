@@ -10,19 +10,19 @@ try
 {
     Log.Information("Starting ApiWithMutlipleApis");
 
-var builder = WebApplication.CreateBuilder(args);
+    var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Host.UseSerilog((context, loggerConfiguration) => loggerConfiguration
-    .ReadFrom.Configuration(context.Configuration));
+    builder.Host.UseSerilog((context, loggerConfiguration) => loggerConfiguration
+        .ReadFrom.Configuration(context.Configuration));
 
-var app = builder
-    .ConfigureServices()
-    .ConfigurePipeline();
+    var app = builder
+        .ConfigureServices()
+        .ConfigurePipeline();
 
-app.Run();
+    app.Run();
 }
-catch (Exception ex) when(ex.GetType().Name is not "StopTheHostException"
+catch (Exception ex) when (ex.GetType().Name is not "StopTheHostException"
     && ex.GetType().Name is not "HostAbortedException")
 {
     Log.Fatal(ex, "Unhandled exception");

@@ -1,9 +1,9 @@
-using ServiceApi;
 using Azure.Identity;
-using Serilog;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Serilog;
+using ServiceApi;
 using System;
 
 Log.Logger = new LoggerConfiguration()
