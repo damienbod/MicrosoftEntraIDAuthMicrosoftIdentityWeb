@@ -12,18 +12,6 @@
 
 https://damienbod.com/2021/03/08/securing-blazor-web-assembly-using-cookies/
 
-## History
-
-2022-02-10 Updated namespaces
-
-2022-02-06 Updated nuget packages, add authorization
-
-2021-04-15 Updated nuget packages
-
-2021-03-11 Updated nuget packages
-
-2021-03-09 Updated Anti-forgery policy => feedback Philippe De Ryck
-
 # Credits
 
 Some of the code in this repo was built using original source code from Bernd Hirschmann. 
