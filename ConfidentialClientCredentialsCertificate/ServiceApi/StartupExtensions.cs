@@ -55,8 +55,6 @@ internal static class StartupExtensions
             app.UseDeveloperExceptionPage();
         }
 
-        app.UseSerilogRequestLogging();
-
         app.UseHttpsRedirection();
 
         app.UseRouting();

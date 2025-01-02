@@ -5,7 +5,7 @@ using ServiceApi.HttpLogger;
 using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
 
-namespace MyServerRenderedPortal;
+namespace MyServerRenderedPortal.CallApi;
 
 public class ConfidentialClientApiService
 {
@@ -44,9 +44,9 @@ public class ConfidentialClientApiService
                     enablePiiLogging: true, enableDefaultPlatformLogging: true)
                 .Build();
 
-        var accessToken = await app.AcquireTokenForClient(new[] { scope }).ExecuteAsync();
+        var accessToken = await app.AcquireTokenForClient([scope]).ExecuteAsync();
 
-        client.BaseAddress = new Uri(_configuration["CallApi:ApiBaseAddress"]);
+        client.BaseAddress = new Uri(_configuration["CallApi:ApiBaseAddress"]!);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken.AccessToken);
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

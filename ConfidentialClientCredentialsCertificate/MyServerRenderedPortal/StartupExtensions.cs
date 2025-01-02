@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Microsoft.IdentityModel.Logging;
+using MyServerRenderedPortal.CallApi;
 using Serilog;
 using System.IdentityModel.Tokens.Jwt;
 
@@ -43,8 +44,6 @@ internal static class StartupExtensions
         {
             app.UseDeveloperExceptionPage();
         }
-
-        app.UseSerilogRequestLogging();
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();

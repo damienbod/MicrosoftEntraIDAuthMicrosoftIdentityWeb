@@ -10,8 +10,8 @@ public class ApiService
     private readonly ITokenAcquisition _tokenAcquisition;
     private readonly IConfiguration _configuration;
 
-    public ApiService(IHttpClientFactory clientFactory, 
-        ITokenAcquisition tokenAcquisition, 
+    public ApiService(IHttpClientFactory clientFactory,
+        ITokenAcquisition tokenAcquisition,
         IConfiguration configuration)
     {
         _clientFactory = clientFactory;
@@ -24,7 +24,7 @@ public class ApiService
         var client = _clientFactory.CreateClient();
 
         var scope = _configuration["CallApi:ScopeForAccessToken"];
-        if(scope == null) throw new ArgumentNullException(nameof(scope));
+        if (scope == null) throw new ArgumentNullException(nameof(scope));
 
         var uri = _configuration["CallApi:ApiBaseAddress"];
         if (uri == null) throw new ArgumentNullException(nameof(uri));
