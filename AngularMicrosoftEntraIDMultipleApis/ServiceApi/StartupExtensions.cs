@@ -7,6 +7,7 @@ using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
+using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 using Serilog;
 using System;
 
@@ -18,6 +19,13 @@ internal static class StartupExtensions
     {
         var services = builder.Services;
         var configuration = builder.Configuration;
+
+        services.AddSecurityHeaderPolicies()
+          .SetPolicySelector((PolicySelectorContext ctx) =>
+          {
+              return SecurityHeadersDefinitions.GetHeaderPolicyCollection(
+                  builder.Environment.IsDevelopment());
+          });
 
         services.AddSingleton<IAuthorizationHandler, HasServiceApiRoleHandler>();
 
@@ -90,6 +98,8 @@ internal static class StartupExtensions
     {
         IdentityModelEventSource.ShowPII = true;
         JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+        app.UseSecurityHeaders();
 
         app.UseSerilogRequestLogging();
 

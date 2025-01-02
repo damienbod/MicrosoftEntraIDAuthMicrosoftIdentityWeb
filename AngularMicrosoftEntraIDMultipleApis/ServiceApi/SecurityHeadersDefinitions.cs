@@ -10,10 +10,9 @@ public static class SecurityHeadersDefinitions
             .AddFrameOptionsDeny()
             .AddContentTypeOptionsNoSniff()
             .AddReferrerPolicyStrictOriginWhenCrossOrigin()
-            .RemoveServerHeader()
             .AddCrossOriginOpenerPolicy(builder => builder.SameOrigin())
-            .AddCrossOriginEmbedderPolicy(builder => builder.RequireCorp())
             .AddCrossOriginResourcePolicy(builder => builder.SameOrigin())
+            .AddCrossOriginEmbedderPolicy(builder => builder.RequireCorp())
             .AddContentSecurityPolicy(builder =>
             {
                 builder.AddObjectSrc().None();
@@ -26,31 +25,14 @@ public static class SecurityHeadersDefinitions
                 builder.AddScriptSrc().WithNonce();
                 builder.AddFrameAncestors().None();
             })
-            .AddPermissionsPolicy(builder =>
-            {
-                builder.AddAccelerometer().None();
-                builder.AddAutoplay().None();
-                builder.AddCamera().None();
-                builder.AddEncryptedMedia().None();
-                builder.AddFullscreen().All();
-                builder.AddGeolocation().None();
-                builder.AddGyroscope().None();
-                builder.AddMagnetometer().None();
-                builder.AddMicrophone().None();
-                builder.AddMidi().None();
-                builder.AddPayment().None();
-                builder.AddPictureInPicture().None();
-                builder.AddSyncXHR().None();
-                builder.AddUsb().None();
-            });
+            .RemoveServerHeader()
+            .AddPermissionsPolicyWithDefaultSecureDirectives();
 
         if (!isDev)
         {
             // maxage = one year in seconds
-            policy.AddStrictTransportSecurityMaxAgeIncludeSubDomains(maxAgeInSeconds: 60 * 60 * 24 * 365);
+            policy.AddStrictTransportSecurityMaxAgeIncludeSubDomains();
         }
-
-        policy.ApplyDocumentHeadersToAllResponses();
 
         return policy;
     }
