@@ -1,13 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Identity.Web;
-using Microsoft.Identity.Web.UI;
 using Microsoft.IdentityModel.Logging;
-using MyServerRenderedPortal.CallApi;
 using Serilog;
-using System.IdentityModel.Tokens.Jwt;
 
-namespace MyServerRenderedPortal;
+namespace ApiDecryptionCertificates;
 
 internal static class StartupExtensions
 {
@@ -16,27 +13,23 @@ internal static class StartupExtensions
         var services = builder.Services;
         var configuration = builder.Configuration;
 
-        services.AddTransient<ConfidentialClientApiService>();
-        services.AddTransient<ClientAssertionsApiService>();
-        services.AddHttpClient();
-        services.AddOptions();
+        services.AddMicrosoftIdentityWebApiAuthentication(configuration);
 
-        services.AddMicrosoftIdentityWebAppAuthentication(configuration);
-
-        services.AddRazorPages().AddMvcOptions(options =>
+        services.AddControllers(options =>
         {
             var policy = new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
+                // .RequireClaim("email") // disabled this to test with users that have no email (no license added)
                 .Build();
             options.Filters.Add(new AuthorizeFilter(policy));
-        }).AddMicrosoftIdentityUI();
+        });
+
         return builder.Build();
     }
 
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
         IdentityModelEventSource.ShowPII = true;
-        JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
         app.UseSerilogRequestLogging();
 
@@ -46,14 +39,12 @@ internal static class StartupExtensions
         }
 
         app.UseHttpsRedirection();
-        app.UseStaticFiles();
 
         app.UseRouting();
 
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.MapRazorPages();
         app.MapControllers();
 
         return app;

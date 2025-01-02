@@ -1,48 +1,34 @@
+using Microsoft.AspNetCore.Builder;
 using Serilog;
-using Serilog.Events;
-using Serilog.Sinks.SystemConsole.Themes;
+using ServiceApi;
+using System;
 
-namespace ApiDecryptionCertificates;
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
 
-public class Program
+Log.Information("Starting ApiDecryptionCertificates application");
+
+try
 {
-    public static int Main(string[] args)
-    {
-        Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Debug()
-            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-            .Enrich.FromLogContext()
-            .WriteTo.Console()
-            .CreateLogger();
+    var builder = WebApplication.CreateBuilder(args);
 
-        try
-        {
-            Log.Information("Starting web host");
-            CreateHostBuilder(args).Build().Run();
-            return 0;
-        }
-        catch (Exception ex)
-        {
-            Log.Fatal(ex, "Host terminated unexpectedly");
-            return 1;
-        }
-        finally
-        {
-            Log.CloseAndFlush();
-        }
-    }
+    builder.Host.UseSerilog((context, loggerConfiguration) => loggerConfiguration
+        .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
+        .ReadFrom.Configuration(context.Configuration));
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
+    var app = builder
+        .ConfigureServices()
+        .ConfigurePipeline();
 
-            })
-            .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
-                .ReadFrom.Configuration(hostingContext.Configuration)
-                .Enrich.FromLogContext()
-                .WriteTo.File("../LogsApiDecryptionCertificates.txt")
-                .WriteTo.Console(theme: AnsiConsoleTheme.Code)
-            );
+    app.Run();
+}
+catch (Exception ex) when (ex.GetType().Name is not "StopTheHostException" && ex.GetType().Name is not "HostAbortedException")
+{
+    Log.Fatal(ex, "Unhandled exception");
+}
+finally
+{
+    Log.Information("Shut down complete");
+    Log.CloseAndFlush();
 }
