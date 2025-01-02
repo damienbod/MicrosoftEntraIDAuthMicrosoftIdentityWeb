@@ -18,6 +18,12 @@ public class HasServiceApiRoleHandler : AuthorizationHandler<HasServiceApiRoleRe
 
         var roleClaims = context.User.Claims.Where(t => t.Type == "roles");
 
+        // MS namespace: http://schemas.microsoft.com/ws/2008/06/identity/claims/role
+        if (!roleClaims.Any())
+        {
+            roleClaims = context.User.Claims.Where(t => t.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role");
+        }
+
         if (roleClaims != null && HasServiceApiRole(roleClaims))
         {
             context.Succeed(requirement);
