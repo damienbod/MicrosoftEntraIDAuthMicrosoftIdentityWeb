@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ServiceApi;
-    
+
 public class HasServiceApiRoleHandler : AuthorizationHandler<HasServiceApiRoleRequirement>
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, HasServiceApiRoleRequirement requirement)
@@ -17,6 +17,12 @@ public class HasServiceApiRoleHandler : AuthorizationHandler<HasServiceApiRoleRe
             throw new ArgumentNullException(nameof(requirement));
 
         var roleClaims = context.User.Claims.Where(t => t.Type == "roles");
+
+        // MS namespace: http://schemas.microsoft.com/ws/2008/06/identity/claims/role
+        if (!roleClaims.Any())
+        {
+            roleClaims = context.User.Claims.Where(t => t.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role");
+        }
 
         if (roleClaims != null && HasServiceApiRole(roleClaims))
         {
