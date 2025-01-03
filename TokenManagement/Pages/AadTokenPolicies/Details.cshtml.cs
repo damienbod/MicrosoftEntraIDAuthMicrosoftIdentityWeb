@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
+using TokenManagement.AadTokenPolicies;
 
 namespace TokenManagement.Pages.AadTokenPolicies;
 
@@ -43,9 +44,9 @@ public class DetailsModel : PageModel
         PolicyAssignedApplications = applications.CurrentPage.Select(app => new PolicyAssignedApplicationsDto
         {
             Id = app.Id,
-            DisplayName = (app as Microsoft.Graph.Application).DisplayName,
-            AppId = (app as Microsoft.Graph.Application).AppId,
-            SignInAudience = (app as Microsoft.Graph.Application).SignInAudience
+            DisplayName = (app as Microsoft.Graph.Application)!.DisplayName,
+            AppId = (app as Microsoft.Graph.Application)!.AppId,
+            SignInAudience = (app as Microsoft.Graph.Application)!.SignInAudience
 
         }).ToList();
         return Page();

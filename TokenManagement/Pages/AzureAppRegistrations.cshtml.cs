@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
+using TokenManagement.AadTokenPolicies;
 
 namespace TokenManagement.Pages;
 
@@ -14,7 +15,7 @@ public class ApplicationsModel : PageModel
         _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
     }
 
-    public List<PolicyAssignedApplicationsDto> AllApplications { get; set; }
+    public List<PolicyAssignedApplicationsDto> AllApplications { get; set; } = [];
 
     public async Task<IActionResult> OnGetAsync()
     {

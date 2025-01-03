@@ -5,7 +5,7 @@ using Microsoft.Identity.Web;
 
 namespace TokenManagement.Pages;
 
-[AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })]
+[AuthorizeForScopes(Scopes = ["Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All"])]
 public class AssignNewApplicationToPolicyModel : PageModel
 {
     private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
@@ -15,10 +15,9 @@ public class AssignNewApplicationToPolicyModel : PageModel
         _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
     }
 
-    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
-
-    public string ApplicationGraphId { get; set; }
-    public List<SelectListItem> ApplicationOptions { get; set; }
+    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; } = new();
+    public string ApplicationGraphId { get; set; } = string.Empty;
+    public List<SelectListItem> ApplicationOptions { get; set; } = [];
 
     public async Task<IActionResult> OnGetAsync(string id)
     {
