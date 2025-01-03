@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 
-namespace PortalDecryptionCertificates;
+namespace PortalDecryptionCertificates.CallApi;
 
 public class ApiService
 {
@@ -29,7 +29,7 @@ public class ApiService
         var uri = _configuration["CallApi:ApiBaseAddress"];
         if (uri == null) throw new ArgumentNullException(nameof(uri));
 
-        var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
+        var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync([scope]);
 
         client.BaseAddress = new Uri(uri);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
