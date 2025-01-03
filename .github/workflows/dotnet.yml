@@ -27,7 +27,7 @@ jobs:
     - name: Build DecryptionCertificates
       run: dotnet build ./DecryptionCertificates/DecryptionCertificates.sln
     - name: Build DeviceFlowWeb
-      run: dotnet build ./DeviceFlow/DeviceFlowWeb.sln
+      run: dotnet build ./DeviceFlowWeb/DeviceFlow/DeviceFlowWeb.sln
     - name: Build DownstreamApis
       run: dotnet build ./DownstreamApis/DownstreamApis.sln
     - name: Build TokenManagement
