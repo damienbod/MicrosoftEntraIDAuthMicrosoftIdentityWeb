@@ -1,5 +1,5 @@
-using TokenManagement;
 using Serilog;
+using TokenManagement;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
