@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
 using Newtonsoft.Json.Linq;
+using PortalDecryptionCertificates.CallApi;
 
 namespace PortalDecryptionCertificates.Pages;
 
