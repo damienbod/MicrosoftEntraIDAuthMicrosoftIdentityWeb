@@ -1,12 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <UserSecretsId>4b0196c4-1d74-41da-800a-2e0905495943</UserSecretsId>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <DefaultItemExcludes>$(DefaultItemExcludes);wwwroot\css\site.min.css;wwwroot\css\vendor.min.css;wwwroot\js\site.min.js;wwwroot\js\vendor-validation.min.js;wwwroot\js\vendor.min.js</DefaultItemExcludes>
+  </PropertyGroup>
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.Identity.Web" Version="2.16.0" />
     <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraphBeta" Version="2.16.0" />
