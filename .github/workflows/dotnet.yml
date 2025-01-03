@@ -26,7 +26,7 @@ jobs:
       run: dotnet build ./ConfidentialClientCredentialsCertificate/ConfidentialClientCredentialsCertificate.sln
     - name: Build DecryptionCertificates
       run: dotnet build ./DecryptionCertificates/DecryptionCertificates.sln
-    - name: Build ./DeviceFlowWeb/DeviceFlowWeb
+    - name: Build ./DeviceFlowWeb/DeviceFlow
       run: dotnet build ./DeviceFlowWeb/DeviceFlowWeb.sln
     - name: Build DownstreamApis
       run: dotnet build ./DownstreamApis/DownstreamApis.sln
