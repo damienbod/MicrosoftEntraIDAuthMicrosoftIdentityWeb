@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Graph;
 using Microsoft.Identity.Web;
+using TokenManagement.AadTokenPolicies;
 
 namespace TokenManagement.Pages.AadTokenPolicies;
 
@@ -16,7 +17,7 @@ public class EditModel : PageModel
     }
 
     [BindProperty]
-    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
+    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; } = new();
 
     public async Task<IActionResult> OnGetAsync(string id)
     {
@@ -28,7 +29,7 @@ public class EditModel : PageModel
         var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
         TokenLifetimePolicyDto = new TokenLifetimePolicyDto
         {
-            Definition = policy.Definition.FirstOrDefault(),
+            Definition = policy.Definition.FirstOrDefault()!,
             DisplayName = policy.DisplayName,
             IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
             Id = policy.Id

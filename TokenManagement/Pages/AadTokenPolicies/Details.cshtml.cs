@@ -5,7 +5,7 @@ using TokenManagement.AadTokenPolicies;
 
 namespace TokenManagement.Pages.AadTokenPolicies;
 
-[AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })]
+[AuthorizeForScopes(Scopes = ["Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All"])]
 public class DetailsModel : PageModel
 {
     private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
@@ -15,9 +15,8 @@ public class DetailsModel : PageModel
         _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
     }
 
-    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
-
-    public List<PolicyAssignedApplicationsDto> PolicyAssignedApplications { get; set; }
+    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; } = new();
+    public List<PolicyAssignedApplicationsDto> PolicyAssignedApplications { get; set; } = [];
 
     public async Task<IActionResult> OnGetAsync(string id)
     {
@@ -29,7 +28,7 @@ public class DetailsModel : PageModel
         var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
         TokenLifetimePolicyDto = new TokenLifetimePolicyDto
         {
-            Definition = policy.Definition.FirstOrDefault(),
+            Definition = policy.Definition.FirstOrDefault()!,
             DisplayName = policy.DisplayName,
             IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
             Id = policy.Id
@@ -54,8 +53,8 @@ public class DetailsModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        string? appId = Request.Form["item.AppId"];
-        string? policyId = Request.Form["TokenLifetimePolicyDto.Id"];
+        string? appId = Request.Form["item.AppId"]!;
+        string? policyId = Request.Form["TokenLifetimePolicyDto.Id"]!;
 
         if (!ModelState.IsValid)
         {

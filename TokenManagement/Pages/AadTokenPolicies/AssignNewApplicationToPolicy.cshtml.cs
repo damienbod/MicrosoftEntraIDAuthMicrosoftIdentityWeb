@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Identity.Web;
+using TokenManagement.AadTokenPolicies;
 
 namespace TokenManagement.Pages;
 
@@ -29,7 +30,7 @@ public class AssignNewApplicationToPolicyModel : PageModel
         var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
         TokenLifetimePolicyDto = new TokenLifetimePolicyDto
         {
-            Definition = policy.Definition.FirstOrDefault(),
+            Definition = policy.Definition.FirstOrDefault()!,
             DisplayName = policy.DisplayName,
             IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
             Id = policy.Id
@@ -56,8 +57,9 @@ public class AssignNewApplicationToPolicyModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        var applicationGraphId = Request.Form["ApplicationGraphId"];
-        var policyId = Request.Form["TokenLifetimePolicyDto.Id"];
+        string? applicationGraphId = Request.Form["ApplicationGraphId"]!;
+        string? policyId = Request.Form["TokenLifetimePolicyDto.Id"]!;
+
         if (!ModelState.IsValid)
         {
             return Page();

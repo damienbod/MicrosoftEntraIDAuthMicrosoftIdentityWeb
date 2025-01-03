@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
+using TokenManagement.AadTokenPolicies;
 
 namespace TokenManagement.Pages.AadTokenPolicies;
 
-[AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })]
+[AuthorizeForScopes(Scopes = ["Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration"])]
 public class DeleteModel : PageModel
 {
     private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
@@ -15,7 +16,7 @@ public class DeleteModel : PageModel
     }
 
     [BindProperty]
-    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
+    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; } = new();
 
     public async Task<IActionResult> OnGetAsync(string id)
     {
@@ -27,7 +28,7 @@ public class DeleteModel : PageModel
         var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
         TokenLifetimePolicyDto = new TokenLifetimePolicyDto
         {
-            Definition = policy.Definition.FirstOrDefault(),
+            Definition = policy.Definition.FirstOrDefault()!,
             DisplayName = policy.DisplayName,
             IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
             Id = policy.Id
