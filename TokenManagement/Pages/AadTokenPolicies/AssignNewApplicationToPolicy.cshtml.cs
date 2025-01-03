@@ -2,10 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Identity.Web;
+using TokenManagement.AadTokenPolicies;
 
 namespace TokenManagement.Pages;
 
-[AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All" })]
+[AuthorizeForScopes(Scopes = ["Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Application.ReadWrite.All"])]
 public class AssignNewApplicationToPolicyModel : PageModel
 {
     private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
@@ -15,10 +16,9 @@ public class AssignNewApplicationToPolicyModel : PageModel
         _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
     }
 
-    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
-
-    public string ApplicationGraphId { get; set; }
-    public List<SelectListItem> ApplicationOptions { get; set; }
+    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; } = new();
+    public string ApplicationGraphId { get; set; } = string.Empty;
+    public List<SelectListItem> ApplicationOptions { get; set; } = [];
 
     public async Task<IActionResult> OnGetAsync(string id)
     {
@@ -30,7 +30,7 @@ public class AssignNewApplicationToPolicyModel : PageModel
         var policy = await _tokenLifetimePolicyGraphApiService.GetPolicy(id);
         TokenLifetimePolicyDto = new TokenLifetimePolicyDto
         {
-            Definition = policy.Definition.FirstOrDefault(),
+            Definition = policy.Definition.FirstOrDefault()!,
             DisplayName = policy.DisplayName,
             IsOrganizationDefault = policy.IsOrganizationDefault.GetValueOrDefault(),
             Id = policy.Id
@@ -57,8 +57,9 @@ public class AssignNewApplicationToPolicyModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        var applicationGraphId = Request.Form["ApplicationGraphId"];
-        var policyId = Request.Form["TokenLifetimePolicyDto.Id"];
+        string? applicationGraphId = Request.Form["ApplicationGraphId"]!;
+        string? policyId = Request.Form["TokenLifetimePolicyDto.Id"]!;
+
         if (!ModelState.IsValid)
         {
             return Page();

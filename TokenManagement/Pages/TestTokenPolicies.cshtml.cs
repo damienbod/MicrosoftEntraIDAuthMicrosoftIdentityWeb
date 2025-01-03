@@ -13,7 +13,7 @@ public class CallApiModel : PageModel
         _tokenLifetimePolicyService = tokenLifetimePolicyService;
     }
 
-    public JArray DataFromApi { get; set; }
+    public JArray? DataFromApi { get; set; }
 
     public async Task OnGetAsync()
     {

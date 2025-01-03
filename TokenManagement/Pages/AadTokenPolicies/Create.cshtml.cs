@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Graph;
 using Microsoft.Identity.Web;
+using TokenManagement.AadTokenPolicies;
 
 namespace TokenManagement.Pages.AadTokenPolicies;
 
-[AuthorizeForScopes(Scopes = new string[] { "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration" })]
+[AuthorizeForScopes(Scopes = ["Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration"])]
 public class CreateModel : PageModel
 {
     private readonly TokenLifetimePolicyGraphApiService _tokenLifetimePolicyGraphApiService;
@@ -14,6 +15,10 @@ public class CreateModel : PageModel
     {
         _tokenLifetimePolicyGraphApiService = tokenLifetimePolicyGraphApiService;
     }
+
+
+    [BindProperty]
+    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; } = new();
 
     public IActionResult OnGet()
     {
@@ -24,9 +29,6 @@ public class CreateModel : PageModel
 
         return Page();
     }
-
-    [BindProperty]
-    public TokenLifetimePolicyDto TokenLifetimePolicyDto { get; set; }
 
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task<IActionResult> OnPostAsync()
