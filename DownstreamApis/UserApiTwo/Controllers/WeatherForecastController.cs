@@ -20,8 +20,8 @@ public class WeatherForecastController : ControllerBase
     {
         //string[] scopeRequiredByApi = new string[] { "access_as_user" };
         string[] scopeRequiredByApi = new string[] { "user_impersonation" };
-            
-            var rng = new Random();
+
+        var rng = new Random();
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateTime.Now.AddDays(index),

@@ -1,5 +1,3 @@
-using System;
-
 namespace UserApiOne;
 
 public class WeatherForecast

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
-using System.IdentityModel.Tokens.Jwt;
 using UserApiOne;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -10,8 +10,8 @@ public class UserApiOneService
     private readonly ITokenAcquisition _tokenAcquisition;
     private readonly IConfiguration _configuration;
 
-    public UserApiOneService(IHttpClientFactory clientFactory, 
-        ITokenAcquisition tokenAcquisition, 
+    public UserApiOneService(IHttpClientFactory clientFactory,
+        ITokenAcquisition tokenAcquisition,
         IConfiguration configuration)
     {
         _clientFactory = clientFactory;
