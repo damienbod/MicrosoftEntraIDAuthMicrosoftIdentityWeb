@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   signIn() {
-    return of(this.oidcSecurityService.authorize());
+    this.oidcSecurityService.authorize();
   }
 
   signOut() {
