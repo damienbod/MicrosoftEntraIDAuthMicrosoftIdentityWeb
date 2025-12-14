@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
-using Newtonsoft.Json.Linq;
 
 namespace WebAppWithRoles.Pages;
 
@@ -9,9 +8,9 @@ public class ClientWithRolesApiModel : PageModel
 {
     private readonly ClientApiWithRolesService _apiService;
 
-    public JArray? UserDataFromApi { get; set; }
-    public JArray? StudentDataFromApi { get; set; }
-    public JArray? AdminDataFromApi { get; set; }
+    public string? UserDataFromApi { get; set; }
+    public string? StudentDataFromApi { get; set; }
+    public string? AdminDataFromApi { get; set; }
 
     public ClientWithRolesApiModel(ClientApiWithRolesService apiService)
     {

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Identity.Web;
-using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 
 namespace WebAppWithRoles;
@@ -19,30 +18,30 @@ public class ClientApiWithRolesService
         _configuration = configuration;
     }
 
-    public async Task<JArray> GetUserDataFromApi()
+    public async Task<string> GetUserDataFromApi()
     {
         return await GetDataFromApi("userdata");
     }
 
-    public async Task<JArray> GetStudentDataFromApi()
+    public async Task<string> GetStudentDataFromApi()
     {
         return await GetDataFromApi("studentdata");
     }
 
-    public async Task<JArray> GetAdminDataFromApi()
+    public async Task<string> GetAdminDataFromApi()
     {
         return await GetDataFromApi("admindata");
     }
 
 
-    private async Task<JArray> GetDataFromApi(string path)
+    private async Task<string> GetDataFromApi(string path)
     {
         var client = _clientFactory.CreateClient();
 
         var scope = _configuration["ApiWithRoles:ScopeForAccessToken"];
-        var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
+        var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync([scope!]);
 
-        client.BaseAddress = new Uri(_configuration["ApiWithRoles:ApiBaseAddress"]);
+        client.BaseAddress = new Uri(_configuration["ApiWithRoles:ApiBaseAddress"]!);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -51,11 +50,10 @@ public class ClientApiWithRolesService
         {
             var responseContent = await response.Content.ReadAsStringAsync();
 
-            var data = JArray.Parse(responseContent);
-
-            return data;
+            return responseContent;
         }
-        var errorList = new List<string> { $"Status code: {response.StatusCode}", $"Error: {response.ReasonPhrase}" };
-        return JArray.FromObject(errorList);
+        var errorList = $"Status code: {response.StatusCode} Error: {response.ReasonPhrase}";
+
+        return errorList;
     }
 }
