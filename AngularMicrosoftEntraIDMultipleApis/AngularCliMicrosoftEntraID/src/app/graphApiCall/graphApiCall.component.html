@@ -1,14 +1,14 @@
 
 
 
-@if (isAuthenticated$ | async; as isAuthenticated) {
+@if ((isAuthenticated$ | async); as isAuthenticated) {
   <div>
     <button class="btn btn-primary" type="button" (click)="callApi()" [disabled]="httpRequestRunning">
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" [hidden]="!httpRequestRunning" ></span>
       Request Data
     </button>
     <br/><br/>
-    Is Authenticated: {{ isAuthenticated.isAuthenticated }}
+    Is Authenticated: {{ $any(isAuthenticated).isAuthenticated }}
     <br/><br/>
     <div class="card">
       <div class="card-header">Data from API using Graph API</div>
