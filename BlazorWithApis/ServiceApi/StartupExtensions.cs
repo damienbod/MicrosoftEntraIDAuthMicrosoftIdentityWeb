@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,10 +5,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Logging;
-using Microsoft.OpenApi.Models;
 using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 using Serilog;
-using System;
 
 namespace ServiceApi;
 
@@ -21,11 +18,11 @@ internal static class StartupExtensions
         var configuration = builder.Configuration;
 
         services.AddSecurityHeaderPolicies()
-           .SetPolicySelector((PolicySelectorContext ctx) =>
-           {
-               return SecurityHeadersDefinitions.GetHeaderPolicyCollection(
-                   builder.Environment.IsDevelopment());
-           });
+          .SetPolicySelector((PolicySelectorContext ctx) =>
+          {
+              return SecurityHeadersDefinitions.GetHeaderPolicyCollection(
+                  builder.Environment.IsDevelopment());
+          });
 
         services.AddSingleton<IAuthorizationHandler, HasServiceApiRoleHandler>();
 
@@ -51,44 +48,19 @@ internal static class StartupExtensions
                 validateAccessTokenPolicy.RequireClaim("azpacr", "1");
             });
         });
-
-        services.AddSwaggerGen(c =>
+        services.AddOpenApi(options =>
         {
-            c.EnableAnnotations();
-
-            // add JWT Authentication
-            var securityScheme = new OpenApiSecurityScheme
-            {
-                Name = "JWT Authentication",
-                Description = "Enter JWT Bearer token **_only_**",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.Http,
-                Scheme = "bearer", // must be lower case
-                BearerFormat = "JWT",
-                Reference = new OpenApiReference
-                {
-                    Id = JwtBearerDefaults.AuthenticationScheme,
-                    Type = ReferenceType.SecurityScheme
-                }
-            };
-            c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
-            c.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {securityScheme, Array.Empty<string>()}
-            });
-
-            c.SwaggerDoc("v1", new OpenApiInfo
-            {
-                Title = "Service API One",
-                Version = "v1",
-                Description = "Service API One",
-                Contact = new OpenApiContact
-                {
-                    Name = "damienbod",
-                    Email = string.Empty,
-                    Url = new Uri("https://damienbod.com/"),
-                },
-            });
+            //options.UseTransformer((document, context, cancellationToken) =>
+            //{
+            //    document.Info = new()
+            //    {
+            //        Title = "My API",
+            //        Version = "v1",
+            //        Description = "API for Damien"
+            //    };
+            //    return Task.CompletedTask;
+            //});
+            options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
         });
 
         return builder.Build();
@@ -99,21 +71,14 @@ internal static class StartupExtensions
         IdentityModelEventSource.ShowPII = true;
         JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-        app.UseSerilogRequestLogging();
-
         app.UseSecurityHeaders();
+
+        app.UseSerilogRequestLogging();
 
         if (app.Environment.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }
-
-        app.UseSwagger();
-        app.UseSwaggerUI(c =>
-        {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Service API One");
-            c.RoutePrefix = string.Empty;
-        });
 
         app.UseSerilogRequestLogging();
 
@@ -125,6 +90,16 @@ internal static class StartupExtensions
         app.UseAuthorization();
 
         app.MapControllers();
+
+        app.MapOpenApi("/openapi/v1/openapi.json");
+
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/openapi/v1/openapi.json", "v1");
+            });
+        }
 
         return app;
     }
