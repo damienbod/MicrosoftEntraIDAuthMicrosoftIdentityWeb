@@ -12,6 +12,6 @@ public class ApiForUserDataController : ControllerBase
     [HttpGet]
     public IEnumerable<string> Get()
     {
-        return new List<string> { "user API data 1", "user API data 2" };
+        return ["user API data 1", "user API data 2"];
     }
 }
