@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;
 
 namespace ServiceApi.Controllers;
@@ -13,14 +12,12 @@ namespace ServiceApi.Controllers;
 [ProducesResponseType(StatusCodes.Status401Unauthorized)]
 [ProducesResponseType(StatusCodes.Status403Forbidden)]
 [Produces("application/json")]
-[SwaggerTag("Service API for demo service data")]
 public class ApiForServiceDataController : ControllerBase
 {
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<string>))]
-    [SwaggerOperation(OperationId = "Get", Summary = "Gets service data")]
     public IEnumerable<string> Get()
     {
-        return new List<string> { "app-app Service API data 1", "service API data 2" };
+        return ["app-app Service API data 1", "service API data 2"];
     }
 }
