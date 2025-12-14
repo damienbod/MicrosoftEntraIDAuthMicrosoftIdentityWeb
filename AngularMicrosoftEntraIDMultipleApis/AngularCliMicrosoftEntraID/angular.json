@@ -69,18 +69,18 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-		  "options": {
-            "browserTarget": "angular-oidc-oauth2:build",
-            "sslKey": "certs/dev_localhost.key",
+      "options": {
+        "sslKey": "certs/dev_localhost.key",
             "sslCert": "certs/dev_localhost.pem",
-            "port": 4200
+            "port": 4200,
+            "buildTarget": "angular-oidc-oauth2:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "AngularCliAzureAD:build:production"
+              "buildTarget": "AngularCliAzureAD:build:production"
             },
             "development": {
-              "browserTarget": "AngularCliAzureAD:build:development"
+              "buildTarget": "AngularCliAzureAD:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "AngularCliAzureAD:build"
+            "buildTarget": "AngularCliAzureAD:build"
           }
         },
         "test": {
