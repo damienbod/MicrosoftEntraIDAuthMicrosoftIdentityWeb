@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -10,7 +10,7 @@ export class AuthService {
     return this.oidcSecurityService.isAuthenticated$;
   }
 
-  get token() {
+  get token$(): Observable<string> {
     return this.oidcSecurityService.getAccessToken();
   }
 
@@ -23,11 +23,11 @@ export class AuthService {
   }
 
   signIn() {
-    return of(this.oidcSecurityService.authorize());
+    this.oidcSecurityService.authorize();
   }
 
   signOut() {
-    this.oidcSecurityService.logoff();
+    return this.oidcSecurityService.logoff();
   }
 
   forceRefreshSession() {

@@ -19,7 +19,7 @@
 
 ## History
 
-- 2025-12-14 .NET 10
+- 2025-12-14 .NET 10, Angular 21
 - 2025-02-07 Small updates
 - 2025-01-03 .NET 9, Bootstrap 5
 - 2024-04-11 Updated packages

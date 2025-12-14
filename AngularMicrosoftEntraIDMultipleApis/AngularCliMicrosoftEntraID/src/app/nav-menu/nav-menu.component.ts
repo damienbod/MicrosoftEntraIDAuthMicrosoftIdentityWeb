@@ -4,23 +4,20 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-nav-menu',
-  templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css'],
+    selector: 'app-nav-menu',
+    templateUrl: './nav-menu.component.html',
+    styleUrls: ['./nav-menu.component.css'],
+    standalone: false
 })
 export class NavMenuComponent implements OnInit {
   userData$: Observable<any>;
-  dataFromAzureProtectedApi$: Observable<any>;
-  isAuthenticated = false;
+  isAuthenticated$: Observable<AuthenticatedResult>;
+  
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.userData$ = this.authService.userData$;
-    this.authService.signedIn$.subscribe(({ isAuthenticated }) => {
-      this.isAuthenticated = isAuthenticated;
-
-      console.warn('authenticated: ', isAuthenticated);
-    });
+    this.isAuthenticated$ = this.authService.signedIn$;
   }
 
   login() {
@@ -34,6 +31,8 @@ export class NavMenuComponent implements OnInit {
   }
 
   logout() {
-    this.authService.signOut();
+    this.authService.signOut().subscribe((result) => {
+      console.log('Logout completed');
+    });
   }
 }

@@ -6,8 +6,9 @@ import { finalize } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-direct-api-call',
-  templateUrl: 'directApiCall.component.html',
+    selector: 'app-direct-api-call',
+    templateUrl: 'directApiCall.component.html',
+    standalone: false
 })
 export class DirectApiCallComponent implements OnInit {
   userData$: Observable<any>;
