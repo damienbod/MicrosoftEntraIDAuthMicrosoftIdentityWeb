@@ -11,17 +11,13 @@ import { AuthService } from '../auth.service';
 })
 export class NavMenuComponent implements OnInit {
   userData$: Observable<any>;
-  dataFromAzureProtectedApi$: Observable<any>;
-  isAuthenticated = false;
+  isAuthenticated$: Observable<AuthenticatedResult>;
+  
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.userData$ = this.authService.userData$;
-    this.authService.signedIn$.subscribe(({ isAuthenticated }) => {
-      this.isAuthenticated = isAuthenticated;
-
-      console.warn('authenticated: ', isAuthenticated);
-    });
+    this.isAuthenticated$ = this.authService.signedIn$;
   }
 
   login() {
