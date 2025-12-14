@@ -35,6 +35,8 @@ export class NavMenuComponent implements OnInit {
   }
 
   logout() {
-    this.authService.signOut();
+    this.authService.signOut().subscribe((result) => {
+      console.log('Logout completed');
+    });
   }
 }
