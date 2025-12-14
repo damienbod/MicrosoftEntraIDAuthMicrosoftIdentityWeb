@@ -35,7 +35,7 @@ import { AuthorizationGuard } from './authorization.guard';
     { path: 'applicationApiCall', component: ApplicationApiCallComponent, canActivate: [AuthorizationGuard] },
     { path: 'delegatedApiCall', component: DelegatedApiCallComponent, canActivate: [AuthorizationGuard] },
     { path: 'unauthorized', component: UnauthorizedComponent },
-  ], { relativeLinkResolution: 'legacy' }),
+  ], {}),
   AuthModule.forRoot({
     config: {
       authority: 'https://login.microsoftonline.com/7ff95b15-dc21-4ba6-bc92-824856578fc1/v2.0',
