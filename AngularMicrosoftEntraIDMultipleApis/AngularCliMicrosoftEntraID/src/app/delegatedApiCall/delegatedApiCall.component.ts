@@ -6,8 +6,9 @@ import { finalize } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-delegated-api-call',
-  templateUrl: 'delegatedApiCall.component.html',
+    selector: 'app-delegated-api-call',
+    templateUrl: 'delegatedApiCall.component.html',
+    standalone: false
 })
 export class DelegatedApiCallComponent implements OnInit {
   userData$: Observable<any>;

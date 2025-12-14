@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-nav-menu',
-  templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css'],
+    selector: 'app-nav-menu',
+    templateUrl: './nav-menu.component.html',
+    styleUrls: ['./nav-menu.component.css'],
+    standalone: false
 })
 export class NavMenuComponent implements OnInit {
   userData$: Observable<any>;

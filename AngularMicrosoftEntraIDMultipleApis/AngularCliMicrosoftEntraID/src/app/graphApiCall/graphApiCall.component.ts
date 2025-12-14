@@ -6,8 +6,9 @@ import { finalize } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-graph-api-call',
-  templateUrl: 'graphApiCall.component.html',
+    selector: 'app-graph-api-call',
+    templateUrl: 'graphApiCall.component.html',
+    standalone: false
 })
 export class GraphApiCallComponent implements OnInit {
   userData$: Observable<any>;

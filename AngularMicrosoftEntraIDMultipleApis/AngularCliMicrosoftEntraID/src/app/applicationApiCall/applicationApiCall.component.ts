@@ -6,8 +6,9 @@ import { finalize } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-application-api-call',
-  templateUrl: 'applicationApiCall.component.html',
+    selector: 'app-application-api-call',
+    templateUrl: 'applicationApiCall.component.html',
+    standalone: false
 })
 export class ApplicationApiCallComponent implements OnInit {
   userData$: Observable<any>;

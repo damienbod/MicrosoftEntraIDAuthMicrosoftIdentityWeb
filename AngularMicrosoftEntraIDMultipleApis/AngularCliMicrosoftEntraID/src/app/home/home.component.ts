@@ -5,8 +5,9 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.component.html',
+    selector: 'app-home',
+    templateUrl: 'home.component.html',
+    standalone: false
 })
 export class HomeComponent implements OnInit {
   userData$: Observable<any>;
