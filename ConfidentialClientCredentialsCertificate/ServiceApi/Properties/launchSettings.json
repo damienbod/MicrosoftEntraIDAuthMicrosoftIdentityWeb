@@ -3,11 +3,11 @@
     "ServiceApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:44390"
+      "applicationUrl": "https://localhost:44324"
     }
   }
 }
