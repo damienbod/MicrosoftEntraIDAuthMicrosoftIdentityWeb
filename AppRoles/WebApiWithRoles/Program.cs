@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -103,10 +102,10 @@ app.MapOpenApi("/openapi/v1/openapi.json");
 
 if (app.Environment.IsDevelopment())
 {
-app.UseSwaggerUI(options =>
-{
-options.SwaggerEndpoint("/openapi/v1/openapi.json", "v1");
-});
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1/openapi.json", "v1");
+    });
 }
 
 app.Run();
