@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
-using Newtonsoft.Json.Linq;
 
 namespace WebAppUserApis.Pages;
 
@@ -9,7 +8,7 @@ public class CallApiModel : PageModel
 {
     private readonly UserApiOneService _apiService;
 
-    public JArray? DataFromApi { get; set; }
+    public string? DataFromApi { get; set; }
 
     public CallApiModel(UserApiOneService apiService)
     {

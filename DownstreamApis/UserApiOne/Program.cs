@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Identity.Web;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using UserApiOne;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,41 +17,19 @@ builder.Services.AddMicrosoftIdentityWebApiAuthentication(builder.Configuration,
     .EnableTokenAcquisitionToCallDownstreamApi()
     .AddDistributedTokenCaches();
 
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddOpenApi(options =>
 {
-    // add JWT Authentication
-    var securityScheme = new OpenApiSecurityScheme
-    {
-        Name = "JWT Authentication",
-        Description = "Enter JWT Bearer token **_only_**",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.Http,
-        Scheme = "bearer", // must be lower case
-        BearerFormat = "JWT",
-        Reference = new OpenApiReference
-        {
-            Id = JwtBearerDefaults.AuthenticationScheme,
-            Type = ReferenceType.SecurityScheme
-        }
-    };
-    c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {securityScheme, Array.Empty<string>()}
-            });
-
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "User API One",
-        Version = "v1",
-        Description = "User API One",
-        Contact = new OpenApiContact
-        {
-            Name = "damienbod",
-            Email = string.Empty,
-            Url = new Uri("https://damienbod.com/"),
-        },
-    });
+    //options.UseTransformer((document, context, cancellationToken) =>
+    //{
+    //    document.Info = new()
+    //    {
+    //        Title = "My API",
+    //        Version = "v1",
+    //        Description = "API for Damien"
+    //    };
+    //    return Task.CompletedTask;
+    //});
+    options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
 });
 
 builder.Services.AddControllers(options =>
@@ -71,13 +49,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "User API Two");
-    c.RoutePrefix = string.Empty;
-});
-
 app.UseHttpsRedirection();
 
 app.UseRouting();
@@ -86,5 +57,15 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapOpenApi("/openapi/v1/openapi.json");
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1/openapi.json", "v1");
+    });
+}
 
 app.Run();
