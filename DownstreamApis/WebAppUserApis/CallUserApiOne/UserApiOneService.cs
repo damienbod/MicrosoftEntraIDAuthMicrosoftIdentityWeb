@@ -1,5 +1,4 @@
 ﻿using Microsoft.Identity.Web;
-using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 
 namespace WebAppUserApis;
@@ -19,7 +18,7 @@ public class UserApiOneService
         _configuration = configuration;
     }
 
-    public async Task<JArray> GetApiDataAsync()
+    public async Task<string> GetApiDataAsync()
     {
 
         var client = _clientFactory.CreateClient();
@@ -40,9 +39,7 @@ public class UserApiOneService
         if (response.IsSuccessStatusCode)
         {
             var responseContent = await response.Content.ReadAsStringAsync();
-            var data = JArray.Parse(responseContent);
-
-            return data;
+            return responseContent;
         }
 
         throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
